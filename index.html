@@ -940,6 +940,122 @@
     .lang-de .poi-filters [data-lang="de"],
     .lang-de .footer-links [data-lang="de"] { display: inline-flex; }
 
+
+    /* ══ POI EXPLORER ══════════════════════════════════════════════ */
+    .poi-explorer {
+      background: var(--sand);
+      padding: 72px 24px;
+    }
+    .poi-explorer .section-header { margin-bottom: 32px; }
+
+    .poi-explorer-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    /* Left panel: category filters + poi chips */
+    .poi-explorer-left {}
+    .poi-cat-tabs {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;
+    }
+    .poi-cat-tab {
+      padding: 8px 16px; border-radius: 20px; border: 1.5px solid var(--border);
+      background: #fff; font-size: 0.8rem; font-weight: 600; cursor: pointer;
+      transition: all 0.2s; color: var(--text-muted); white-space: nowrap;
+    }
+    .poi-cat-tab.active, .poi-cat-tab:hover {
+      background: var(--coral); color: #fff; border-color: var(--coral);
+    }
+    .poi-chips {
+      display: flex; flex-direction: column; gap: 10px;
+      max-height: 460px; overflow-y: auto;
+      padding-right: 4px;
+    }
+    .poi-chips::-webkit-scrollbar { width: 4px; }
+    .poi-chips::-webkit-scrollbar-track { background: #f0ede8; border-radius: 2px; }
+    .poi-chips::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .poi-chip {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 14px; border-radius: 12px;
+      background: #fff; border: 1.5px solid var(--border);
+      cursor: pointer; transition: all 0.2s;
+    }
+    .poi-chip:hover { border-color: var(--coral); transform: translateX(4px); }
+    .poi-chip.active { border-color: var(--coral); background: rgba(255,107,53,0.06); }
+    .poi-chip-emoji { font-size: 1.4rem; flex-shrink: 0; }
+    .poi-chip-info { flex: 1; min-width: 0; }
+    .poi-chip-name { font-weight: 700; font-size: 0.9rem; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .poi-chip-cat { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+    .poi-chip-arrow { color: var(--border); font-size: 0.9rem; transition: color 0.2s; }
+    .poi-chip.active .poi-chip-arrow { color: var(--coral); }
+
+    /* Right panel: detail card */
+    .poi-detail-panel {
+      background: #fff; border-radius: 20px;
+      border: 1.5px solid var(--border);
+      overflow: hidden;
+      position: sticky; top: 80px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+    .poi-detail-header {
+      padding: 28px 28px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .poi-detail-emoji { font-size: 2.8rem; margin-bottom: 10px; display: block; }
+    .poi-detail-name { font-size: 1.5rem; font-weight: 800; color: var(--text); line-height: 1.2; margin-bottom: 6px; }
+    .poi-detail-cat-badge {
+      display: inline-block; padding: 4px 12px; border-radius: 20px;
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; background: rgba(255,107,53,0.1); color: var(--coral);
+    }
+    .poi-detail-body { padding: 20px 28px; }
+    .poi-detail-desc { font-size: 0.92rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 18px; }
+    .poi-detail-info { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .poi-detail-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.85rem; color: var(--text);
+    }
+    .poi-detail-row-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .poi-detail-row-text { line-height: 1.5; }
+    .poi-detail-rating { color: #F59E0B; font-weight: 700; }
+    .poi-detail-actions {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      padding: 0 28px 24px;
+    }
+    .poi-btn-primary {
+      flex: 1; min-width: 120px;
+      padding: 11px 16px; border-radius: 10px;
+      background: var(--coral); color: #fff;
+      font-weight: 700; font-size: 0.82rem; text-align: center;
+      text-decoration: none; transition: background 0.2s;
+      border: none; cursor: pointer;
+    }
+    .poi-btn-primary:hover { background: #e04a1a; }
+    .poi-btn-secondary {
+      flex: 1; min-width: 120px;
+      padding: 11px 16px; border-radius: 10px;
+      background: transparent; color: var(--text);
+      font-weight: 700; font-size: 0.82rem; text-align: center;
+      text-decoration: none; transition: all 0.2s;
+      border: 1.5px solid var(--border);
+    }
+    .poi-btn-secondary:hover { border-color: var(--coral); color: var(--coral); }
+    .poi-default-msg {
+      padding: 48px 28px; text-align: center;
+      color: var(--text-muted); font-size: 0.95rem;
+    }
+    .poi-default-msg-icon { font-size: 3rem; display: block; margin-bottom: 12px; }
+
+    @media (max-width: 768px) {
+      .poi-explorer-layout { grid-template-columns: 1fr; }
+      .poi-detail-panel { position: static; }
+      .poi-chips { max-height: 320px; }
+    }
   </style>
 </head>
 <body>
@@ -1133,46 +1249,37 @@
   </div>
 </section>
 
-<!-- ══════════ VITA NOTTURNA ══════════ -->
-<section class="nightlife-section fade-in">
-  <div class="section-header" style="padding-top:0">
-    <span class="section-label">🌙 <span data-lang="es">Vida nocturna</span><span data-lang="en">Nightlife</span><span data-lang="fr">Vie nocturne</span><span data-lang="de">Nachtleben</span></span>
-    <h2 class="section-title"><span data-lang="es">Las noches de Puerto Sherry</span><span data-lang="en">Puerto Sherry nights</span><span data-lang="fr">Les nuits de Puerto Sherry</span><span data-lang="de">Puerto Sherry Nächte</span></h2>
-    <p class="section-desc"><span data-lang="es">Tres locales icónicos a pocos minutos de tu puerta. Atardecer, cócteles y música sobre el Atlántico.</span><span data-lang="en">Three iconic venues minutes from your door. Sunset, cocktails and music over the Atlantic.</span></p>
+<!-- ══════════ POI EXPLORER ══════════ -->
+<section class="poi-explorer fade-in" id="explore">
+  <div class="section-header">
+    <span class="section-label">🗺️ <span data-lang="es">Descubre el entorno</span><span data-lang="en">Discover the area</span><span data-lang="fr">Découvrir la zone</span><span data-lang="de">Die Gegend entdecken</span></span>
+    <h2 class="section-title"><span data-lang="es">Explora cada lugar</span><span data-lang="en">Explore every place</span><span data-lang="fr">Explorez chaque lieu</span><span data-lang="de">Jeden Ort erkunden</span></h2>
+    <p class="section-desc"><span data-lang="es">Selecciona un punto de interés para ver horarios, contacto y toda la información.</span><span data-lang="en">Select a point of interest to see opening hours, contact details and more.</span><span data-lang="fr">Sélectionnez un point d'intérêt pour voir les horaires, les contacts et plus.</span><span data-lang="de">Wählen Sie einen Interessenpunkt, um Öffnungszeiten, Kontaktdaten und mehr zu sehen.</span></p>
   </div>
 
-  <div class="nightlife-grid">
-    <div class="nl-card">
-      <span class="nl-emoji">🍹</span>
-      <div class="nl-name">PhiPhi Beach</div>
-      <span class="nl-tag">Open Air Bar</span>
-      <p class="nl-desc"><span data-lang="es">Vistas impresionantes a la bahía de Cádiz. Ambiente tropical, cócteles exóticos y espectacular atardecer atlántico.</span><span data-lang="en">Breathtaking views over the Bay of Cádiz. Tropical vibe, exotic cocktails and spectacular Atlantic sunsets.</span></p>
-      <div class="nl-detail"><span class="nl-detail-icon">📍</span> Avenida del Puerto, Puerto Sherry</div>
-      <div class="nl-detail"><span class="nl-detail-icon">🕐</span> <span data-lang="es">Todos los días 15:30 – 00:00</span><span data-lang="en">Every day 15:30 – 00:00</span></div>
-      <div class="nl-detail"><span class="nl-detail-icon">📞</span> 647 845 447</div>
-      <a href="https://www.instagram.com/phiphibeachpuertosherry/" target="_blank" class="nl-link"><span data-lang="es">Instagram →</span><span data-lang="en">Instagram →</span><span data-lang="fr">Instagram →</span><span data-lang="de">Instagram →</span></a>
+  <div class="poi-explorer-layout">
+    <!-- Left: filter tabs + chips -->
+    <div class="poi-explorer-left">
+      <div class="poi-cat-tabs" id="poiCatTabs">
+        <button class="poi-cat-tab active" data-filter="all">🌍 <span data-lang="es">Todos</span><span data-lang="en">All</span><span data-lang="fr">Tous</span><span data-lang="de">Alle</span></button>
+        <button class="poi-cat-tab" data-filter="beach">🏖️ <span data-lang="es">Playas</span><span data-lang="en">Beaches</span><span data-lang="fr">Plages</span><span data-lang="de">Strände</span></button>
+        <button class="poi-cat-tab" data-filter="gastro">🦞 <span data-lang="es">Gastro</span><span data-lang="en">Gastro</span><span data-lang="fr">Gastro</span><span data-lang="de">Gastro</span></button>
+        <button class="poi-cat-tab" data-filter="nightlife">🎶 <span data-lang="es">Noche</span><span data-lang="en">Night</span><span data-lang="fr">Nuit</span><span data-lang="de">Nacht</span></button>
+        <button class="poi-cat-tab" data-filter="culture">🏰 <span data-lang="es">Cultura</span><span data-lang="en">Culture</span><span data-lang="fr">Culture</span><span data-lang="de">Kultur</span></button>
+        <button class="poi-cat-tab" data-filter="nautica">⚓ <span data-lang="es">Náutica</span><span data-lang="en">Nautical</span><span data-lang="fr">Nautique</span><span data-lang="de">Nautik</span></button>
+        <button class="poi-cat-tab" data-filter="nature">🌿 <span data-lang="es">Naturaleza</span><span data-lang="en">Nature</span><span data-lang="fr">Nature</span><span data-lang="de">Natur</span></button>
+        <button class="poi-cat-tab" data-filter="transport">⛵ <span data-lang="es">Transporte</span><span data-lang="en">Transport</span><span data-lang="fr">Transport</span><span data-lang="de">Transport</span></button>
+      </div>
+      <div class="poi-chips" id="poiChips"></div>
     </div>
 
-    <div class="nl-card">
-      <span class="nl-emoji">🌅</span>
-      <div class="nl-name">Margarita</div>
-      <span class="nl-tag">A Place for Happiness</span>
-      <p class="nl-desc"><span data-lang="es">Music, sun &amp; drinks. Bar de cócteles con terraza vista marina. Ambiente relajado y festivo, 16K seguidores. Abierto todos los días.</span><span data-lang="en">Music, sun &amp; drinks. Cocktail bar with sea-view terrace. Relaxed and joyful vibe, 16K followers. Open every day.</span></p>
-      <div class="nl-detail"><span class="nl-detail-icon">📍</span> Puerto Sherry, El Puerto de Santa María</div>
-      <div class="nl-detail"><span class="nl-detail-icon">🕐</span> <span data-lang="es">Abierto todos los días · desde las 15:30</span><span data-lang="en">Open every day · from 15:30</span></div>
-      <div class="nl-detail"><span class="nl-detail-icon">📞</span> 601 88 50 51</div>
-      <a href="https://www.instagram.com/margaritapuertosherry/" target="_blank" class="nl-link"><span data-lang="es">Instagram →</span><span data-lang="en">Instagram →</span><span data-lang="fr">Instagram →</span><span data-lang="de">Instagram →</span></a>
-    </div>
-
-    <div class="nl-card">
-      <span class="nl-emoji">🎶</span>
-      <div class="nl-name">Playa Canalla</div>
-      <span class="nl-tag">Boho-Chic Beach Club</span>
-      <p class="nl-desc"><span data-lang="es">Espíritu Formentera a orillas del mar. Colores crema y madera, elegancia, glamour y música. 21K seguidores. Jueves–Sábado.</span><span data-lang="en">Formentera spirit at the water's edge. Cream &amp; wood tones, elegance, glamour and music. 21K followers. Thu–Sat.</span></p>
-      <div class="nl-detail"><span class="nl-detail-icon">📍</span> Puerto Sherry, El Puerto de Santa María</div>
-      <div class="nl-detail"><span class="nl-detail-icon">🕐</span> <span data-lang="es">Jueves, Viernes y Sábado</span><span data-lang="en">Thursday, Friday and Saturday</span></div>
-      <div class="nl-detail"><span class="nl-detail-icon">🌐</span> playacanalla.com</div>
-      <a href="https://playacanalla.com" target="_blank" class="nl-link"><span data-lang="es">playacanalla.com →</span><span data-lang="en">playacanalla.com →</span></a>
+    <!-- Right: detail panel -->
+    <div class="poi-detail-panel" id="poiDetailPanel">
+      <div class="poi-default-msg" id="poiDefaultMsg">
+        <span class="poi-default-msg-icon">👆</span>
+        <span data-lang="es">Selecciona un lugar para ver todos los detalles</span><span data-lang="en">Select a place to see all details</span><span data-lang="fr">Sélectionnez un lieu pour voir tous les détails</span><span data-lang="de">Wählen Sie einen Ort, um alle Details zu sehen</span>
+      </div>
+      <div id="poiDetailContent" style="display:none"></div>
     </div>
   </div>
 </section>
@@ -1466,6 +1573,361 @@
 
   // ── Init map ──
   window.addEventListener('load', initMap);
+
+
+  // ══ POI Explorer ══════════════════════════════
+  const poiData = [
+    {
+      id: 'home', cat: 'home', emoji: '🏠',
+      name: 'OlasDelSur',
+      badge_es: 'Tu Airbnb', badge_en: 'Your Airbnb', badge_fr: 'Votre Airbnb', badge_de: 'Ihr Airbnb',
+      desc_es: 'Tu base en El Puerto de Santa María. Apartamento recién renovado con 2 habitaciones para 4 personas, a 100m del río Guadalete y a 5 min a pie de la Ribera del Marisco.',
+      desc_en: 'Your base in El Puerto de Santa María. Newly renovated 2-bedroom apartment for 4 guests, 100m from the Guadalete river and 5 min walk from the seafood promenade.',
+      desc_fr: 'Votre base à El Puerto de Santa María. Appartement rénové avec 2 chambres pour 4 personnes, à 100m du fleuve Guadalete.',
+      desc_de: 'Ihre Basis in El Puerto de Santa María. Frisch renoviertes 2-Zimmer-Apartment für 4 Gäste, 100m vom Guadalete-Fluss entfernt.',
+      address: 'Avenida de la Bajamar 88, El Puerto de Santa María',
+      hours_es: 'Check-in: 15:00 · Check-out: 11:00',
+      hours_en: 'Check-in: 3:00 PM · Check-out: 11:00 AM',
+      phone: null,
+      rating: '4.9★ (42 reseñas)',
+      link: 'https://www.airbnb.com/rooms/833027419091697738',
+      maps: 'https://maps.google.com/?q=Avenida+Bajamar+88+El+Puerto+de+Santa+Maria',
+    },
+    {
+      id: 'puntilla', cat: 'beach', emoji: '🏖️',
+      name: 'Playa de la Puntilla',
+      badge_es: 'Playa', badge_en: 'Beach', badge_fr: 'Plage', badge_de: 'Strand',
+      desc_es: 'Amplia playa de arena dorada de 2,5 km, apta para perros. La más cercana al casco histórico, con paseo marítimo, pinar y vistas al Guadalete. Popular para surf y deportes acuáticos.',
+      desc_en: '2.5 km of golden sand, dog-friendly. Closest to the historic centre, with promenade, pine forest and views over the Guadalete. Popular for surfing and water sports.',
+      desc_fr: '2,5 km de sable doré, accès chiens autorisé. La plus proche du centre historique, avec promenade et forêt de pins.',
+      desc_de: '2,5 km goldener Sand, hundefreundlich. Am nächsten zur Altstadt, mit Promenade und Pinienwald.',
+      address: 'P.º Marítimo de la Puntilla, El Puerto de Santa María',
+      hours_es: 'Abierta 24h',
+      hours_en: 'Open 24h',
+      phone: null,
+      rating: '4.3★ (2.084 reseñas)',
+      link: 'https://maps.google.com/?q=Playa+de+la+Puntilla+El+Puerto+de+Santa+Maria',
+      maps: 'https://maps.google.com/?q=Playa+de+la+Puntilla+El+Puerto+de+Santa+Maria',
+    },
+    {
+      id: 'valdelagrana', cat: 'beach', emoji: '🏖️',
+      name: 'Playa Valdelagrana',
+      badge_es: 'Playa', badge_en: 'Beach', badge_fr: 'Plage', badge_de: 'Strand',
+      desc_es: 'La playa principal de El Puerto, extensa y bien equipada. Arena fina, aguas limpias, servicio de socorristas y amplia zona de chiringuitos. Ideal para familias.',
+      desc_en: 'The main beach of El Puerto, extensive and well-equipped. Fine sand, clear water, lifeguards and plenty of beach bars. Ideal for families.',
+      desc_fr: 'La plage principale d'El Puerto, vaste et bien équipée. Sable fin, eaux claires, maîtres-nageurs et nombreux bars de plage.',
+      desc_de: 'Der Hauptstrand von El Puerto, weitläufig und gut ausgestattet. Feiner Sand, klares Wasser, Rettungsschwimmer und viele Strandbars.',
+      address: 'Playa de Valdelagrana, El Puerto de Santa María',
+      hours_es: 'Abierta 24h',
+      hours_en: 'Open 24h',
+      phone: null,
+      rating: '4.4★',
+      link: 'https://maps.google.com/?q=Playa+de+Valdelagrana+El+Puerto+de+Santa+Maria',
+      maps: 'https://maps.google.com/?q=Playa+de+Valdelagrana+El+Puerto+de+Santa+Maria',
+    },
+    {
+      id: 'muralla', cat: 'beach', emoji: '🏖️',
+      name: 'Playa La Muralla',
+      badge_es: 'Playa · Bandera Azul', badge_en: 'Beach · Blue Flag', badge_fr: 'Plage · Pavillon Bleu', badge_de: 'Strand · Blaue Flagge',
+      desc_es: 'Pequeña playa tranquila con arena dorada y vistas a las ruinas del castillo medieval. Situada junto a la marina de Puerto Sherry, con restaurantes cercanos y olas suaves.',
+      desc_en: 'Small, peaceful beach with golden sand and views of medieval castle ruins. Located next to Puerto Sherry marina, with nearby restaurants and calm waves.',
+      desc_fr: 'Petite plage tranquille avec vue sur les ruines d'un château médiéval. Située près de la marina de Puerto Sherry.',
+      desc_de: 'Kleiner, ruhiger Strand mit Blick auf mittelalterliche Burgruinen. Neben der Marina Puerto Sherry gelegen.',
+      address: 'P.º Sta. Catalina 3, El Puerto de Santa María',
+      hours_es: 'Abierta 24h',
+      hours_en: 'Open 24h',
+      phone: null,
+      rating: '4.4★ (2.333 reseñas)',
+      link: 'https://maps.google.com/?q=Playa+La+Muralla+Puerto+Sherry',
+      maps: 'https://maps.google.com/?q=Playa+La+Muralla+Puerto+Sherry',
+    },
+    {
+      id: 'calita', cat: 'beach', emoji: '🏖️',
+      name: 'Playa la Calita',
+      badge_es: 'Cala recogida', badge_en: 'Sheltered cove', badge_fr: 'Crique abritée', badge_de: 'Geschützte Bucht',
+      desc_es: 'Cala pequeña y recogida junto a Puerto Sherry. Aguas tranquilas y fondo arenoso, perfecta para familias y para un baño tranquilo. Acceso a pie desde el paseo.',
+      desc_en: 'Small sheltered cove by Puerto Sherry. Calm waters and sandy bottom, perfect for families and a peaceful swim. Walking access from the promenade.',
+      desc_fr: 'Petite crique abritée près de Puerto Sherry. Eaux calmes et fond sableux, idéale pour les familles.',
+      desc_de: 'Kleine geschützte Bucht bei Puerto Sherry. Ruhige Gewässer und Sandboden, ideal für Familien.',
+      address: 'Puerto Sherry, El Puerto de Santa María',
+      hours_es: 'Abierta 24h',
+      hours_en: 'Open 24h',
+      phone: null,
+      rating: '4.4★',
+      link: 'https://maps.google.com/?q=Playa+la+Calita+Puerto+Sherry',
+      maps: 'https://maps.google.com/?q=Playa+la+Calita+Puerto+Sherry',
+    },
+    {
+      id: 'phiphi', cat: 'nightlife', emoji: '🍹',
+      name: 'PhiPhi Beach',
+      badge_es: 'Open Air Bar', badge_en: 'Open Air Bar', badge_fr: 'Bar en plein air', badge_de: 'Open-Air-Bar',
+      desc_es: 'Club de playa al aire libre en Puerto Sherry con vistas espectaculares a la bahía de Cádiz. DJ en directo, cócteles tropicales y atardecer atlántico. Uno de los bares más icónicos de la zona.',
+      desc_en: 'Open-air beach club in Puerto Sherry with stunning views of the Bay of Cádiz. Live DJ sets, tropical cocktails and spectacular Atlantic sunsets. One of the most iconic bars in the area.',
+      desc_fr: 'Club de plage en plein air à Puerto Sherry avec une vue magnifique sur la baie de Cádiz. DJ en direct, cocktails tropicaux et couchers de soleil atlantiques.',
+      desc_de: 'Open-Air-Strandclub in Puerto Sherry mit atemberaubender Aussicht auf die Bucht von Cádiz. Live-DJ-Sets, tropische Cocktails und spektakuläre Sonnenuntergänge.',
+      address: 'C. Puerto Serrano 9, Puerto Sherry, El Puerto de Santa María',
+      hours_es: 'Lun–Dom: 17:30 – 00:00 (temporada)',
+      hours_en: 'Mon–Sun: 5:30 PM – midnight (seasonal)',
+      phone: '+34 647 845 447',
+      rating: '3.7★',
+      link: 'https://www.instagram.com/phiphibeachpuertosherry/',
+      maps: 'https://maps.google.com/?q=PhiPhi+Beach+Puerto+Sherry',
+    },
+    {
+      id: 'margarita', cat: 'nightlife', emoji: '🌅',
+      name: 'Margarita Puerto Sherry',
+      badge_es: 'A Place for Happiness', badge_en: 'A Place for Happiness', badge_fr: 'Un lieu de bonheur', badge_de: 'Ein Ort des Glücks',
+      desc_es: 'Bar de cócteles con terraza y vistas al mar en Puerto Sherry. Ambiente relajado y festivo, música selecta y los mejores atardeceres de la bahía. Abierto todos los días.',
+      desc_en: 'Cocktail bar with sea-view terrace at Puerto Sherry. Relaxed and joyful atmosphere, curated music and the best sunsets over the bay. Open every day.',
+      desc_fr: 'Bar à cocktails avec terrasse vue mer à Puerto Sherry. Ambiance détendue et festive, musique sélectionnée et les plus beaux couchers de soleil.',
+      desc_de: 'Cocktailbar mit Meerblick-Terrasse in Puerto Sherry. Entspannte und fröhliche Atmosphäre, ausgewählte Musik und die schönsten Sonnenuntergänge.',
+      address: 'Puerto Sherry, El Puerto de Santa María',
+      hours_es: 'Todos los días desde las 15:30',
+      hours_en: 'Every day from 3:30 PM',
+      phone: '+34 601 885 051',
+      rating: '★★★★',
+      link: 'https://www.instagram.com/margaritapuertosherry/',
+      maps: 'https://maps.google.com/?q=Margarita+Puerto+Sherry',
+    },
+    {
+      id: 'canalla', cat: 'nightlife', emoji: '🎶',
+      name: 'Playa Canalla',
+      badge_es: 'Boho-Chic Beach Club', badge_en: 'Boho-Chic Beach Club', badge_fr: 'Beach Club Boho-Chic', badge_de: 'Boho-Chic Beach Club',
+      desc_es: 'Beach club de estilo boho-chic a orillas del mar en Puerto Sherry. Espíritu Formentera, decoración en tonos crema y madera, elegancia y glamour. Parte del Grupo Banban.',
+      desc_en: 'Boho-chic beach club at the water's edge in Puerto Sherry. Formentera spirit, cream and wood décor, elegance and glamour. Part of Grupo Banban.',
+      desc_fr: 'Beach club boho-chic au bord de l'eau à Puerto Sherry. Esprit Formentera, décor crème et bois, élégance et glamour.',
+      desc_de: 'Boho-Chic-Strandclub am Wasser in Puerto Sherry. Formentera-Atmosphäre, Creme-Holz-Dekor, Eleganz und Glamour.',
+      address: 'C. Puerto Serrano, Puerto Sherry, El Puerto de Santa María',
+      hours_es: 'Jueves, Viernes y Sábado: 17:00 – tarde',
+      hours_en: 'Thursday, Friday & Saturday: 5:00 PM – late',
+      phone: '+34 620 691 271',
+      rating: '4.2★',
+      link: 'https://playacanalla.com',
+      maps: 'https://maps.google.com/?q=Playa+Canalla+Puerto+Sherry',
+    },
+    {
+      id: 'castillo', cat: 'culture', emoji: '🏰',
+      name: 'Castillo de San Marcos',
+      badge_es: 'Patrimonio histórico', badge_en: 'Historic heritage', badge_fr: 'Patrimoine historique', badge_de: 'Historisches Erbe',
+      desc_es: 'Fortaleza del siglo XII construida sobre las ruinas de una mezquita árabe. Vinculada a los viajes de Colón y al ducado de Medinaceli. Incluye degustaciones de vino de jerez. 14.428 visitantes al año.',
+      desc_en: '12th-century fortress built on the ruins of an Arab mosque. Linked to Columbus's voyages and the Duchy of Medinaceli. Includes sherry wine tastings. 14,428 visitors per year.',
+      desc_fr: 'Forteresse du XIIe siècle construite sur les ruines d'une mosquée arabe. Liée aux voyages de Christophe Colomb. Dégustations de xérès incluses.',
+      desc_de: 'Festung aus dem 12. Jahrhundert, auf den Ruinen einer arabischen Moschee erbaut. Mit Kolumbus' Reisen verbunden. Sherry-Weinverkostungen inklusive.',
+      address: 'Plaza del Castillo s/n, El Puerto de Santa María',
+      hours_es: 'Mar–Dom: 10:00–14:00 y 17:00–19:30 · Lunes cerrado',
+      hours_en: 'Tue–Sun: 10am–2pm & 5pm–7:30pm · Closed Monday',
+      phone: '+34 956 851 751',
+      rating: '4.4★ (14.428 visitas/año)',
+      link: 'https://maps.google.com/?q=Castillo+San+Marcos+El+Puerto+de+Santa+Maria',
+      maps: 'https://maps.google.com/?q=Castillo+San+Marcos+El+Puerto+de+Santa+Maria',
+    },
+    {
+      id: 'osborne', cat: 'gastro', emoji: '🍷',
+      name: 'Bodegas Osborne',
+      badge_es: 'Bodega histórica', badge_en: 'Historic winery', badge_fr: 'Bodega historique', badge_de: 'Historisches Weingut',
+      desc_es: 'Fundada en 1772, es la bodega más visitada de El Puerto con 33.603 visitas/año. Alberga la mayor colección de vinos VORS del marco de Jerez y el icónico Toro de Osborne. Visitas guiadas en español, inglés y alemán.',
+      desc_en: 'Founded in 1772, the most visited winery in El Puerto with 33,603 visits/year. Home to the largest VORS sherry wine collection and the iconic Osborne Bull. Guided tours in Spanish, English and German.',
+      desc_fr: 'Fondée en 1772, c'est la bodega la plus visitée d'El Puerto. Abrite la plus grande collection de vins VORS de la région de Jerez et le célèbre Taureau Osborne.',
+      desc_de: 'Gegründet 1772, das meistbesuchte Weingut in El Puerto. Beherbergt die größte VORS-Sherry-Weinsammlung und den ikonischen Osborne-Stier.',
+      address: 'Calle Los Moros 7, El Puerto de Santa María',
+      hours_es: 'Lun–Dom: 10:00–15:00 · Verano también 19:00–22:00',
+      hours_en: 'Mon–Sun: 10am–3pm · Summer also 7pm–10pm',
+      phone: '+34 956 869 100',
+      rating: '4.5★',
+      link: 'https://www.osborne.es',
+      maps: 'https://maps.google.com/?q=Bodegas+Osborne+El+Puerto+de+Santa+Maria',
+    },
+    {
+      id: 'aponiente', cat: 'gastro', emoji: '⭐',
+      name: 'Aponiente',
+      badge_es: '3 Estrellas Michelin', badge_en: '3 Michelin Stars', badge_fr: '3 Étoiles Michelin', badge_de: '3 Michelin-Sterne',
+      desc_es: 'Restaurante de alta cocina del mar del chef Ángel León, "el Chef del Mar". 3 Estrellas Michelin, ubicado en un antiguo molino de mareas del siglo XIX. Menús degustación con maridaje de vinos.',
+      desc_en: 'Fine dining seafood restaurant by chef Ángel León, "the Chef of the Sea". 3 Michelin Stars, located in a 19th-century tidal mill. Tasting menus with wine pairing.',
+      desc_fr: 'Restaurant gastronomique de la mer du chef Ángel León, "le Chef de la Mer". 3 Étoiles Michelin, dans un ancien moulin à marées du XIXe siècle.',
+      desc_de: 'Fine-Dining-Meeresrestaurant von Küchenchef Ángel León, "dem Koch des Meeres". 3 Michelin-Sterne, in einer historischen Tidenmühle aus dem 19. Jahrhundert.',
+      address: 'C. Francisco Cossi Ochoa s/n, El Puerto de Santa María',
+      hours_es: 'Mié–Dom: servicio de noche · Lun y Mar: cerrado',
+      hours_en: 'Wed–Sun: dinner service · Mon & Tue: closed',
+      phone: '+34 606 225 859',
+      rating: '4.7★',
+      link: 'https://aponiente.com',
+      maps: 'https://maps.google.com/?q=Aponiente+El+Puerto+de+Santa+Maria',
+    },
+    {
+      id: 'ribera', cat: 'gastro', emoji: '🦞',
+      name: 'Ribera del Marisco',
+      badge_es: 'Paseo gastronómico', badge_en: 'Gastro promenade', badge_fr: 'Promenade gastronomique', badge_de: 'Gastronomiemeile',
+      desc_es: 'El paseo del marisco de El Puerto. Concentración de bares y restaurantes especializados en mariscos y pescados frescos junto al río Guadalete. Muy animado por las noches, especialmente en verano.',
+      desc_en: 'El Puerto's seafood promenade. Concentration of bars and restaurants specialising in fresh seafood along the Guadalete River. Very lively at night, especially in summer.',
+      desc_fr: 'La promenade des fruits de mer d'El Puerto. Concentration de bars et restaurants spécialisés dans les fruits de mer frais le long du Guadalete.',
+      desc_de: 'El Puertos Meeresfrüchtepromenade. Konzentration von Bars und Restaurants, die frische Meeresfrüchte am Guadalete-Fluss servieren.',
+      address: 'Ribera del Marisco, El Puerto de Santa María',
+      hours_es: 'Mediodía y noche · Muy animado de 21:00 en adelante',
+      hours_en: 'Lunch & dinner · Buzzing from 9 PM onwards',
+      phone: null,
+      rating: '★★★★★',
+      link: 'https://maps.google.com/?q=Ribera+del+Marisco+El+Puerto+de+Santa+Maria',
+      maps: 'https://maps.google.com/?q=Ribera+del+Marisco+El+Puerto+de+Santa+Maria',
+    },
+    {
+      id: 'catamaran', cat: 'transport', emoji: '⛵',
+      name: 'Catamarán → Cádiz',
+      badge_es: 'Transporte marítimo', badge_en: 'Sea transport', badge_fr: 'Transport maritime', badge_de: 'Seetransport',
+      desc_es: 'La forma más bonita de visitar Cádiz. El catamarán sale desde la Estación Marítima de El Puerto con más de 15 travesías al día. Solo 25–30 minutos de trayecto con vistas a la bahía.',
+      desc_en: 'The most beautiful way to visit Cádiz. The catamaran departs from El Puerto's Maritime Station with 15+ crossings daily. Just 25–30 minutes crossing with bay views.',
+      desc_fr: 'La plus belle façon de visiter Cádiz. Le catamaran part de la gare maritime d'El Puerto avec plus de 15 traversées par jour. Seulement 25–30 minutes de trajet.',
+      desc_de: 'Der schönste Weg nach Cádiz. Das Katamaran fährt vom Seebahnhof El Puerto mit 15+ täglichen Überfahrten. Nur 25–30 Minuten Fahrtzeit mit Blick auf die Bucht.',
+      address: 'Estación Marítima, El Puerto de Santa María',
+      hours_es: '15+ travesías/día · Primera salida ~07:00 · Última ~22:00',
+      hours_en: '15+ crossings/day · First departure ~7am · Last ~10pm',
+      phone: null,
+      rating: null,
+      link: 'https://maps.google.com/?q=Estacion+Maritima+El+Puerto+de+Santa+Maria',
+      maps: 'https://maps.google.com/?q=Estacion+Maritima+El+Puerto+de+Santa+Maria',
+    },
+    {
+      id: 'torunos', cat: 'nature', emoji: '🌿',
+      name: 'Parque Natural Los Toruños',
+      badge_es: 'Parque natural', badge_en: 'Natural park', badge_fr: 'Parc naturel', badge_de: 'Naturpark',
+      desc_es: 'Parque natural de dunas, marismas y pinares adyacente a la playa de Valdelagrana. Ideal para observación de aves, senderismo y naturaleza. Entrada libre, senderos señalizados.',
+      desc_en: 'Natural park of dunes, marshes and pine forests adjacent to Valdelagrana beach. Ideal for birdwatching, hiking and nature. Free entry, marked trails.',
+      desc_fr: 'Parc naturel de dunes, marais et pinèdes adjacent à la plage de Valdelagrana. Idéal pour l'observation des oiseaux et la randonnée.',
+      desc_de: 'Naturpark mit Dünen, Sümpfen und Pinienwäldern neben dem Strand Valdelagrana. Ideal zum Vogelbeobachten, Wandern und für die Natur.',
+      address: 'Los Toruños, El Puerto de Santa María',
+      hours_es: 'Abierto todos los días · Libre acceso',
+      hours_en: 'Open every day · Free access',
+      phone: null,
+      rating: '4.5★',
+      link: 'https://maps.google.com/?q=Parque+Los+Torunos+El+Puerto+de+Santa+Maria',
+      maps: 'https://maps.google.com/?q=Parque+Los+Torunos+El+Puerto+de+Santa+Maria',
+    },
+    {
+      id: 'rcn', cat: 'nautica', emoji: '⚓',
+      name: 'Real Club Náutico',
+      badge_es: 'Náutica · Gastronomía · Deporte', badge_en: 'Nautical · Gastronomy · Sport', badge_fr: 'Nautique · Gastronomie · Sport', badge_de: 'Nautik · Gastronomie · Sport',
+      desc_es: 'Club náutico histórico a orillas del Guadalete. Restaurante-bar La Venecia (tapas y arroces), club de copas Chang Bay, pantalán con alquiler de motos de agua y embarcaciones con o sin patrón. Pistas de pádel y tenis.',
+      desc_en: 'Historic yacht club on the Guadalete. La Venecia restaurant-bar (tapas & rice), Chang Bay club, pontoon with jet ski & boat rental (skippered or bareboat). Padel and tennis courts.',
+      desc_fr: 'Club nautique historique au bord du Guadalete. Restaurant La Venecia (tapas et riz), club Chang Bay, ponton avec location de jet skis et bateaux. Courts de padel et tennis.',
+      desc_de: 'Historischer Yachtclub am Guadalete. Restaurant La Venecia (Tapas & Reis), Club Chang Bay, Steg mit Jetski- und Bootsverleih. Padel- und Tennisplätze.',
+      address: 'Avenida de la Bajamar 13, El Puerto de Santa María',
+      hours_es: 'La Venecia: 09:00–00:00 · Chang Bay: 15:00–02:00',
+      hours_en: 'La Venecia: 9am–midnight · Chang Bay: 3pm–2am',
+      phone: null,
+      rating: '★★★★',
+      link: 'https://www.rcnpsm.es',
+      maps: 'https://maps.google.com/?q=Real+Club+Nautico+El+Puerto+de+Santa+Maria',
+    },
+    {
+      id: 'puertosherry', cat: 'nautica', emoji: '⚓',
+      name: 'Puerto Sherry Marina',
+      badge_es: 'Marina deportiva', badge_en: 'Sports marina', badge_fr: 'Marina sportive', badge_de: 'Sporthafen',
+      desc_es: 'Marina moderna con más de 700 amarres, clubes náuticos, escuela de vela y restaurantes con vistas a la bahía de Cádiz. Atardeceres espectaculares sobre el Atlántico.',
+      desc_en: 'Modern marina with over 700 berths, yacht clubs, sailing school and restaurants overlooking the Bay of Cádiz. Spectacular sunsets over the Atlantic.',
+      desc_fr: 'Marina moderne avec plus de 700 places, clubs nautiques, école de voile et restaurants avec vue sur la baie de Cádiz.',
+      desc_de: 'Moderne Marina mit über 700 Liegeplätzen, Yachtclubs, Segelschule und Restaurants mit Blick auf die Bucht von Cádiz.',
+      address: 'Puerto Sherry, El Puerto de Santa María',
+      hours_es: 'Abierto todos los días',
+      hours_en: 'Open every day',
+      phone: '+34 956 870 103',
+      rating: '★★★★★',
+      link: 'https://maps.google.com/?q=Puerto+Sherry+Marina',
+      maps: 'https://maps.google.com/?q=Puerto+Sherry+Marina',
+    },
+  ];
+
+  const catColors = {
+    home: '#FF6B35', beach: '#0096A6', nightlife: '#7B2FBE',
+    culture: '#D97706', gastro: '#8B1A4A', transport: '#3D9970',
+    nature: '#3D9970', nautica: '#0096A6'
+  };
+
+  function renderPoiChips(filter) {
+    const lang = window._olasLang || 'es';
+    const container = document.getElementById('poiChips');
+    const filtered = filter === 'all' ? poiData : poiData.filter(p => p.cat === filter);
+    container.innerHTML = filtered.map(p => `
+      <div class="poi-chip" data-id="${p.id}" onclick="showPoiDetail('${p.id}')">
+        <span class="poi-chip-emoji">${p.emoji}</span>
+        <div class="poi-chip-info">
+          <div class="poi-chip-name">${p.name}</div>
+          <div class="poi-chip-cat" style="color:${catColors[p.cat]||'#888'}">${p['badge_'+lang]||p.badge_es}</div>
+        </div>
+        <span class="poi-chip-arrow">›</span>
+      </div>
+    `).join('');
+  }
+
+  function showPoiDetail(id) {
+    const lang = window._olasLang || 'es';
+    const p = poiData.find(x => x.id === id);
+    if (!p) return;
+
+    // Highlight chip
+    document.querySelectorAll('.poi-chip').forEach(c => c.classList.remove('active'));
+    const chip = document.querySelector(`.poi-chip[data-id="${id}"]`);
+    if (chip) { chip.classList.add('active'); chip.scrollIntoView({block:'nearest',behavior:'smooth'}); }
+
+    const desc = p['desc_'+lang] || p.desc_es;
+    const badge = p['badge_'+lang] || p.badge_es;
+    const hours = p['hours_'+lang] || p.hours_es;
+
+    const labelsMap = {
+      es: {address:'Dirección', hours:'Horario', phone:'Teléfono', directions:'Cómo llegar', website:'Sitio web'},
+      en: {address:'Address', hours:'Hours', phone:'Phone', directions:'Get directions', website:'Website'},
+      fr: {address:'Adresse', hours:'Horaires', phone:'Téléphone', directions:'Itinéraire', website:'Site web'},
+      de: {address:'Adresse', hours:'Öffnungszeiten', phone:'Telefon', directions:'Route', website:'Webseite'},
+    };
+    const L = labelsMap[lang] || labelsMap.es;
+
+    document.getElementById('poiDefaultMsg').style.display = 'none';
+    const content = document.getElementById('poiDetailContent');
+    content.style.display = 'block';
+    content.innerHTML = `
+      <div class="poi-detail-header">
+        <span class="poi-detail-emoji">${p.emoji}</span>
+        <div class="poi-detail-name">${p.name}</div>
+        <span class="poi-detail-cat-badge" style="background:${catColors[p.cat]}22;color:${catColors[p.cat]}">${badge}</span>
+      </div>
+      <div class="poi-detail-body">
+        <p class="poi-detail-desc">${desc}</p>
+        <div class="poi-detail-info">
+          ${p.address ? `<div class="poi-detail-row"><span class="poi-detail-row-icon">📍</span><span class="poi-detail-row-text"><strong>${L.address}:</strong> ${p.address}</span></div>` : ''}
+          ${hours ? `<div class="poi-detail-row"><span class="poi-detail-row-icon">🕐</span><span class="poi-detail-row-text"><strong>${L.hours}:</strong> ${hours}</span></div>` : ''}
+          ${p.phone ? `<div class="poi-detail-row"><span class="poi-detail-row-icon">📞</span><span class="poi-detail-row-text"><strong>${L.phone}:</strong> <a href="tel:${p.phone.replace(/\s/g,'')}" style="color:var(--ocean)">${p.phone}</a></span></div>` : ''}
+          ${p.rating ? `<div class="poi-detail-row"><span class="poi-detail-row-icon">⭐</span><span class="poi-detail-row-text poi-detail-rating">${p.rating}</span></div>` : ''}
+        </div>
+      </div>
+      <div class="poi-detail-actions">
+        <a href="${p.maps}" target="_blank" class="poi-btn-primary">📍 ${L.directions}</a>
+        ${p.link && p.link !== p.maps ? `<a href="${p.link}" target="_blank" class="poi-btn-secondary">🌐 ${L.website}</a>` : ''}
+      </div>
+    `;
+  }
+
+  // Category tab click
+  document.getElementById('poiCatTabs').addEventListener('click', function(e) {
+    const btn = e.target.closest('.poi-cat-tab');
+    if (!btn) return;
+    document.querySelectorAll('.poi-cat-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderPoiChips(btn.dataset.filter);
+    document.getElementById('poiDefaultMsg').style.display = '';
+    document.getElementById('poiDetailContent').style.display = 'none';
+  });
+
+  // Init
+  renderPoiChips('all');
+
+  // Re-render on lang change
+  const _origSetLang = setLang;
+  setLang = function(lang) {
+    _origSetLang(lang);
+    const activeFilter = document.querySelector('.poi-cat-tab.active')?.dataset.filter || 'all';
+    renderPoiChips(activeFilter);
+    const activeChip = document.querySelector('.poi-chip.active');
+    if (activeChip) showPoiDetail(activeChip.dataset.id);
+  };
+
 
   // ── Language Switcher ──
   function setLang(lang) {
