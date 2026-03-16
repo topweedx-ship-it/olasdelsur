@@ -314,6 +314,25 @@
     .btn-ghost:hover { background: rgba(255,255,255,0.45); transform: translateY(-2px); }
 
     /* ══════════ STATS BAR ══════════ */
+    .curiosidad-bar {
+      background: linear-gradient(90deg, #1E3A5F 0%, #2A5080 100%);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+      justify-content: center;
+    }
+    .curiosidad-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .curiosidad-text {
+      color: rgba(255,248,238,0.9);
+      font-size: 0.82rem;
+      line-height: 1.5;
+      max-width: 720px;
+    }
+    .curiosidad-text strong { color: var(--gold2); }
+    .curiosidad-text em { color: var(--gold); font-style: italic; }
+
     .stats-bar {
       background: linear-gradient(90deg, var(--ocean) 0%, var(--ocean2) 100%);
       padding: 22px 0;
@@ -1194,12 +1213,23 @@
   </div>
 </section>
 
+<!-- ══════════ CURIOSIDAD ══════════ -->
+<div class="curiosidad-bar">
+  <span class="curiosidad-icon">📜</span>
+  <span class="curiosidad-text">
+    <span data-lang="es"><strong>El Puerto de Santa María</strong> es conocida como la “Ciudad de los Cien Palacios”, y fue aquí donde Juan de la Cosa dibujó en 1500 el <em>primer mapa del mundo que incluye América</em>.</span>
+    <span data-lang="en"><strong>El Puerto de Santa María</strong> is known as the “City of a Hundred Palaces”, and it was here that Juan de la Cosa drew in 1500 the <em>first world map to include America</em>.</span>
+    <span data-lang="fr"><strong>El Puerto de Santa María</strong> est connue comme la “Ville aux Cent Palais”, et c’est ici que Juan de la Cosa dressa en 1500 la <em>première carte du monde représentant l’Amérique</em>.</span>
+    <span data-lang="de"><strong>El Puerto de Santa María</strong> ist als die “Stadt der hundert Paläste” bekannt und hier zeichnete Juan de la Cosa 1500 die <em>erste Weltkarte, auf der Amerika abgebildet ist</em>.</span>
+  </span>
+</div>
+
 <!-- ══════════ STATS ══════════ -->
 <div class="stats-bar">
   <div class="stats-inner">
     <div class="stat-item"><span class="stat-value">300+</span><span class="stat-label" data-lang="es">Días de sol</span><span class="stat-label" data-lang="en">Sunny days</span><span class="stat-label" data-lang="fr">Jours de soleil</span><span class="stat-label" data-lang="de">Sonnentage</span></div>
-    <div class="stat-item"><span class="stat-value">25'</span><span class="stat-label" data-lang="es">min → Cádiz</span><span class="stat-label" data-lang="en">min → Cádiz</span><span class="stat-label" data-lang="fr">min → Cádiz</span><span class="stat-label" data-lang="de">min → Cádiz</span></div>
-    <div class="stat-item"><span class="stat-value">668K</span><span class="stat-label" data-lang="es">Turistas 2023</span><span class="stat-label" data-lang="en">Tourists 2023</span><span class="stat-label" data-lang="fr">Touristes 2023</span><span class="stat-label" data-lang="de">Touristen 2023</span></div>
+    <div class="stat-item"><span class="stat-value">1500 🗺️</span><span class="stat-label" data-lang="es">Primer mapa de América</span><span class="stat-label" data-lang="en">First map of America</span><span class="stat-label" data-lang="fr">1ᵉʳ carte des Amériques</span><span class="stat-label" data-lang="de">Erstes Amerika-Karte</span></div>
+    <div class="stat-item"><span class="stat-value">4.790</span><span class="stat-label" data-lang="es">Empleos turismo 2025</span><span class="stat-label" data-lang="en">Tourism jobs 2025</span><span class="stat-label" data-lang="fr">Emplois tourisme 2025</span><span class="stat-label" data-lang="de">Tourismus-Jobs 2025</span></div>
     <div class="stat-item"><span class="stat-value">20'🚶</span><span class="stat-label" data-lang="es">Ribera del Marisco</span><span class="stat-label" data-lang="en">Ribera del Marisco</span><span class="stat-label" data-lang="fr">Ribera del Marisco</span><span class="stat-label" data-lang="de">Ribera del Marisco</span></div>
     <div class="stat-item"><span class="stat-value">4</span><span class="stat-label" data-lang="es">Playas cercanas</span><span class="stat-label" data-lang="en">Nearby beaches</span><span class="stat-label" data-lang="fr">Plages à proximité</span><span class="stat-label" data-lang="de">Nahe Strände</span></div>
     <div class="stat-item"><span class="stat-value">1.8km</span><span class="stat-label" data-lang="es">del centro histórico</span><span class="stat-label" data-lang="en">from old town</span><span class="stat-label" data-lang="fr">du centre historique</span><span class="stat-label" data-lang="de">vom Altstadtzentrum</span></div>
