@@ -1918,17 +1918,6 @@
   // Init
   renderPoiChips('all');
 
-  // Re-render on lang change
-  const _origSetLang = setLang;
-  setLang = function(lang) {
-    _origSetLang(lang);
-    const activeFilter = document.querySelector('.poi-cat-tab.active')?.dataset.filter || 'all';
-    renderPoiChips(activeFilter);
-    const activeChip = document.querySelector('.poi-chip.active');
-    if (activeChip) showPoiDetail(activeChip.dataset.id);
-  };
-
-
   // ── Language Switcher ──
   function setLang(lang) {
     const root = document.documentElement;
@@ -1939,6 +1928,11 @@
     document.getElementById('btn-de').classList.toggle('active', lang === 'de');
     root.lang = lang;
     window._olasLang = lang;
+    // Re-render POI explorer on lang change
+    const activeFilter = document.querySelector('.poi-cat-tab.active')?.dataset.filter || 'all';
+    renderPoiChips(activeFilter);
+    const activeChip = document.querySelector('.poi-chip.active');
+    if (activeChip) showPoiDetail(activeChip.dataset.id);
   }
   // Restore saved language
   (function() {
