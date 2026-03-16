@@ -899,7 +899,9 @@
 
     [data-lang] { display: none; }
     .lang-es [data-lang="es"],
-    .lang-en [data-lang="en"] { display: block; }
+    .lang-en [data-lang="en"],
+    .lang-fr [data-lang="fr"],
+    .lang-de [data-lang="de"] { display: block; }
     /* for inline elements */
     span[data-lang], a[data-lang], li[data-lang] {
       display: none;
@@ -909,7 +911,13 @@
     .lang-es li[data-lang="es"],
     .lang-en span[data-lang="en"],
     .lang-en a[data-lang="en"],
-    .lang-en li[data-lang="en"] { display: inline; }
+    .lang-en li[data-lang="en"],
+    .lang-fr span[data-lang="fr"],
+    .lang-fr a[data-lang="fr"],
+    .lang-fr li[data-lang="fr"],
+    .lang-de span[data-lang="de"],
+    .lang-de a[data-lang="de"],
+    .lang-de li[data-lang="de"] { display: inline; }
     /* for flex items */
     .hero-ctas [data-lang],
     .stats-inner [data-lang],
@@ -922,7 +930,15 @@
     .lang-en .hero-ctas [data-lang="en"],
     .lang-en .stats-inner [data-lang="en"],
     .lang-en .poi-filters [data-lang="en"],
-    .lang-en .footer-links [data-lang="en"] { display: inline-flex; }
+    .lang-en .footer-links [data-lang="en"],
+    .lang-fr .hero-ctas [data-lang="fr"],
+    .lang-fr .stats-inner [data-lang="fr"],
+    .lang-fr .poi-filters [data-lang="fr"],
+    .lang-fr .footer-links [data-lang="fr"],
+    .lang-de .hero-ctas [data-lang="de"],
+    .lang-de .stats-inner [data-lang="de"],
+    .lang-de .poi-filters [data-lang="de"],
+    .lang-de .footer-links [data-lang="de"] { display: inline-flex; }
 
   </style>
 </head>
@@ -932,6 +948,8 @@
 <div class="lang-switcher" role="navigation" aria-label="Language selector">
   <button class="lang-btn active" id="btn-es" onclick="setLang('es')" aria-label="Español">🇪🇸 ES</button>
   <button class="lang-btn" id="btn-en" onclick="setLang('en')" aria-label="English">🇬🇧 EN</button>
+  <button class="lang-btn" id="btn-fr" onclick="setLang('fr')" aria-label="Français">🇫🇷 FR</button>
+  <button class="lang-btn" id="btn-de" onclick="setLang('de')" aria-label="Deutsch">🇩🇪 DE</button>
 </div>
 
 
@@ -962,7 +980,7 @@
     <div class="hero-badge-wrap">
       <div class="hero-badge">📍 Avenida de la Bajamar 88 · El Puerto de Santa María</div>
       <a href="https://forms.gle/QbenMfacF8cNuoDbA" target="_blank" class="hero-checkin-btn">
-        🗝️ <span data-lang="es">Check-in Online</span><span data-lang="en">Online Check-in</span> <span class="hero-checkin-arrow">→</span>
+        🗝️ <span data-lang="es">Check-in Online</span><span data-lang="en">Online Check-in</span><span data-lang="fr">Check-in en ligne</span><span data-lang="de">Online Check-in</span> <span class="hero-checkin-arrow">→</span>
       </a>
     </div>
 
@@ -1075,41 +1093,41 @@
 <!-- ══════════ MAPPA ══════════ -->
 <section class="map-section" id="mappa">
   <div class="section-header">
-    <span class="section-label">📍 <span data-lang="es">Explora el territorio</span><span data-lang="en">Explore the area</span></span>
-    <h2 class="section-title"><span data-lang="es">Todo a tu alcance</span><span data-lang="en">Everything within reach</span></h2>
-    <p class="section-desc"><span data-lang="es">Playas, vida nocturna, cultura y gastronomía — descubre por qué la Bajamar es la mejor ubicación de El Puerto.</span><span data-lang="en">Beaches, nightlife, culture and gastronomy — discover why Bajamar is El Puerto's most strategic location.</span></p>
+    <span class="section-label">📍 <span data-lang="es">Explora el territorio</span><span data-lang="en">Explore the area</span><span data-lang="fr">Explorer la région</span><span data-lang="de">Die Gegend erkunden</span></span>
+    <h2 class="section-title"><span data-lang="es">Todo a tu alcance</span><span data-lang="en">Everything within reach</span><span data-lang="fr">Tout à portée de main</span><span data-lang="de">Alles in Reichweite</span></h2>
+    <p class="section-desc"><span data-lang="es">Playas, vida nocturna, cultura y gastronomía — descubre por qué la Bajamar es la mejor ubicación de El Puerto.</span><span data-lang="en">Beaches, nightlife, culture and gastronomy — discover why Bajamar is El Puerto's most strategic location.</span><span data-lang="fr">Plages, vie nocturne, culture et gastronomie — découvrez pourquoi Bajamar est l'emplacement le plus stratégique d'El Puerto.</span><span data-lang="de">Strände, Nachtleben, Kultur und Gastronomie — entdecken Sie, warum Bajamar die beste Lage in El Puerto ist.</span></p>
   </div>
 
   <div class="filter-bar">
-    <button class="filter-btn active" data-cat="all"><span data-lang="es">🌍 Todos</span><span data-lang="en">🌍 All</span></button>
+    <button class="filter-btn active" data-cat="all"><span data-lang="es">🌍 Todos</span><span data-lang="en">🌍 All</span><span data-lang="fr">🌍 Tout</span><span data-lang="de">🌍 Alle</span></button>
     <button class="filter-btn" data-cat="home">🏠 Airbnb</button>
-    <button class="filter-btn" data-cat="beach"><span data-lang="es">🏖️ Playas</span><span data-lang="en">🏖️ Beaches</span></button>
-    <button class="filter-btn" data-cat="nightlife"><span data-lang="es">🎶 Vida nocturna</span><span data-lang="en">🎶 Nightlife</span></button>
+    <button class="filter-btn" data-cat="beach"><span data-lang="es">🏖️ Playas</span><span data-lang="en">🏖️ Beaches</span><span data-lang="fr">🏖️ Plages</span><span data-lang="de">🏖️ Strände</span></button>
+    <button class="filter-btn" data-cat="nightlife"><span data-lang="es">🎶 Vida nocturna</span><span data-lang="en">🎶 Nightlife</span><span data-lang="fr">🎶 Vie nocturne</span><span data-lang="de">🎶 Nachtleben</span></button>
     <button class="filter-btn" data-cat="culture">🏰 Cultura</button>
-    <button class="filter-btn" data-cat="gastro"><span data-lang="es">🦞 Gastronomía</span><span data-lang="en">🦞 Gastronomy</span></button>
-    <button class="filter-btn" data-cat="transport"><span data-lang="es">⛵ Transporte</span><span data-lang="en">⛵ Transport</span></button>
-    <button class="filter-btn" data-cat="nature"><span data-lang="es">🌿 Naturaleza</span><span data-lang="en">🌿 Nature</span></button>
-    <button class="filter-btn" data-cat="nautica"><span data-lang="es">⚓ Náutica</span><span data-lang="en">⚓ Nautical</span></button>
+    <button class="filter-btn" data-cat="gastro"><span data-lang="es">🦞 Gastronomía</span><span data-lang="en">🦞 Gastronomy</span><span data-lang="fr">🦞 Gastronomie</span><span data-lang="de">🦞 Gastronomie</span></button>
+    <button class="filter-btn" data-cat="transport"><span data-lang="es">⛵ Transporte</span><span data-lang="en">⛵ Transport</span><span data-lang="fr">⛵ Transport</span><span data-lang="de">⛵ Transport</span></button>
+    <button class="filter-btn" data-cat="nature"><span data-lang="es">🌿 Naturaleza</span><span data-lang="en">🌿 Nature</span><span data-lang="fr">🌿 Nature</span><span data-lang="de">🌿 Natur</span></button>
+    <button class="filter-btn" data-cat="nautica"><span data-lang="es">⚓ Náutica</span><span data-lang="en">⚓ Nautical</span><span data-lang="fr">⚓ Nautique</span><span data-lang="de">⚓ Nautik</span></button>
   </div>
 
   <div class="map-layout">
     <div id="map"></div>
     <div class="poi-sidebar">
-      <div class="poi-card" id="card-home"><span class="poi-emoji">🏠</span><div class="poi-info"><div class="poi-name">OlasDelSur</div><div class="poi-addr">Av. de la Bajamar 88</div><div class="poi-cat cat-home"><span data-lang="es">Tu Airbnb</span><span data-lang="en">Your Airbnb</span></div></div></div>
-      <div class="poi-card" id="card-puntilla"><span class="poi-emoji">🏖️</span><div class="poi-info"><div class="poi-name">Playa de la Puntilla</div><div class="poi-addr"><span data-lang="es">2,5 km · apta para perros</span><span data-lang="en">2.5 km · dog-friendly</span></div><div class="poi-cat cat-beach"><span data-lang="es">Playa</span><span data-lang="en">Beach</span></div></div></div>
-      <div class="poi-card" id="card-valdelagrana"><span class="poi-emoji">🏖️</span><div class="poi-info"><div class="poi-name">Playa Valdelagrana</div><div class="poi-addr"><span data-lang="es">Playa principal</span><span data-lang="en">Main beach</span></div><div class="poi-cat cat-beach"><span data-lang="es">Playa</span><span data-lang="en">Beach</span></div></div></div>
-      <div class="poi-card" id="card-muralla"><span class="poi-emoji">🏖️</span><div class="poi-info"><div class="poi-name">Playa La Muralla</div><div class="poi-addr"><span data-lang="es">Puerto Sherry · Bandera Azul</span><span data-lang="en">Puerto Sherry · Blue Flag</span></div><div class="poi-cat cat-beach"><span data-lang="es">Playa</span><span data-lang="en">Beach</span></div></div></div>
-      <div class="poi-card" id="card-phiphi"><span class="poi-emoji">🍹</span><div class="poi-info"><div class="poi-name">PhiPhi Beach</div><div class="poi-addr"><span data-lang="es">Puerto Sherry</span><span data-lang="en">Puerto Sherry</span></div><div class="poi-cat cat-nightlife"><span data-lang="es">Vida nocturna</span><span data-lang="en">Nightlife</span></div></div></div>
-      <div class="poi-card" id="card-margarita"><span class="poi-emoji">🌅</span><div class="poi-info"><div class="poi-name">Margarita</div><div class="poi-addr"><span data-lang="es">Puerto Sherry</span><span data-lang="en">Puerto Sherry</span></div><div class="poi-cat cat-nightlife"><span data-lang="es">Vida nocturna</span><span data-lang="en">Nightlife</span></div></div></div>
+      <div class="poi-card" id="card-home"><span class="poi-emoji">🏠</span><div class="poi-info"><div class="poi-name">OlasDelSur</div><div class="poi-addr">Av. de la Bajamar 88</div><div class="poi-cat cat-home"><span data-lang="es">Tu Airbnb</span><span data-lang="en">Your Airbnb</span><span data-lang="fr">Votre Airbnb</span><span data-lang="de">Ihr Airbnb</span></div></div></div>
+      <div class="poi-card" id="card-puntilla"><span class="poi-emoji">🏖️</span><div class="poi-info"><div class="poi-name">Playa de la Puntilla</div><div class="poi-addr"><span data-lang="es">2,5 km · apta para perros</span><span data-lang="en">2.5 km · dog-friendly</span><span data-lang="fr">2,5 km · chiens bienvenus</span><span data-lang="de">2,5 km · hundefreundlich</span></div><div class="poi-cat cat-beach"><span data-lang="es">Playa</span><span data-lang="en">Beach</span><span data-lang="fr">Plage</span><span data-lang="de">Strand</span></div></div></div>
+      <div class="poi-card" id="card-valdelagrana"><span class="poi-emoji">🏖️</span><div class="poi-info"><div class="poi-name">Playa Valdelagrana</div><div class="poi-addr"><span data-lang="es">Playa principal</span><span data-lang="en">Main beach</span><span data-lang="fr">Plage principale</span><span data-lang="de">Hauptstrand</span></div><div class="poi-cat cat-beach"><span data-lang="es">Playa</span><span data-lang="en">Beach</span><span data-lang="fr">Plage</span><span data-lang="de">Strand</span></div></div></div>
+      <div class="poi-card" id="card-muralla"><span class="poi-emoji">🏖️</span><div class="poi-info"><div class="poi-name">Playa La Muralla</div><div class="poi-addr"><span data-lang="es">Puerto Sherry · Bandera Azul</span><span data-lang="en">Puerto Sherry · Blue Flag</span><span data-lang="fr">Puerto Sherry · Pavillon Bleu</span><span data-lang="de">Puerto Sherry · Blaue Flagge</span></div><div class="poi-cat cat-beach"><span data-lang="es">Playa</span><span data-lang="en">Beach</span><span data-lang="fr">Plage</span><span data-lang="de">Strand</span></div></div></div>
+      <div class="poi-card" id="card-phiphi"><span class="poi-emoji">🍹</span><div class="poi-info"><div class="poi-name">PhiPhi Beach</div><div class="poi-addr"><span data-lang="es">Puerto Sherry</span><span data-lang="en">Puerto Sherry</span></div><div class="poi-cat cat-nightlife"><span data-lang="es">Vida nocturna</span><span data-lang="en">Nightlife</span><span data-lang="fr">Vie nocturne</span><span data-lang="de">Nachtleben</span></div></div></div>
+      <div class="poi-card" id="card-margarita"><span class="poi-emoji">🌅</span><div class="poi-info"><div class="poi-name">Margarita</div><div class="poi-addr"><span data-lang="es">Puerto Sherry</span><span data-lang="en">Puerto Sherry</span></div><div class="poi-cat cat-nightlife"><span data-lang="es">Vida nocturna</span><span data-lang="en">Nightlife</span><span data-lang="fr">Vie nocturne</span><span data-lang="de">Nachtleben</span></div></div></div>
       <div class="poi-card" id="card-canalla"><span class="poi-emoji">🎶</span><div class="poi-info"><div class="poi-name">Playa Canalla</div><div class="poi-addr"><span data-lang="es">Puerto Sherry</span><span data-lang="en">Puerto Sherry</span></div><div class="poi-cat cat-nightlife">Beach Club</div></div></div>
-      <div class="poi-card" id="card-castillo"><span class="poi-emoji">🏰</span><div class="poi-info"><div class="poi-name">Castillo San Marcos</div><div class="poi-addr"><span data-lang="es">Casco histórico</span><span data-lang="en">Historic centre</span></div><div class="poi-cat cat-culture"><span data-lang="es">Cultura</span><span data-lang="en">Culture</span></div></div></div>
-      <div class="poi-card" id="card-osborne"><span class="poi-emoji">🍷</span><div class="poi-info"><div class="poi-name">Bodegas Osborne</div><div class="poi-addr"><span data-lang="es">33.603 visitas/año</span><span data-lang="en">33,603 visits/year</span></div><div class="poi-cat cat-culture"><span data-lang="es">Bodega</span><span data-lang="en">Winery</span></div></div></div>
-      <div class="poi-card" id="card-ribera"><span class="poi-emoji">🦞</span><div class="poi-info"><div class="poi-name">Ribera del Marisco</div><div class="poi-addr"><span data-lang="es">5 min a pie</span><span data-lang="en">5 min walk</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Gastronomía</span><span data-lang="en">Gastronomy</span></div></div></div>
-      <div class="poi-card" id="card-rcn"><span class="poi-emoji">⚓</span><div class="poi-info"><div class="poi-name">Real Club Náutico</div><div class="poi-addr">Av. de la Bajamar 13</div><div class="poi-cat cat-nautica"><span data-lang="es">Náutica · Gastronomía · Deporte</span><span data-lang="en">Nautical · Gastronomy · Sport</span></div></div></div>
-      <div class="poi-card" id="card-catamaran"><span class="poi-emoji">⛵</span><div class="poi-info"><div class="poi-name">Catamaran Cádiz</div><div class="poi-addr"><span data-lang="es">15+ travesías al día</span><span data-lang="en">15+ crossings/day</span></div><div class="poi-cat cat-transport"><span data-lang="es">Transporte</span><span data-lang="en">Transport</span></div></div></div>
-      <div class="poi-card" id="card-calita"><span class="poi-emoji">🏖️</span><div class="poi-info"><div class="poi-name">Playa la Calita</div><div class="poi-addr"><span data-lang="es">Puerto Sherry · cala recogida</span><span data-lang="en">Puerto Sherry · sheltered cove</span></div><div class="poi-cat cat-beach"><span data-lang="es">Playa</span><span data-lang="en">Beach</span></div></div></div>
-      <div class="poi-card" id="card-torunos"><span class="poi-emoji">🌿</span><div class="poi-info"><div class="poi-name">Parque Los Toruños</div><div class="poi-addr"><span data-lang="es">Dunas y naturaleza</span><span data-lang="en">Dunes &amp; nature</span></div><div class="poi-cat cat-nature"><span data-lang="es">Naturaleza</span><span data-lang="en">Nature</span></div></div></div>
-      <div class="poi-card" id="card-puertosherry"><span class="poi-emoji">⚓</span><div class="poi-info"><div class="poi-name">Puerto Sherry Marina</div><div class="poi-addr"><span data-lang="es">Atardecer sobre la bahía</span><span data-lang="en">Sunset over the bay</span></div><div class="poi-cat cat-nautica"><span data-lang="es">Marina</span><span data-lang="en">Marina</span></div></div></div>
+      <div class="poi-card" id="card-castillo"><span class="poi-emoji">🏰</span><div class="poi-info"><div class="poi-name">Castillo San Marcos</div><div class="poi-addr"><span data-lang="es">Casco histórico</span><span data-lang="en">Historic centre</span><span data-lang="fr">Centre historique</span><span data-lang="de">Historisches Zentrum</span></div><div class="poi-cat cat-culture"><span data-lang="es">Cultura</span><span data-lang="en">Culture</span><span data-lang="fr">Culture</span><span data-lang="de">Kultur</span></div></div></div>
+      <div class="poi-card" id="card-osborne"><span class="poi-emoji">🍷</span><div class="poi-info"><div class="poi-name">Bodegas Osborne</div><div class="poi-addr"><span data-lang="es">33.603 visitas/año</span><span data-lang="en">33,603 visits/year</span><span data-lang="fr">33 603 visites/an</span><span data-lang="de">33.603 Besuche/Jahr</span></div><div class="poi-cat cat-culture"><span data-lang="es">Bodega</span><span data-lang="en">Winery</span><span data-lang="fr">Bodega</span><span data-lang="de">Weingut</span></div></div></div>
+      <div class="poi-card" id="card-ribera"><span class="poi-emoji">🦞</span><div class="poi-info"><div class="poi-name">Ribera del Marisco</div><div class="poi-addr"><span data-lang="es">5 min a pie</span><span data-lang="en">5 min walk</span><span data-lang="fr">5 min à pied</span><span data-lang="de">5 Min. zu Fuß</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Gastronomía</span><span data-lang="en">Gastronomy</span><span data-lang="fr">Gastronomie</span><span data-lang="de">Gastronomie</span></div></div></div>
+      <div class="poi-card" id="card-rcn"><span class="poi-emoji">⚓</span><div class="poi-info"><div class="poi-name">Real Club Náutico</div><div class="poi-addr">Av. de la Bajamar 13</div><div class="poi-cat cat-nautica"><span data-lang="es">Náutica · Gastronomía · Deporte</span><span data-lang="en">Nautical · Gastronomy · Sport</span><span data-lang="fr">Nautique · Gastronomie · Sport</span><span data-lang="de">Nautik · Gastronomie · Sport</span></div></div></div>
+      <div class="poi-card" id="card-catamaran"><span class="poi-emoji">⛵</span><div class="poi-info"><div class="poi-name">Catamaran Cádiz</div><div class="poi-addr"><span data-lang="es">15+ travesías al día</span><span data-lang="en">15+ crossings/day</span><span data-lang="fr">15+ traversées/jour</span><span data-lang="de">15+ Überfahrten/Tag</span></div><div class="poi-cat cat-transport"><span data-lang="es">Transporte</span><span data-lang="en">Transport</span><span data-lang="fr">Transport</span><span data-lang="de">Transport</span></div></div></div>
+      <div class="poi-card" id="card-calita"><span class="poi-emoji">🏖️</span><div class="poi-info"><div class="poi-name">Playa la Calita</div><div class="poi-addr"><span data-lang="es">Puerto Sherry · cala recogida</span><span data-lang="en">Puerto Sherry · sheltered cove</span><span data-lang="fr">Puerto Sherry · crique abritée</span><span data-lang="de">Puerto Sherry · geschützte Bucht</span></div><div class="poi-cat cat-beach"><span data-lang="es">Playa</span><span data-lang="en">Beach</span><span data-lang="fr">Plage</span><span data-lang="de">Strand</span></div></div></div>
+      <div class="poi-card" id="card-torunos"><span class="poi-emoji">🌿</span><div class="poi-info"><div class="poi-name">Parque Los Toruños</div><div class="poi-addr"><span data-lang="es">Dunas y naturaleza</span><span data-lang="en">Dunes &amp; nature</span><span data-lang="fr">Dunes &amp; nature</span><span data-lang="de">Dünen &amp; Natur</span></div><div class="poi-cat cat-nature"><span data-lang="es">Naturaleza</span><span data-lang="en">Nature</span><span data-lang="fr">Nature</span><span data-lang="de">Natur</span></div></div></div>
+      <div class="poi-card" id="card-puertosherry"><span class="poi-emoji">⚓</span><div class="poi-info"><div class="poi-name">Puerto Sherry Marina</div><div class="poi-addr"><span data-lang="es">Atardecer sobre la bahía</span><span data-lang="en">Sunset over the bay</span><span data-lang="fr">Coucher de soleil sur la baie</span><span data-lang="de">Sonnenuntergang über der Bucht</span></div><div class="poi-cat cat-nautica"><span data-lang="es">Marina</span><span data-lang="en">Marina</span><span data-lang="fr">Marina</span><span data-lang="de">Marina</span></div></div></div>
     </div>
   </div>
 </section>
@@ -1117,8 +1135,8 @@
 <!-- ══════════ VITA NOTTURNA ══════════ -->
 <section class="nightlife-section fade-in">
   <div class="section-header" style="padding-top:0">
-    <span class="section-label">🌙 <span data-lang="es">Vida nocturna</span><span data-lang="en">Nightlife</span></span>
-    <h2 class="section-title"><span data-lang="es">Las noches de Puerto Sherry</span><span data-lang="en">Puerto Sherry nights</span></h2>
+    <span class="section-label">🌙 <span data-lang="es">Vida nocturna</span><span data-lang="en">Nightlife</span><span data-lang="fr">Vie nocturne</span><span data-lang="de">Nachtleben</span></span>
+    <h2 class="section-title"><span data-lang="es">Las noches de Puerto Sherry</span><span data-lang="en">Puerto Sherry nights</span><span data-lang="fr">Les nuits de Puerto Sherry</span><span data-lang="de">Puerto Sherry Nächte</span></h2>
     <p class="section-desc"><span data-lang="es">Tres locales icónicos a pocos minutos de tu puerta. Atardecer, cócteles y música sobre el Atlántico.</span><span data-lang="en">Three iconic venues minutes from your door. Sunset, cocktails and music over the Atlantic.</span></p>
   </div>
 
@@ -1131,7 +1149,7 @@
       <div class="nl-detail"><span class="nl-detail-icon">📍</span> Avenida del Puerto, Puerto Sherry</div>
       <div class="nl-detail"><span class="nl-detail-icon">🕐</span> <span data-lang="es">Todos los días 15:30 – 00:00</span><span data-lang="en">Every day 15:30 – 00:00</span></div>
       <div class="nl-detail"><span class="nl-detail-icon">📞</span> 647 845 447</div>
-      <a href="https://www.instagram.com/phiphibeachpuertosherry/" target="_blank" class="nl-link"><span data-lang="es">Instagram →</span><span data-lang="en">Instagram →</span></a>
+      <a href="https://www.instagram.com/phiphibeachpuertosherry/" target="_blank" class="nl-link"><span data-lang="es">Instagram →</span><span data-lang="en">Instagram →</span><span data-lang="fr">Instagram →</span><span data-lang="de">Instagram →</span></a>
     </div>
 
     <div class="nl-card">
@@ -1142,7 +1160,7 @@
       <div class="nl-detail"><span class="nl-detail-icon">📍</span> Puerto Sherry, El Puerto de Santa María</div>
       <div class="nl-detail"><span class="nl-detail-icon">🕐</span> <span data-lang="es">Abierto todos los días · desde las 15:30</span><span data-lang="en">Open every day · from 15:30</span></div>
       <div class="nl-detail"><span class="nl-detail-icon">📞</span> 601 88 50 51</div>
-      <a href="https://www.instagram.com/margaritapuertosherry/" target="_blank" class="nl-link"><span data-lang="es">Instagram →</span><span data-lang="en">Instagram →</span></a>
+      <a href="https://www.instagram.com/margaritapuertosherry/" target="_blank" class="nl-link"><span data-lang="es">Instagram →</span><span data-lang="en">Instagram →</span><span data-lang="fr">Instagram →</span><span data-lang="de">Instagram →</span></a>
     </div>
 
     <div class="nl-card">
@@ -1162,9 +1180,9 @@
 <!-- ══════════ DINTORNI ══════════ -->
 <section class="nearby-section fade-in">
   <div class="section-header" style="padding-top:0">
-    <span class="section-label">🗺️ <span data-lang="es">Alrededores</span><span data-lang="en">Surroundings</span></span>
+    <span class="section-label">🗺️ <span data-lang="es">Alrededores</span><span data-lang="en">Surroundings</span><span data-lang="fr">Environs</span><span data-lang="de">Umgebung</span></span>
     <h2 class="section-title"><span data-lang="es">Qué encontrarás cerca</span><span data-lang="en">What's around you</span></h2>
-    <p class="section-desc"><span data-lang="es">La Bajamar es el punto de acceso privilegiado al alma entera de El Puerto.</span><span data-lang="en">La Bajamar is the privileged gateway to the entire soul of El Puerto.</span></p>
+    <p class="section-desc"><span data-lang="es">La Bajamar es el punto de acceso privilegiado al alma entera de El Puerto.</span><span data-lang="en">La Bajamar is the privileged gateway to the entire soul of El Puerto.</span><span data-lang="fr">La Bajamar est la porte d'accès privilégiée à toute l'âme d'El Puerto.</span><span data-lang="de">La Bajamar ist der privilegierte Zugang zur gesamten Seele von El Puerto.</span><span data-lang="fr">La Bajamar est la porte d'accès privilégiée à toute l'âme d'El Puerto.</span><span data-lang="de">La Bajamar ist der privilegierte Zugang zur gesamten Seele von El Puerto.</span></p>
   </div>
 
   <div class="nearby-grid">
@@ -1172,8 +1190,8 @@
       <div class="nearby-icon-wrap nc-gastro">🦞</div>
       <div>
         <div class="nearby-title">Ribera del Marisco</div>
-        <div class="nearby-dist"><span data-lang="es">5 min a pie</span><span data-lang="en">5 min walk</span></div>
-        <div class="nearby-desc"><span data-lang="es">El paseo del marisco. Bares, tapas, vino de Jerez y vida nocturna junto al Guadalete. Animado cada noche.</span><span data-lang="en">The seafood promenade. Bars, tapas, sherry wine and evening life along the Guadalete. Buzzing every night.</span></div>
+        <div class="nearby-dist"><span data-lang="es">5 min a pie</span><span data-lang="en">5 min walk</span><span data-lang="fr">5 min à pied</span><span data-lang="de">5 Min. zu Fuß</span></div>
+        <div class="nearby-desc"><span data-lang="es">El paseo del marisco. Bares, tapas, vino de Jerez y vida nocturna junto al Guadalete. Animado cada noche.</span><span data-lang="en">The seafood promenade. Bars, tapas, sherry wine and evening life along the Guadalete. Buzzing every night.</span><span data-lang="fr">La promenade des fruits de mer. Bars, tapas, vin de xérès et vie nocturne le long du Guadalete. Animé chaque soir.</span><span data-lang="de">Die Meeresfrüchtepromenade. Bars, Tapas, Sherry-Wein und Abendleben am Guadalete. Jeden Abend belebt.</span></div>
       </div>
     </div>
     <div class="nearby-card">
@@ -1189,7 +1207,7 @@
       <div>
         <div class="nearby-title"><span data-lang="es">Catamarán a Cádiz</span><span data-lang="en">Catamaran to Cádiz</span></div>
         <div class="nearby-dist"><span data-lang="es">10 min a pie · 25 min de travesía</span><span data-lang="en">10 min walk · 25 min crossing</span></div>
-        <div class="nearby-desc"><span data-lang="es">15+ salidas al día. La forma más bonita de visitar Cádiz — desde la Estación Marítima del puerto.</span><span data-lang="en">15+ departures daily. The most beautiful way to visit Cádiz — from the harbour's Maritime Station.</span></div>
+        <div class="nearby-desc"><span data-lang="es">15+ salidas al día. La forma más bonita de visitar Cádiz — desde la Estación Marítima del puerto.</span><span data-lang="en">15+ departures daily. The most beautiful way to visit Cádiz — from the harbour's Maritime Station.</span><span data-lang="fr">15+ départs quotidiens. La plus belle façon de visiter Cádiz — depuis la gare maritime du port.</span><span data-lang="de">15+ tägliche Abfahrten. Der schönste Weg, Cádiz zu besuchen — vom Seebahnhof des Hafens.</span></div>
       </div>
     </div>
     <div class="nearby-card">
@@ -1197,7 +1215,7 @@
       <div>
         <div class="nearby-title">Castillo de San Marcos</div>
         <div class="nearby-dist"><span data-lang="es">15 min a pie</span><span data-lang="en">15 min walk</span></div>
-        <div class="nearby-desc"><span data-lang="es">Fortaleza del s. XII vinculada a los viajes de Colón. 14.428 visitantes/año. Degustaciones de jerez incluidas.</span><span data-lang="en">12th-century fortress linked to Columbus's voyages. 14,428 visitors/year. Sherry tastings included.</span></div>
+        <div class="nearby-desc"><span data-lang="es">Fortaleza del s. XII vinculada a los viajes de Colón. 14.428 visitantes/año. Degustaciones de jerez incluidas.</span><span data-lang="en">12th-century fortress linked to Columbus's voyages. 14,428 visitors/year. Sherry tastings included.</span><span data-lang="fr">Forteresse du XIIe siècle liée aux voyages de Colomb. 14 428 visiteurs/an. Dégustations de xérès incluses.</span><span data-lang="de">Festung aus dem 12. Jahrhundert, verbunden mit Kolumbus' Reisen. 14.428 Besucher/Jahr. Sherry-Verkostungen inklusive.</span></div>
       </div>
     </div>
     <div class="nearby-card">
@@ -1205,13 +1223,13 @@
       <div>
         <div class="nearby-title">Bodegas Osborne</div>
         <div class="nearby-dist"><span data-lang="es">15 min a pie</span><span data-lang="en">15 min walk</span></div>
-        <div class="nearby-desc"><span data-lang="es">La bodega más visitada: 33.603 visitas/año. El Toro de Osborne, jerez y brandy. Imprescindible.</span><span data-lang="en">Most visited winery: 33,603 visits/year. The Osborne Bull, sherry and brandy. An absolute must.</span></div>
+        <div class="nearby-desc"><span data-lang="es">La bodega más visitada: 33.603 visitas/año. El Toro de Osborne, jerez y brandy. Imprescindible.</span><span data-lang="en">Most visited winery: 33,603 visits/year. The Osborne Bull, sherry and brandy. An absolute must.</span><span data-lang="fr">Bodega la plus visitée : 33 603 visites/an. Le Taureau Osborne, xérès et brandy. Un incontournable.</span><span data-lang="de">Meistbesuchtes Weingut: 33.603 Besuche/Jahr. Der Osborne-Stier, Sherry und Brandy. Ein absolutes Muss.</span></div>
       </div>
     </div>
     <div class="nearby-card">
       <div class="nearby-icon-wrap nc-beach">🌊</div>
       <div>
-        <div class="nearby-title"><span data-lang="es">Puerto Sherry + Vida Nocturna</span><span data-lang="en">Puerto Sherry + Nightlife</span></div>
+        <div class="nearby-title"><span data-lang="es">Puerto Sherry + Vida Nocturna</span><span data-lang="en">Puerto Sherry + Nightlife</span><span data-lang="fr">Puerto Sherry + Vie nocturne</span><span data-lang="de">Puerto Sherry + Nachtleben</span></div>
         <div class="nearby-dist"><span data-lang="es">10 min en coche</span><span data-lang="en">10 min by car</span></div>
         <div class="nearby-desc"><span data-lang="es">PhiPhi Beach, Margarita y Playa Canalla — tres locales icónicos. Atardecer + cócteles + música sobre el Atlántico.</span><span data-lang="en">PhiPhi Beach, Margarita and Playa Canalla — three iconic venues. Sunset + cocktails + music over the Atlantic.</span></div>
       </div>
@@ -1220,8 +1238,8 @@
       <div class="nearby-icon-wrap nc-beach">🏖️</div>
       <div>
         <div class="nearby-title">Playa la Calita</div>
-        <div class="nearby-dist"><span data-lang="es">10 min en coche · Puerto Sherry</span><span data-lang="en">10 min by car · Puerto Sherry</span></div>
-        <div class="nearby-desc"><span data-lang="es">Cala pequeña y recogida junto a Puerto Sherry. Aguas tranquilas, fondo arenoso, perfecta para familias y para un baño tranquilo.</span><span data-lang="en">Small sheltered cove next to Puerto Sherry. Calm waters, sandy bottom — perfect for families and a peaceful swim.</span></div>
+        <div class="nearby-dist"><span data-lang="es">10 min en coche · Puerto Sherry</span><span data-lang="en">10 min by car · Puerto Sherry</span><span data-lang="fr">10 min en voiture · Puerto Sherry</span><span data-lang="de">10 Min. mit dem Auto · Puerto Sherry</span></div>
+        <div class="nearby-desc"><span data-lang="es">Cala pequeña y recogida junto a Puerto Sherry. Aguas tranquilas, fondo arenoso, perfecta para familias y para un baño tranquilo.</span><span data-lang="en">Small sheltered cove next to Puerto Sherry. Calm waters, sandy bottom — perfect for families and a peaceful swim.</span><span data-lang="fr">Petite crique abritée près de Puerto Sherry. Eaux calmes, fond sableux — parfait pour les familles.</span><span data-lang="de">Kleine geschützte Bucht bei Puerto Sherry. Ruhige Gewässer, Sandboden — ideal für Familien.</span></div>
       </div>
     </div>
   </div>
@@ -1234,16 +1252,16 @@
     <path d="M0,35 C360,70 720,0 1080,35 C1260,52 1380,18 1440,35 L1440,70 L0,70Z" fill="rgba(255,255,255,0.12)"/>
   </svg>
 
-  <h2 class="cta-title"><span data-lang="es">Reserva OlasDelSur</span><span data-lang="en">Book OlasDelSur</span></h2>
-  <p class="cta-sub"><span data-lang="es">Playa, gastronomía, cultura y vida nocturna — todo al alcance de la mano desde la Bajamar recién renovada.</span><span data-lang="en">Beach, gastronomy, culture and nightlife — everything within reach from the newly renovated Bajamar.</span></p>
+  <h2 class="cta-title"><span data-lang="es">Reserva OlasDelSur</span><span data-lang="en">Book OlasDelSur</span><span data-lang="fr">Réserver OlasDelSur</span><span data-lang="de">OlasDelSur buchen</span></h2>
+  <p class="cta-sub"><span data-lang="es">Playa, gastronomía, cultura y vida nocturna — todo al alcance de la mano desde la Bajamar recién renovada.</span><span data-lang="en">Beach, gastronomy, culture and nightlife — everything within reach from the newly renovated Bajamar.</span><span data-lang="fr">Plage, gastronomie, culture et vie nocturne — tout à portée de main depuis la Bajamar nouvellement rénovée.</span><span data-lang="de">Strand, Gastronomie, Kultur und Nachtleben — alles in Reichweite der neu renovierten Bajamar.</span></p>
 
   <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative">
     <a href="https://www.airbnb.com/rooms/833027419091697738?unique_share_id=b44f9908-1b50-4db7-8c14-f85f222d304c&viralityEntryPoint=1&s=76" target="_blank" class="btn btn-white" style="font-size:1rem;padding:16px 38px">
-      <span data-lang="es">🏠 Reservar en Airbnb</span><span data-lang="en">🏠 Book on Airbnb</span>
+      <span data-lang="es">🏠 Reservar en Airbnb</span><span data-lang="en">🏠 Book on Airbnb</span><span data-lang="fr">🏠 Réserver sur Airbnb</span><span data-lang="de">🏠 Bei Airbnb buchen</span>
     </a>
     <a href="#mappa" class="btn btn-outline-white" style="font-size:1rem;padding:16px 38px" data-lang="es">
       📍 Ver en el mapa
-    </a><a href="#mappa" class="btn btn-outline-white" style="font-size:1rem;padding:16px 38px" data-lang="en">📍 View on map</a>
+    </a><a href="#mappa" class="btn btn-outline-white" style="font-size:1rem;padding:16px 38px" data-lang="en">📍 View on map</a><a href="#mappa" class="btn btn-outline-white" style="font-size:1rem;padding:16px 38px" data-lang="fr">📍 Voir sur la carte</a><a href="#mappa" class="btn btn-outline-white" style="font-size:1rem;padding:16px 38px" data-lang="de">📍 Auf der Karte</a>
   </div>
 
   <p style="margin-top:22px;font-size:0.78rem;color:rgba(255,255,255,0.65);position:relative">
@@ -1289,7 +1307,7 @@
   </div>
 
   <div class="footer-links">
-    <a href="#mappa"><span data-lang="es">🗺️ Mapa</span><span data-lang="en">🗺️ Map</span></a>
+    <a href="#mappa"><span data-lang="es">🗺️ Mapa</span><span data-lang="en">🗺️ Map</span><span data-lang="fr">🗺️ Carte</span><span data-lang="de">🗺️ Karte</span></a>
     
     <a href="https://playacanalla.com" target="_blank">🎶 Playa Canalla</a>
     <a href="https://www.instagram.com/margaritapuertosherry/" target="_blank">🍹 Margarita</a>
@@ -1453,6 +1471,8 @@
     root.className = root.className.replace(/lang-\S+/g, '') + ' lang-' + lang;
     document.getElementById('btn-es').classList.toggle('active', lang === 'es');
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+    document.getElementById('btn-de').classList.toggle('active', lang === 'de');
     root.lang = lang;
     window._olasLang = lang;
   }
