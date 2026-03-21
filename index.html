@@ -336,27 +336,34 @@
     .stats-bar {
       background: linear-gradient(90deg, var(--ocean) 0%, var(--ocean2) 100%);
       padding: 22px 0;
-      overflow-x: auto;
-      -ms-overflow-style: none; scrollbar-width: none;
+      overflow: hidden;
     }
-    .stats-bar::-webkit-scrollbar { display: none; }
+
+    @keyframes statsScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
 
     .stats-inner {
       display: flex;
       gap: 0;
       min-width: max-content;
-      padding: 0 32px;
-      justify-content: center;
+      animation: statsScroll 34s linear infinite;
+      will-change: transform;
+    }
+
+    .stats-inner:hover {
+      animation-play-state: paused;
     }
 
     .stat-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0 32px;
+      padding: 0 40px;
       border-right: 1px solid rgba(255,255,255,0.2);
+      flex-shrink: 0;
     }
-    .stat-item:last-child { border-right: none; }
 
     .stat-value {
       font-size: 1.7rem;
@@ -1230,12 +1237,20 @@
 <!-- ══════════ STATS ══════════ -->
 <div class="stats-bar">
   <div class="stats-inner">
+    <!-- Set 1 -->
     <div class="stat-item"><span class="stat-value">300+</span><span class="stat-label" data-lang="es">Días de sol</span><span class="stat-label" data-lang="en">Sunny days</span><span class="stat-label" data-lang="fr">Jours de soleil</span><span class="stat-label" data-lang="de">Sonnentage</span></div>
     <div class="stat-item"><span class="stat-value">1500 🗺️</span><span class="stat-label" data-lang="es">Primer mapa de América</span><span class="stat-label" data-lang="en">First map of America</span><span class="stat-label" data-lang="fr">1ᵉʳ carte des Amériques</span><span class="stat-label" data-lang="de">Erstes Amerika-Karte</span></div>
     <div class="stat-item"><span class="stat-value">25' ⛵</span><span class="stat-label" data-lang="es">Cádiz en catamarán</span><span class="stat-label" data-lang="en">Cádiz by catamaran</span><span class="stat-label" data-lang="fr">Cadix en catamaran</span><span class="stat-label" data-lang="de">Cádiz per Katamaran</span></div>
-    <div class="stat-item"><span class="stat-value">20'🚶</span><span class="stat-label" data-lang="es">Ribera del Marisco</span><span class="stat-label" data-lang="en">Ribera del Marisco</span><span class="stat-label" data-lang="fr">Ribera del Marisco</span><span class="stat-label" data-lang="de">Ribera del Marisco</span></div>
+    <div class="stat-item"><span class="stat-value">20' 🚶</span><span class="stat-label" data-lang="es">Ribera del Marisco</span><span class="stat-label" data-lang="en">Ribera del Marisco</span><span class="stat-label" data-lang="fr">Ribera del Marisco</span><span class="stat-label" data-lang="de">Ribera del Marisco</span></div>
     <div class="stat-item"><span class="stat-value">600m 🏖️</span><span class="stat-label" data-lang="es">Playa de la Puntilla</span><span class="stat-label" data-lang="en">Playa de la Puntilla</span><span class="stat-label" data-lang="fr">Playa de la Puntilla</span><span class="stat-label" data-lang="de">Playa de la Puntilla</span></div>
     <div class="stat-item"><span class="stat-value">1.4km 🚶</span><span class="stat-label" data-lang="es">a pie del centro</span><span class="stat-label" data-lang="en">walk to old town</span><span class="stat-label" data-lang="fr">à pied du centre</span><span class="stat-label" data-lang="de">zu Fuß ins Zentrum</span></div>
+    <!-- Set 2 – duplicato per loop senza interruzioni -->
+    <div class="stat-item" aria-hidden="true"><span class="stat-value">300+</span><span class="stat-label" data-lang="es">Días de sol</span><span class="stat-label" data-lang="en">Sunny days</span><span class="stat-label" data-lang="fr">Jours de soleil</span><span class="stat-label" data-lang="de">Sonnentage</span></div>
+    <div class="stat-item" aria-hidden="true"><span class="stat-value">1500 🗺️</span><span class="stat-label" data-lang="es">Primer mapa de América</span><span class="stat-label" data-lang="en">First map of America</span><span class="stat-label" data-lang="fr">1ᵉʳ carte des Amériques</span><span class="stat-label" data-lang="de">Erstes Amerika-Karte</span></div>
+    <div class="stat-item" aria-hidden="true"><span class="stat-value">25' ⛵</span><span class="stat-label" data-lang="es">Cádiz en catamarán</span><span class="stat-label" data-lang="en">Cádiz by catamaran</span><span class="stat-label" data-lang="fr">Cadix en catamaran</span><span class="stat-label" data-lang="de">Cádiz per Katamaran</span></div>
+    <div class="stat-item" aria-hidden="true"><span class="stat-value">20' 🚶</span><span class="stat-label" data-lang="es">Ribera del Marisco</span><span class="stat-label" data-lang="en">Ribera del Marisco</span><span class="stat-label" data-lang="fr">Ribera del Marisco</span><span class="stat-label" data-lang="de">Ribera del Marisco</span></div>
+    <div class="stat-item" aria-hidden="true"><span class="stat-value">600m 🏖️</span><span class="stat-label" data-lang="es">Playa de la Puntilla</span><span class="stat-label" data-lang="en">Playa de la Puntilla</span><span class="stat-label" data-lang="fr">Playa de la Puntilla</span><span class="stat-label" data-lang="de">Playa de la Puntilla</span></div>
+    <div class="stat-item" aria-hidden="true"><span class="stat-value">1.4km 🚶</span><span class="stat-label" data-lang="es">a pie del centro</span><span class="stat-label" data-lang="en">walk to old town</span><span class="stat-label" data-lang="fr">à pied du centre</span><span class="stat-label" data-lang="de">zu Fuß ins Zentrum</span></div>
   </div>
 </div>
 
