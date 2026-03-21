@@ -512,6 +512,9 @@
     .cat-nature    { color: var(--leaf); }
     .cat-nautica   { color: var(--ocean); }
     .cat-home      { color: var(--coral); }
+    .cat-supermercado { color: #1A7A3F; }
+
+    .nc-supermercado { background: rgba(26,122,63,0.12); }
 
     /* ══════════ NIGHTLIFE ══════════ */
     .nightlife-section {
@@ -1254,6 +1257,7 @@
     <button class="filter-btn" data-cat="transport"><span data-lang="es">⛵ Transporte</span><span data-lang="en">⛵ Transport</span><span data-lang="fr">⛵ Transport</span><span data-lang="de">⛵ Transport</span></button>
     <button class="filter-btn" data-cat="nature"><span data-lang="es">🌿 Naturaleza</span><span data-lang="en">🌿 Nature</span><span data-lang="fr">🌿 Nature</span><span data-lang="de">🌿 Natur</span></button>
     <button class="filter-btn" data-cat="nautica"><span data-lang="es">⚓ Náutica</span><span data-lang="en">⚓ Nautical</span><span data-lang="fr">⚓ Nautique</span><span data-lang="de">⚓ Nautik</span></button>
+    <button class="filter-btn" data-cat="supermercado"><span data-lang="es">🛒 Supermercados</span><span data-lang="en">🛒 Supermarkets</span><span data-lang="fr">🛒 Supermarchés</span><span data-lang="de">🛒 Supermärkte</span></button>
   </div>
 
   <div class="map-layout">
@@ -1290,6 +1294,10 @@
       <div class="poi-card" id="card-calita"><span class="poi-emoji">🏖️</span><div class="poi-info"><div class="poi-name">Playa la Calita</div><div class="poi-addr"><span data-lang="es">Puerto Sherry · cala recogida</span><span data-lang="en">Puerto Sherry · sheltered cove</span><span data-lang="fr">Puerto Sherry · crique abritée</span><span data-lang="de">Puerto Sherry · geschützte Bucht</span></div><div class="poi-cat cat-beach"><span data-lang="es">Playa</span><span data-lang="en">Beach</span><span data-lang="fr">Plage</span><span data-lang="de">Strand</span></div></div></div>
       <div class="poi-card" id="card-torunos"><span class="poi-emoji">🌿</span><div class="poi-info"><div class="poi-name">Parque Los Toruños</div><div class="poi-addr"><span data-lang="es">Dunas y naturaleza</span><span data-lang="en">Dunes &amp; nature</span><span data-lang="fr">Dunes &amp; nature</span><span data-lang="de">Dünen &amp; Natur</span></div><div class="poi-cat cat-nature"><span data-lang="es">Naturaleza</span><span data-lang="en">Nature</span><span data-lang="fr">Nature</span><span data-lang="de">Natur</span></div></div></div>
       <div class="poi-card" id="card-puertosherry"><span class="poi-emoji">⚓</span><div class="poi-info"><div class="poi-name">Puerto Sherry Marina</div><div class="poi-addr"><span data-lang="es">Atardecer sobre la bahía</span><span data-lang="en">Sunset over the bay</span><span data-lang="fr">Coucher de soleil sur la baie</span><span data-lang="de">Sonnenuntergang über der Bucht</span></div><div class="poi-cat cat-nautica"><span data-lang="es">Marina</span><span data-lang="en">Marina</span><span data-lang="fr">Marina</span><span data-lang="de">Marina</span></div></div></div>
+      <div class="poi-card" id="card-mercadona"><span class="poi-emoji">🛒</span><div class="poi-info"><div class="poi-name">Mercadona</div><div class="poi-addr"><span data-lang="es">3 min a pie</span><span data-lang="en">3 min walk</span><span data-lang="fr">3 min à pied</span><span data-lang="de">3 Min. zu Fuß</span></div><div class="poi-cat cat-supermercado"><span data-lang="es">Supermercado</span><span data-lang="en">Supermarket</span><span data-lang="fr">Supermarché</span><span data-lang="de">Supermarkt</span></div></div></div>
+      <div class="poi-card" id="card-aldi"><span class="poi-emoji">🛒</span><div class="poi-info"><div class="poi-name">Aldi</div><div class="poi-addr"><span data-lang="es">C. Valdés s/n</span><span data-lang="en">C. Valdés s/n</span><span data-lang="fr">C. Valdés s/n</span><span data-lang="de">C. Valdés s/n</span></div><div class="poi-cat cat-supermercado"><span data-lang="es">Supermercado</span><span data-lang="en">Supermarket</span><span data-lang="fr">Supermarché</span><span data-lang="de">Supermarkt</span></div></div></div>
+      <div class="poi-card" id="card-mercadona2"><span class="poi-emoji">🛒</span><div class="poi-info"><div class="poi-name">Mercadona Dunas</div><div class="poi-addr"><span data-lang="es">Rda. de las Dunas 7</span><span data-lang="en">Rda. de las Dunas 7</span><span data-lang="fr">Rda. de las Dunas 7</span><span data-lang="de">Rda. de las Dunas 7</span></div><div class="poi-cat cat-supermercado"><span data-lang="es">Supermercado</span><span data-lang="en">Supermarket</span><span data-lang="fr">Supermarché</span><span data-lang="de">Supermarkt</span></div></div></div>
+      <div class="poi-card" id="card-dia"><span class="poi-emoji">🛒</span><div class="poi-info"><div class="poi-name">Supermercados Dia</div><div class="poi-addr"><span data-lang="es">Av. Pintor A. F. Sevilla 18A</span><span data-lang="en">Av. Pintor A. F. Sevilla 18A</span><span data-lang="fr">Av. Pintor A. F. Sevilla 18A</span><span data-lang="de">Av. Pintor A. F. Sevilla 18A</span></div><div class="poi-cat cat-supermercado"><span data-lang="es">Supermercado</span><span data-lang="en">Supermarket</span><span data-lang="fr">Supermarché</span><span data-lang="de">Supermarkt</span></div></div></div>
     </div>
   </div>
 </section>
@@ -1314,6 +1322,7 @@
         <button class="poi-cat-tab" data-filter="nautica">⚓ <span data-lang="es">Náutica</span><span data-lang="en">Nautical</span><span data-lang="fr">Nautique</span><span data-lang="de">Nautik</span></button>
         <button class="poi-cat-tab" data-filter="nature">🌿 <span data-lang="es">Naturaleza</span><span data-lang="en">Nature</span><span data-lang="fr">Nature</span><span data-lang="de">Natur</span></button>
         <button class="poi-cat-tab" data-filter="transport">⛵ <span data-lang="es">Transporte</span><span data-lang="en">Transport</span><span data-lang="fr">Transport</span><span data-lang="de">Transport</span></button>
+        <button class="poi-cat-tab" data-filter="supermercado">🛒 <span data-lang="es">Supermercados</span><span data-lang="en">Supermarkets</span><span data-lang="fr">Supermarchés</span><span data-lang="de">Supermärkte</span></button>
       </div>
       <div class="poi-chips" id="poiChips"></div>
     </div>
@@ -1527,17 +1536,22 @@
       { id:"calita", lat:36.583343, lng:-6.268132, title:"Playa la Calita", category:"beach", icon:"🏖️", address:"Puerto Sherry, El Puerto de Santa María", desc:"Cala pequeña y recogida junto a Puerto Sherry. Aguas tranquilas, fondo arenoso, perfecta para familias. Acceso a pie desde el paseo.", desc_en:"Small sheltered cove by Puerto Sherry. Calm waters, sandy bottom, perfect for families. Walking access from the promenade.", rating:"★★★★", link:"https://maps.google.com/?q=Playa+la+Calita+Puerto+Sherry+El+Puerto+de+Santa+Maria" },
       { id:"rcn", lat:36.5895, lng:-6.2309, title:"Real Club Náutico", category:"nautica", icon:"⚓", address:"Avenida de la Bajamar 13, El Puerto de Santa María", desc:"Club náutico histórico a orillas del Guadalete. Restaurante-bar <b>La Venecia</b> (tapas, arroces · 9:00–00:00). Club de copas <b>Chang Bay</b> (15:00–02:00). Pantalán con alquiler de motos de agua y embarcaciones con/sin patrón. Pistas de pádel y tenis.", desc_en:"Historic yacht club on the Guadalete. Restaurant <b>La Venecia</b> (tapas & rice · 9am–midnight). <b>Chang Bay</b> club (3pm–2am). Pontoon with jet ski & boat rental (skippered or bareboat). Padel & tennis courts.", rating:"★★★★", link:"https://www.rcnpsm.es" },
       { id:"puertosherry",lat:36.5803, lng:-6.2552, title:"Puerto Sherry Marina",                 category:"nautica",    icon:"⚓", address:"Puerto Sherry, El Puerto de Santa María",       desc:"Marina moderna con vela, clubes náuticos y restaurantes. Atardeceres espectaculares sobre la bahía de Cádiz.", desc_en:"Modern marina with sailing, yacht clubs and restaurants. Spectacular sunsets over the Bay of Cádiz.",                                                                                      rating:"★★★★★", link:null },
+      { id:"mercadona",  lat:36.5920193, lng:-6.2308192, title:"Mercadona",       category:"supermercado", icon:"🛒", address:"Av. de la Bajamar, El Puerto de Santa María",      desc:"Supermercado Mercadona, el más popular de España. Fruta, verdura, charcutería y productos frescos. A 3 min a pie del apartamento.", desc_en:"Mercadona supermarket, Spain's most popular chain. Fresh produce, deli and essentials. 3-min walk from the apartment.", rating:"4.0★", link:"https://maps.app.goo.gl/kYb8NvJs5nnVXmXT9" },
+      { id:"aldi",       lat:36.593597,  lng:-6.2288349, title:"Aldi",             category:"supermercado", icon:"🛒", address:"C. Valdés s/n, El Puerto de Santa María",            desc:"Supermercado Aldi. Precios bajos garantizados, sección especial de productos locales, frescos y artículos de temporada. Muy bien valorado.", desc_en:"Aldi supermarket. Guaranteed low prices, local produce section and seasonal items. Highly rated by locals.", rating:"4.2★", link:"https://maps.app.goo.gl/eLoWrx2oRU8eyNKa9" },
+      { id:"mercadona2",lat:36.5913517,  lng:-6.2378415, title:"Mercadona Dunas",  category:"supermercado", icon:"🛒", address:"Rda. de las Dunas 7, El Puerto de Santa María",      desc:"Segundo Mercadona de El Puerto, en la zona de las Dunas. Gran superficie, parking gratuito y amplia sección de frescos y panadería.", desc_en:"Second Mercadona in El Puerto, near the Dunas area. Large store, free parking and wide fresh produce and bakery section.", rating:"4.1★", link:"https://maps.app.goo.gl/iMzrKyCVCL2jZtUU6" },
+      { id:"dia",        lat:36.594634,  lng:-6.2374774, title:"Supermercados Dia", category:"supermercado", icon:"🛒", address:"Av. Pintor Antonio Fernández Sevilla 18A, El Puerto de Santa María", desc:"Supermercados Dia, cadena española con excelente relación calidad-precio. Productos de marca propia y ofertas diarias.", desc_en:"Dia supermarket, Spanish chain with great value for money. Own-brand products and daily deals.", rating:"3.9★", link:"https://maps.app.goo.gl/ZtKo7JEHFALN6Zho9" },
     ];
 
     const categoryColors = {
-      home:      "#FF6B35",
-      beach:     "#0096A6",
-      nightlife: "#7B2FBE",
-      culture:   "#D97706",
-      gastro:    "#8B1A4A",
-      transport: "#3D9970",
-      nature:    "#3D9970",
-      nautica:   "#0096A6",
+      home:         "#FF6B35",
+      beach:        "#0096A6",
+      nightlife:    "#7B2FBE",
+      culture:      "#D97706",
+      gastro:       "#8B1A4A",
+      transport:    "#3D9970",
+      nature:       "#3D9970",
+      nautica:      "#0096A6",
+      supermercado: "#1A7A3F",
     };
 
     const leafletMarkers = {};
@@ -2121,6 +2135,78 @@
       maps: 'https://maps.google.com/?q=Real+Club+Nautico+El+Puerto+de+Santa+Maria',
     },
     {
+      id: 'mercadona', cat: 'supermercado', emoji: '🛒',
+      name: 'Mercadona',
+      badge_es: 'Supermercado · 3 min a pie', badge_en: 'Supermarket · 3 min walk',
+      badge_fr: 'Supermarché · 3 min à pied', badge_de: 'Supermarkt · 3 Min. zu Fuß',
+      desc_es: 'El supermercado más cercano al apartamento. Mercadona es la cadena de supermercados más popular de España, con excelente sección de frescos, charcutería, panadería y productos locales andaluces.',
+      desc_en: 'The closest supermarket to the apartment. Mercadona is Spain\'s most popular supermarket chain, with an excellent fresh produce section, deli, bakery and local Andalusian products.',
+      desc_fr: 'Le supermarché le plus proche de l\'appartement. Mercadona est la chaîne de supermarchés la plus populaire d\'Espagne.',
+      desc_de: 'Der nächstgelegene Supermarkt zur Wohnung. Mercadona ist Spaniens beliebteste Supermarktkette mit hervorragender Frischwarenabteilung.',
+      address: 'Av. de la Bajamar, El Puerto de Santa María',
+      hours_es: 'Lun–Sáb: 09:00–21:30 · Domingo cerrado',
+      hours_en: 'Mon–Sat: 9:00 AM–9:30 PM · Sunday closed',
+      hours_fr: 'Lun–Sam: 09h00–21h30 · Dimanche fermé',
+      hours_de: 'Mo–Sa: 09:00–21:30 Uhr · Sonntag geschlossen',
+      phone: null, rating: '4.0★',
+      link: 'https://maps.app.goo.gl/kYb8NvJs5nnVXmXT9',
+      maps: 'https://maps.app.goo.gl/kYb8NvJs5nnVXmXT9',
+    },
+    {
+      id: 'aldi', cat: 'supermercado', emoji: '🛒',
+      name: 'Aldi',
+      badge_es: 'Supermercado · Precios bajos', badge_en: 'Supermarket · Low prices',
+      badge_fr: 'Supermarché · Prix bas', badge_de: 'Supermarkt · Niedrigpreise',
+      desc_es: 'Supermercado Aldi en El Puerto de Santa María. Precios bajos garantizados, excelente sección de productos frescos, artículos de temporada y marcas propias de calidad. 4,2★ con 1.379 reseñas.',
+      desc_en: 'Aldi supermarket in El Puerto de Santa María. Guaranteed low prices, excellent fresh produce section, seasonal items and quality own-brand products. 4.2★ with 1,379 reviews.',
+      desc_fr: 'Supermarché Aldi à El Puerto de Santa María. Prix bas garantis, excellente section de produits frais, articles de saison et marques propres de qualité.',
+      desc_de: 'Aldi-Supermarkt in El Puerto de Santa María. Garantiert niedrige Preise, hervorragende Frischwarenabteilung, Saisonartikel und Eigenmarken in hoher Qualität.',
+      address: 'C. Valdés s/n, El Puerto de Santa María',
+      hours_es: 'Lun–Sáb: 09:00–21:30 · Domingo cerrado',
+      hours_en: 'Mon–Sat: 9:00 AM–9:30 PM · Sunday closed',
+      hours_fr: 'Lun–Sam: 09h00–21h30 · Dimanche fermé',
+      hours_de: 'Mo–Sa: 09:00–21:30 Uhr · Sonntag geschlossen',
+      phone: null, rating: '4.2★ (1.379 reseñas)',
+      link: 'https://maps.app.goo.gl/eLoWrx2oRU8eyNKa9',
+      maps: 'https://maps.app.goo.gl/eLoWrx2oRU8eyNKa9',
+    },
+    {
+      id: 'mercadona2', cat: 'supermercado', emoji: '🛒',
+      name: 'Mercadona Dunas',
+      badge_es: 'Supermercado · Zona Dunas', badge_en: 'Supermarket · Dunas area',
+      badge_fr: 'Supermarché · Zone Dunas', badge_de: 'Supermarkt · Dunas-Zone',
+      desc_es: 'Segundo Mercadona de El Puerto, en la zona de Ronda de las Dunas. Gran superficie con amplio parking gratuito, sección de frescos completa, panadería y productos locales andaluces. 4,1★ con 2.107 reseñas.',
+      desc_en: 'Second Mercadona in El Puerto, in the Ronda de las Dunas area. Large store with free parking, full fresh produce section, bakery and local Andalusian products. 4.1★ with 2,107 reviews.',
+      desc_fr: 'Deuxième Mercadona d\'El Puerto, dans la zone Ronda de las Dunas. Grand magasin avec parking gratuit, section fraîche complète et produits locaux andalous.',
+      desc_de: 'Zweiter Mercadona in El Puerto, im Bereich Ronda de las Dunas. Großes Geschäft mit kostenlosem Parkplatz und vollständiger Frischwarenabteilung.',
+      address: 'Rda. de las Dunas 7, El Puerto de Santa María',
+      hours_es: 'Lun–Sáb: 09:00–21:30 · Domingo cerrado',
+      hours_en: 'Mon–Sat: 9:00 AM–9:30 PM · Sunday closed',
+      hours_fr: 'Lun–Sam: 09h00–21h30 · Dimanche fermé',
+      hours_de: 'Mo–Sa: 09:00–21:30 Uhr · Sonntag geschlossen',
+      phone: null, rating: '4.1★ (2.107 reseñas)',
+      link: 'https://maps.app.goo.gl/iMzrKyCVCL2jZtUU6',
+      maps: 'https://maps.app.goo.gl/iMzrKyCVCL2jZtUU6',
+    },
+    {
+      id: 'dia', cat: 'supermercado', emoji: '🛒',
+      name: 'Supermercados Dia',
+      badge_es: 'Supermercado · Oferta diaria', badge_en: 'Supermarket · Daily deals',
+      badge_fr: 'Supermarché · Offres quotidiennes', badge_de: 'Supermarkt · Tagesangebote',
+      desc_es: 'Supermercados Dia, cadena española con excelente relación calidad-precio. Amplia variedad de productos de marca propia y ofertas diarias. Muy conveniente para las compras del día a día.',
+      desc_en: 'Dia supermarket chain from Spain with great value for money. Wide range of own-brand products and daily deals. Very convenient for everyday shopping.',
+      desc_fr: 'Chaîne espagnole Dia avec un excellent rapport qualité-prix. Large gamme de produits de marque propre et offres quotidiennes. Très pratique pour les achats du quotidien.',
+      desc_de: 'Spanische Supermarktkette Dia mit hervorragendem Preis-Leistungs-Verhältnis. Breites Sortiment an Eigenmarken und täglichen Angeboten.',
+      address: 'Av. Pintor Antonio Fernández Sevilla 18A, El Puerto de Santa María',
+      hours_es: 'Lun–Sáb: 09:00–21:30 · Domingo cerrado',
+      hours_en: 'Mon–Sat: 9:00 AM–9:30 PM · Sunday closed',
+      hours_fr: 'Lun–Sam: 09h00–21h30 · Dimanche fermé',
+      hours_de: 'Mo–Sa: 09:00–21:30 Uhr · Sonntag geschlossen',
+      phone: null, rating: '3.9★ (282 reseñas)',
+      link: 'https://maps.app.goo.gl/ZtKo7JEHFALN6Zho9',
+      maps: 'https://maps.app.goo.gl/ZtKo7JEHFALN6Zho9',
+    },
+    {
       id: 'puertosherry', cat: 'nautica', emoji: '⚓',
       name: 'Puerto Sherry Marina',
       badge_es: 'Marina deportiva', badge_en: 'Sports marina', badge_fr: 'Marina sportive', badge_de: 'Sporthafen',
@@ -2141,7 +2227,7 @@
   const catColors = {
     home: '#FF6B35', beach: '#0096A6', nightlife: '#7B2FBE',
     culture: '#D97706', gastro: '#8B1A4A', transport: '#3D9970',
-    nature: '#3D9970', nautica: '#0096A6'
+    nature: '#3D9970', nautica: '#0096A6', supermercado: '#1A7A3F'
   };
 
   function renderPoiChips(filter) {
