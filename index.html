@@ -511,15 +511,15 @@
     .poi-addr { font-size: 0.7rem; color: var(--muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .poi-cat  { font-size: 0.64rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px; }
 
-    .cat-beach     { color: var(--ocean); }
-    .cat-nightlife { color: #9333EA; }
-    .cat-culture   { color: #D97706; }
-    .cat-gastro    { color: #8B1A4A; }
-    .cat-transport { color: var(--leaf); }
-    .cat-nature    { color: var(--leaf); }
-    .cat-nautica   { color: var(--ocean); }
-    .cat-home      { color: var(--coral); }
-    .cat-supermercado { color: #1A7A3F; }
+    .cat-beach        { color: #0EA5E9; }   /* azzurro cielo atlantico */
+    .cat-nightlife    { color: #7C3AED; }   /* viola profondo */
+    .cat-culture      { color: #B45309; }   /* ambra/ocra antico */
+    .cat-gastro       { color: #9D1348; }   /* borgogna sherry */
+    .cat-transport    { color: #1D4ED8; }   /* blu royal segnaletica */
+    .cat-nature       { color: #16A34A; }   /* verde foresta botanico */
+    .cat-nautica      { color: #0C4A6E; }   /* blu navy club nautico */
+    .cat-home         { color: #E8501A; }   /* corallo brand */
+    .cat-supermercado { color: #0D9488; }   /* teal acqua retail */
 
     .nc-supermercado { background: rgba(26,122,63,0.12); }
 
@@ -679,11 +679,11 @@
       font-size: 1.7rem;
       flex-shrink: 0;
     }
-    .nc-beach     { background: rgba(0,180,216,0.12); }
-    .nc-culture   { background: rgba(245,158,11,0.12); }
-    .nc-gastro    { background: rgba(139,26,74,0.12); }
-    .nc-transport { background: rgba(61,153,112,0.12); }
-    .nc-nature    { background: rgba(61,153,112,0.12); }
+    .nc-beach     { background: rgba(14,165,233,0.12); }
+    .nc-culture   { background: rgba(180,83,9,0.12); }
+    .nc-gastro    { background: rgba(157,19,72,0.12); }
+    .nc-transport { background: rgba(29,78,216,0.12); }
+    .nc-nature    { background: rgba(22,163,74,0.12); }
 
     .nearby-title { font-weight: 700; font-size: 0.97rem; color: var(--text); margin-bottom: 3px; }
     .nearby-dist  { font-size: 0.75rem; color: var(--ocean); font-weight: 700; margin-bottom: 6px; }
@@ -1558,15 +1558,15 @@
     ];
 
     const categoryColors = {
-      home:         "#FF6B35",
-      beach:        "#0096A6",
-      nightlife:    "#7B2FBE",
-      culture:      "#D97706",
-      gastro:       "#8B1A4A",
-      transport:    "#3D9970",
-      nature:       "#3D9970",
-      nautica:      "#0096A6",
-      supermercado: "#1A7A3F",
+      home:         "#E8501A",   // corallo scurito (brand)
+      beach:        "#0EA5E9",   // azzurro cielo atlantico
+      nightlife:    "#7C3AED",   // viola profondo
+      culture:      "#B45309",   // ambra/ocra antico
+      gastro:       "#9D1348",   // borgogna sherry
+      transport:    "#1D4ED8",   // blu royal segnaletica
+      nature:       "#16A34A",   // verde foresta botanico
+      nautica:      "#0C4A6E",   // blu navy club nautico
+      supermercado: "#0D9488",   // teal acqua retail
     };
 
     const leafletMarkers = {};
