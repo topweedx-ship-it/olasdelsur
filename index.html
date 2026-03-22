@@ -77,94 +77,32 @@
     /* ══════════ HERO ══════════ */
     .hero {
       position: relative;
-      height: 100svh;
-      min-height: 600px;
+      padding: 130px 24px 70px; /* Recupera spazio rimuovendo 100svh e 600px */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      padding: 0 24px 80px;
+      background: #FDF4E6; /* Fallback morbido sabbia-pesca */
     }
 
-    /* Sky gradient — alba andalusa */
-    .hero-bg {
+    /* Sfondo sfocato che estende dinamicamente i colori del logo e cancella il perimetro quadrato */
+    .hero::before {
+      content: "";
       position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(170deg,
-          #FFECD0 0%,
-          #FFD49A 20%,
-          #FFC06A 38%,
-          #FF9240 55%,
-          #FF7055 68%,
-          #E84A6B 80%,
-          #C0356B 92%,
-          #7B2D6B 100%
-        );
-      animation: skyShift 14s ease-in-out infinite alternate;
+      top: -20%; left: -20%; right: -20%; bottom: -20%;
+      background: url('logo.png') center/cover no-repeat;
+      filter: blur(80px) saturate(1.2);
+      opacity: 0.65;
+      z-index: 1;
     }
 
-    @keyframes skyShift {
-      0%   { filter: brightness(1) saturate(1); }
-      50%  { filter: brightness(1.06) saturate(1.08); }
-      100% { filter: brightness(0.97) saturate(1.04); }
-    }
-
-    /* Horizontal sea band at bottom */
-    .hero-sea {
-      position: absolute;
-      bottom: 0;
-      left: 0;
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
       width: 100%;
-      height: 28%;
-      background: linear-gradient(180deg, #1AAEC4 0%, #0A8FA3 40%, #057080 100%);
-      clip-path: ellipse(60% 80% at 50% 110%);
     }
-
-    /* Sun */
-    .hero-sun {
-      position: absolute;
-      top: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 40% 38%, #FFF5B0, #FFDD55 50%, #FFAA20);
-      box-shadow:
-        0 0 0 18px rgba(255,220,80,0.18),
-        0 0 0 36px rgba(255,180,50,0.10),
-        0 0 80px 30px rgba(255,150,30,0.35);
-      animation: sunFloat 9s ease-in-out infinite;
-    }
-
-    @keyframes sunFloat {
-      0%,100% { transform: translateX(-50%) translateY(0); }
-      50%      { transform: translateX(-50%) translateY(-10px); }
-    }
-
-    /* Horizon glow */
-    .hero-horizon {
-      position: absolute;
-      bottom: 27%;
-      left: 0;
-      width: 100%;
-      height: 80px;
-      background: linear-gradient(180deg, rgba(255,200,80,0.5) 0%, rgba(255,130,50,0.3) 50%, transparent 100%);
-      filter: blur(18px);
-    }
-
-    /* Wave SVG bottom */
-    .hero-wave {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      pointer-events: none;
-    }
-
-    /* Birds */
     .birds {
       position: absolute;
       top: 22%;
@@ -179,8 +117,9 @@
 
     .hero-content {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       text-align: center;
+      width: 100%;
     }
 
     .hero-badge-wrap {
@@ -277,41 +216,43 @@
 
     .hero-ctas {
       display: flex;
-      gap: 12px;
+      gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
+      margin-top: 32px; /* spostati un po' più in basso */
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 14px 30px;
+      gap: 10px;
+      padding: 16px 36px;
       border-radius: 100px;
       font-family: var(--font-body);
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.25s;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       border: none;
       text-decoration: none;
     }
 
     .btn-primary {
-      background: var(--coral);
+      background: linear-gradient(135deg, var(--coral) 0%, #FF8C5A 100%);
       color: #fff;
-      box-shadow: 0 6px 24px rgba(255,107,53,0.45);
+      box-shadow: 0 8px 32px rgba(255,107,53,0.4);
+      border: 1px solid rgba(255,255,255,0.2);
     }
-    .btn-primary:hover { background: var(--terracotta); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,107,53,0.5); }
+    .btn-primary:hover { background: linear-gradient(135deg, var(--terracotta) 0%, var(--coral) 100%); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(255,107,53,0.55); }
 
     .btn-ghost {
-      background: rgba(255,255,255,0.3);
-      color: var(--text);
-      border: 2px solid rgba(255,255,255,0.6);
-      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.7);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
       color: #fff;
     }
-    .btn-ghost:hover { background: rgba(255,255,255,0.45); transform: translateY(-2px); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.3); border-color: #fff; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
 
     /* ══════════ STATS BAR ══════════ */
     .curiosidad-bar {
@@ -384,7 +325,7 @@
     /* ══════════ SECTION COMMON ══════════ */
     .section-header {
       text-align: center;
-      padding: 64px 24px 36px;
+      padding: 40px 24px 24px;
     }
 
     .section-label {
@@ -394,7 +335,7 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--coral);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .section-title {
@@ -402,7 +343,7 @@
       font-size: clamp(1.9rem, 5vw, 2.9rem);
       color: var(--text);
       line-height: 1.15;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .section-desc {
@@ -410,7 +351,7 @@
       margin: 0 auto;
       color: var(--text2);
       font-size: 1rem;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     /* ══════════ MAP SECTION ══════════ */
@@ -526,7 +467,7 @@
     /* ══════════ NIGHTLIFE ══════════ */
     .nightlife-section {
       background: linear-gradient(170deg, #FFF8EE 0%, #FFE8C8 60%, #FFD5A0 100%);
-      padding: 72px 24px;
+      padding: 48px 24px;
       text-align: center;
     }
 
@@ -535,7 +476,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       max-width: 980px;
-      margin: 40px auto 0;
+      margin: 32px auto 0;
     }
 
     .nl-card {
@@ -607,7 +548,7 @@
     /* ══════════ PRICING ══════════ */
     .pricing-section {
       background: linear-gradient(170deg, #FFFBF0 0%, #FFF3D0 100%);
-      padding: 72px 24px;
+      padding: 48px 24px;
       text-align: center;
     }
 
@@ -616,7 +557,7 @@
       grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
       gap: 10px;
       max-width: 820px;
-      margin: 40px auto 0;
+      margin: 32px auto 0;
     }
 
     .price-card {
@@ -647,7 +588,7 @@
 
     /* ══════════ NEARBY ══════════ */
     .nearby-section {
-      padding: 72px 24px;
+      padding: 48px 24px;
       background: var(--sky);
     }
 
@@ -656,7 +597,7 @@
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 16px;
       max-width: 1020px;
-      margin: 40px auto 0;
+      margin: 32px auto 0;
     }
 
     .nearby-card {
@@ -691,7 +632,7 @@
 
     /* ══════════ MARKET ══════════ */
     .market-section {
-      padding: 72px 24px;
+      padding: 48px 24px;
       background: linear-gradient(135deg, #E8F7FA 0%, #FFF8EE 100%);
     }
 
@@ -700,7 +641,7 @@
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 14px;
       max-width: 920px;
-      margin: 40px auto 0;
+      margin: 32px auto 0;
     }
 
     .market-card {
@@ -720,7 +661,7 @@
 
     /* ══════════ CTA ══════════ */
     .cta-section {
-      padding: 88px 24px;
+      padding: 56px 24px;
       text-align: center;
       background: linear-gradient(160deg, var(--coral) 0%, #FF9340 50%, var(--gold) 100%);
       position: relative;
@@ -786,7 +727,7 @@
     /* ── CHECK-IN ── */
     .checkin-section {
       background: linear-gradient(135deg, #FFF8EE 0%, #FFE8CC 100%);
-      padding: 72px 24px;
+      padding: 48px 24px;
       text-align: center;
       border-top: 2px solid rgba(242,163,15,0.18);
     }
@@ -882,8 +823,8 @@
 
     @media (max-width: 480px) {
       .hero-ctas .btn { padding: 12px 22px; font-size: 0.88rem; }
-      .section-header { padding: 52px 20px 28px; }
-      .nightlife-section, .pricing-section, .nearby-section, .market-section, .cta-section { padding: 56px 20px; }
+      .section-header { padding: 32px 20px 20px; }
+      .nightlife-section, .pricing-section, .nearby-section, .market-section, .cta-section { padding: 36px 20px; }
     }
 
     * { -webkit-tap-highlight-color: transparent; }
@@ -973,9 +914,9 @@
     /* ══ POI EXPLORER ══════════════════════════════════════════════ */
     .poi-explorer {
       background: var(--sand);
-      padding: 72px 24px;
+      padding: 48px 24px;
     }
-    .poi-explorer .section-header { margin-bottom: 32px; }
+    .poi-explorer .section-header { margin-bottom: 24px; }
 
     .poi-explorer-layout {
       display: grid;
@@ -1100,125 +1041,19 @@
 
 <!-- ══════════ HERO ══════════ -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-sea"></div>
-  <div class="hero-sun"></div>
-  <div class="hero-horizon"></div>
-
-  <!-- Birds SVG -->
-  <svg class="birds" width="120" height="40" viewBox="0 0 120 40" fill="none">
-    <path d="M0 20 Q6 14 12 20" stroke="rgba(80,40,10,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <path d="M20 14 Q26 8 32 14" stroke="rgba(80,40,10,0.45)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <path d="M45 22 Q50 17 55 22" stroke="rgba(80,40,10,0.4)" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-    <path d="M70 12 Q74 8 78 12" stroke="rgba(80,40,10,0.35)" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-    <path d="M90 18 Q95 14 100 18" stroke="rgba(80,40,10,0.3)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-    <path d="M108 10 Q112 7 116 10" stroke="rgba(80,40,10,0.25)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-  </svg>
-
-  <!-- Wave at bottom -->
-  <svg class="hero-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0,40 C200,80 400,0 600,40 C800,80 1000,10 1200,40 C1300,58 1380,32 1440,40 L1440,80 L0,80Z" fill="#FFF8EE"/>
-    <path d="M0,55 C250,30 500,70 750,55 C1000,40 1200,70 1440,55 L1440,80 L0,80Z" fill="#FFF8EE" opacity="0.6"/>
-  </svg>
-
   <div class="hero-content">
     <div class="hero-badge-wrap">
-      <div class="hero-badge">📍 Avenida de la Bajamar 88 · El Puerto de Santa María</div>
-      <a href="https://forms.gle/QbenMfacF8cNuoDbA" target="_blank" class="hero-checkin-btn">
+      <a href="https://forms.gle/QbenMfacF8cNuoDbA" target="_blank" class="hero-checkin-btn" style="margin-bottom: 24px;">
         🗝️ <span data-lang="es">Check-in Online</span><span data-lang="en">Online Check-in</span><span data-lang="fr">Check-in en ligne</span><span data-lang="de">Online Check-in</span> <span class="hero-checkin-arrow">→</span>
       </a>
     </div>
 
-    <!-- SVG Logo -->
-    <svg class="hero-logo" width="96" height="96" viewBox="0 0 120 120" aria-label="OlasDelSur">
-      <defs>
-        <clipPath id="logoClip"><circle cx="60" cy="60" r="52"/></clipPath>
-      </defs>
-      <!-- Outer circle border -->
-      <circle cx="60" cy="60" r="57" fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.9)" stroke-width="3"/>
-      <!-- White background inside -->
-      <circle cx="60" cy="60" r="52" fill="rgba(255,255,255,0.92)"/>
-
-      <g clip-path="url(#logoClip)">
-        <!-- Sky background -->
-        <rect x="8" y="8" width="104" height="104" fill="#FFF8F0"/>
-
-        <!-- Sun rays -->
-        <g stroke="#F2A30F" stroke-width="1.8" stroke-linecap="round" opacity="0.9">
-          <line x1="60" y1="18" x2="60" y2="12"/>
-          <line x1="72" y1="22" x2="75" y2="17"/>
-          <line x1="80" y1="32" x2="85" y2="30"/>
-          <line x1="48" y1="22" x2="45" y2="17"/>
-          <line x1="40" y1="32" x2="35" y2="30"/>
-          <line x1="44" y1="20" x2="42" y2="14"/>
-          <line x1="76" y1="20" x2="78" y2="14"/>
-        </g>
-        <!-- Sun half-circle -->
-        <path d="M42 42 A18 18 0 0 1 78 42 Z" fill="#F2A30F"/>
-        <circle cx="60" cy="42" r="14" fill="#F2A30F"/>
-
-        <!-- Sea -->
-        <rect x="8" y="55" width="104" height="35" fill="#5BB8D4"/>
-        <!-- Wave lines -->
-        <path d="M8 60 Q22 55 36 60 Q50 65 64 60 Q78 55 92 60 Q106 65 112 60" fill="none" stroke="white" stroke-width="1.4" opacity="0.7"/>
-        <path d="M8 66 Q22 61 36 66 Q50 71 64 66 Q78 61 92 66 Q106 71 112 66" fill="none" stroke="white" stroke-width="1.4" opacity="0.6"/>
-        <path d="M8 72 Q22 67 36 72 Q50 77 64 72 Q78 67 92 72 Q106 77 112 72" fill="none" stroke="white" stroke-width="1.2" opacity="0.5"/>
-
-        <!-- Sand -->
-        <path d="M8 82 Q30 78 60 80 Q90 82 112 78 L112 92 L8 92Z" fill="#E8C99A"/>
-        <path d="M8 86 Q30 82 60 84 Q90 86 112 82 L112 92 L8 92Z" fill="#DDB97A" opacity="0.5"/>
-
-        <!-- Left palm trunk -->
-        <path d="M28 90 Q30 70 38 52 Q40 48 36 44" fill="none" stroke="#8B5E3C" stroke-width="4" stroke-linecap="round"/>
-        <!-- Left palm leaves -->
-        <path d="M36 44 Q28 36 18 34" fill="none" stroke="#2D7A2D" stroke-width="3" stroke-linecap="round"/>
-        <path d="M36 44 Q32 30 36 22" fill="none" stroke="#2D7A2D" stroke-width="3" stroke-linecap="round"/>
-        <path d="M36 44 Q44 32 46 26" fill="none" stroke="#2D7A2D" stroke-width="3" stroke-linecap="round"/>
-        <path d="M36 44 Q24 42 16 44" fill="none" stroke="#2D7A2D" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- Left leaf fills -->
-        <path d="M36 44 C30 40 22 36 16 34 C20 38 26 42 36 44Z" fill="#3A8C3A" opacity="0.85"/>
-        <path d="M36 44 C34 36 34 28 36 22 C40 28 40 36 36 44Z" fill="#3A8C3A" opacity="0.85"/>
-        <path d="M36 44 C40 36 44 30 46 26 C44 32 40 38 36 44Z" fill="#3A8C3A" opacity="0.85"/>
-        <path d="M36 44 C30 43 22 43 16 44 C22 40 30 40 36 44Z" fill="#3A8C3A" opacity="0.7"/>
-
-        <!-- Right palm trunk -->
-        <path d="M92 90 Q90 70 82 52 Q80 48 84 44" fill="none" stroke="#8B5E3C" stroke-width="4" stroke-linecap="round"/>
-        <!-- Right palm leaves -->
-        <path d="M84 44 Q92 36 102 34" fill="none" stroke="#2D7A2D" stroke-width="3" stroke-linecap="round"/>
-        <path d="M84 44 Q88 30 84 22" fill="none" stroke="#2D7A2D" stroke-width="3" stroke-linecap="round"/>
-        <path d="M84 44 Q76 32 74 26" fill="none" stroke="#2D7A2D" stroke-width="3" stroke-linecap="round"/>
-        <path d="M84 44 Q96 42 104 44" fill="none" stroke="#2D7A2D" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- Right leaf fills -->
-        <path d="M84 44 C90 40 98 36 104 34 C100 38 94 42 84 44Z" fill="#3A8C3A" opacity="0.85"/>
-        <path d="M84 44 C86 36 86 28 84 22 C80 28 80 36 84 44Z" fill="#3A8C3A" opacity="0.85"/>
-        <path d="M84 44 C80 36 76 30 74 26 C76 32 80 38 84 44Z" fill="#3A8C3A" opacity="0.85"/>
-        <path d="M84 44 C90 43 98 43 104 44 C98 40 90 40 84 44Z" fill="#3A8C3A" opacity="0.7"/>
-
-        <!-- Hammock ropes -->
-        <line x1="32" y1="64" x2="40" y2="70" stroke="#C8A55A" stroke-width="1.2" opacity="0.8"/>
-        <line x1="88" y1="64" x2="80" y2="70" stroke="#C8A55A" stroke-width="1.2" opacity="0.8"/>
-        <!-- Hammock body -->
-        <path d="M38 68 Q60 80 82 68" fill="none" stroke="#F2A30F" stroke-width="4" stroke-linecap="round"/>
-        <path d="M38 68 Q60 76 82 68" fill="#F2A30F" opacity="0.3"/>
-        <!-- Hammock fringe lines -->
-        <path d="M44 68 Q46 74 47 76" fill="none" stroke="#C8A55A" stroke-width="1" opacity="0.6"/>
-        <path d="M52 71 Q53 77 54 79" fill="none" stroke="#C8A55A" stroke-width="1" opacity="0.6"/>
-        <path d="M60 73 Q60 79 60 81" fill="none" stroke="#C8A55A" stroke-width="1" opacity="0.6"/>
-        <path d="M68 71 Q67 77 66 79" fill="none" stroke="#C8A55A" stroke-width="1" opacity="0.6"/>
-        <path d="M76 68 Q74 74 73 76" fill="none" stroke="#C8A55A" stroke-width="1" opacity="0.6"/>
-      </g>
-
-      <!-- Outer ring on top -->
-      <circle cx="60" cy="60" r="52" fill="none" stroke="#1E3A5F" stroke-width="2.5"/>
-      <circle cx="60" cy="60" r="57" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
-    </svg>
-
-    <h1 class="hero-title">Olas<em>Del</em>Sur</h1>
-    <p class="hero-sub"><span data-lang="es">Tu refugio estival en el Guadalete &mdash; playa, tapas, cultura &amp; noches andaluzas</span><span data-lang="en">Your summer retreat on the Guadalete &mdash; beach, tapas, culture &amp; Andalusian nights</span><span data-lang="fr">Votre refuge estival sur le Guadalete &mdash; plage, tapas, culture &amp; nuits andalouses</span><span data-lang="de">Ihr Sommerrückzugsort am Guadalete &mdash; Strand, Tapas, Kultur &amp; andalusische Nächte</span></p>
+    <!-- Nuovo Logo Immagine perfettamente omogeneo -->
+    <img src="logo.png" alt="OlasDelSur Logo" style="max-width: 100%; width: 550px; height: auto; display: block; margin: 0 auto 16px; border: none; box-shadow: none;">
 
     <div class="hero-ctas">
-      <a href="#mappa" class="btn btn-primary" data-lang="es">🗺️ Explorar el mapa</a><a href="#mappa" class="btn btn-primary" data-lang="en">🗺️ Explore the map</a><a href="#mappa" class="btn btn-primary" data-lang="fr">🗺️ Explorer la carte</a><a href="#mappa" class="btn btn-primary" data-lang="de">🗺️ Karte erkunden</a>
-      <a href="#explore" class="btn btn-ghost" data-lang="es">🗺️ Explora cada lugar</a><a href="#explore" class="btn btn-ghost" data-lang="en">🗺️ Explore every place</a><a href="#explore" class="btn btn-ghost" data-lang="fr">🗺️ Explorez chaque lieu</a><a href="#explore" class="btn btn-ghost" data-lang="de">🗺️ Jeden Ort erkunden</a>
+      <a href="#mappa" class="btn btn-primary" data-lang="es">🎯 Explorar el mapa</a><a href="#mappa" class="btn btn-primary" data-lang="en">🎯 Explore the map</a><a href="#mappa" class="btn btn-primary" data-lang="fr">🎯 Explorer la carte</a><a href="#mappa" class="btn btn-primary" data-lang="de">🎯 Karte erkunden</a>
+      <a href="#explore" class="btn btn-ghost" data-lang="es">🔍 Explora cada lugar</a><a href="#explore" class="btn btn-ghost" data-lang="en">🔍 Explore every place</a><a href="#explore" class="btn btn-ghost" data-lang="fr">🔍 Explorez chaque lieu</a><a href="#explore" class="btn btn-ghost" data-lang="de">🔍 Jeden Ort erkunden</a>
     </div>
   </div>
 </section>
