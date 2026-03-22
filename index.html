@@ -37,8 +37,8 @@
 
     :root {
       /* ── Palette estiva calda ── */
-      --sand:      #FFF8EE;
-      --sand2:     #FFF1D6;
+      --sand:      #fcecd2;
+      --sand2:     #fce4c8;
       --sand3:     #FAE8C0;
       --coral:     #FF6B35;
       --coral2:    #FF8C5A;
@@ -83,18 +83,7 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      background: #FDF4E6; /* Fallback morbido sabbia-pesca */
-    }
-
-    /* Sfondo sfocato che estende dinamicamente i colori del logo e cancella il perimetro quadrato */
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: -20%; left: -20%; right: -20%; bottom: -20%;
-      background: url('logo.png') center/cover no-repeat;
-      filter: blur(80px) saturate(1.2);
-      opacity: 0.65;
-      z-index: 1;
+      background: linear-gradient(to bottom, #fcecd2, #f9999a); /* Gradiente identico ai bordi del logo */
     }
 
     .hero-content {
