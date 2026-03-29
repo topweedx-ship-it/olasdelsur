@@ -88,7 +88,6 @@
 
     .hero-content {
       position: relative;
-      z-index: 3;
       text-align: center;
       width: 100%;
     }
@@ -102,13 +101,6 @@
     @keyframes birdsFloat {
       0%,100% { transform: translate(0,0); }
       50%      { transform: translate(30px,-12px); }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 3;
-      text-align: center;
-      width: 100%;
     }
 
     .hero-badge-wrap {
@@ -465,8 +457,6 @@
     .cat-home         { color: #E8501A; }   /* corallo brand */
     .cat-supermercado { color: #0D9488; }   /* teal acqua retail */
 
-    .nc-supermercado { background: rgba(26,122,63,0.12); }
-
     /* ══════════ NIGHTLIFE ══════════ */
     .nightlife-section {
       background: linear-gradient(170deg, #FFF8EE 0%, #FFE8C8 60%, #FFD5A0 100%);
@@ -588,50 +578,6 @@
     .price-month { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 6px; font-weight: 600; }
     .price-value { font-size: 1.55rem; font-weight: 700; color: var(--coral); line-height: 1; }
     .price-unit  { font-size: 0.62rem; color: var(--muted); margin-top: 3px; }
-
-    /* ══════════ NEARBY ══════════ */
-    .nearby-section {
-      padding: 48px 24px;
-      background: var(--sky);
-    }
-
-    .nearby-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-      max-width: 1020px;
-      margin: 32px auto 0;
-    }
-
-    .nearby-card {
-      background: var(--white);
-      border: 1.5px solid var(--border);
-      border-radius: 18px;
-      padding: 22px 20px;
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      box-shadow: var(--shadow-soft);
-      transition: all 0.25s;
-    }
-    .nearby-card:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(0,150,166,0.12); }
-
-    .nearby-icon-wrap {
-      width: 52px; height: 52px;
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.7rem;
-      flex-shrink: 0;
-    }
-    .nc-beach     { background: rgba(14,165,233,0.12); }
-    .nc-culture   { background: rgba(180,83,9,0.12); }
-    .nc-gastro    { background: rgba(157,19,72,0.12); }
-    .nc-transport { background: rgba(29,78,216,0.12); }
-    .nc-nature    { background: rgba(22,163,74,0.12); }
-
-    .nearby-title { font-weight: 700; font-size: 0.97rem; color: var(--text); margin-bottom: 3px; }
-    .nearby-dist  { font-size: 0.75rem; color: var(--ocean); font-weight: 700; margin-bottom: 6px; }
-    .nearby-desc  { font-size: 0.82rem; color: var(--text2); line-height: 1.55; }
 
     /* ══════════ MARKET ══════════ */
     .market-section {
@@ -827,7 +773,7 @@
     @media (max-width: 480px) {
       .hero-ctas .btn { padding: 12px 22px; font-size: 0.88rem; }
       .section-header { padding: 32px 20px 20px; }
-      .nightlife-section, .pricing-section, .nearby-section, .market-section, .cta-section { padding: 36px 20px; }
+      .nightlife-section, .pricing-section, .market-section, .cta-section { padding: 36px 20px; }
     }
 
     * { -webkit-tap-highlight-color: transparent; }
@@ -1029,6 +975,196 @@
       .poi-detail-panel { position: static; }
       .poi-chips { max-height: 320px; }
     }
+
+    /* ══════════ ATMOSPHERE VIDEO SECTION ══════════ */
+    .atmosphere-section {
+      position: relative;
+      overflow: hidden;
+      background: #0a0a0a;
+    }
+
+    .atmosphere-video-wrap {
+      position: relative;
+      width: 100%;
+      max-height: 85vh;
+      min-height: 420px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .atmosphere-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      min-height: 420px;
+      max-height: 85vh;
+    }
+
+    .atmosphere-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,10,10,0.35) 0%,
+        rgba(10,10,10,0.1) 40%,
+        rgba(10,10,10,0.1) 60%,
+        rgba(10,10,10,0.65) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    .atmosphere-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold2);
+      margin-bottom: 12px;
+      opacity: 0.9;
+    }
+
+    .atmosphere-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 7vw, 4.2rem);
+      color: var(--white);
+      line-height: 1.1;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.5);
+      margin-bottom: 14px;
+    }
+
+    .atmosphere-sub {
+      max-width: 520px;
+      color: rgba(255,255,255,0.78);
+      font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+      line-height: 1.55;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.45);
+    }
+
+    .atmosphere-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .atmosphere-bar-line {
+      width: 40px;
+      height: 1.5px;
+      background: var(--gold2);
+      opacity: 0.65;
+    }
+
+    .atmosphere-bar-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--coral);
+    }
+
+    @media (max-width: 600px) {
+      .atmosphere-overlay { padding: 32px 16px; }
+      .atmosphere-video-wrap,
+      .atmosphere-video-wrap video { min-height: 300px; max-height: 70vh; }
+    }
+
+    /* ── Atmosphere play/stop button ── */
+    .atm-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 20;
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.35);
+      background: rgba(220, 38, 38, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: var(--white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.22s ease, border-color 0.22s ease,
+                  transform 0.18s ease, box-shadow 0.22s ease;
+      box-shadow: 0 4px 32px rgba(220, 38, 38, 0.6), 0 2px 16px rgba(0, 0, 0, 0.5);
+      outline: none;
+    }
+    .atm-play-btn:hover {
+      background: rgba(239, 68, 68, 0.97);
+      border-color: rgba(255, 255, 255, 0.55);
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 8px 48px rgba(220, 38, 38, 0.75), 0 4px 24px rgba(0, 0, 0, 0.6);
+    }
+    .atm-play-btn:active { transform: translate(-50%, -50%) scale(0.94); }
+
+    /* ── Atmosphere seek bar ── */
+    .atm-seek-wrap {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      padding: 28px 24px 18px;
+      background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, transparent 100%);
+    }
+    .atm-seek-bar {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(to right, #dc2626 var(--seek-pct, 0%), rgba(255,255,255,0.28) var(--seek-pct, 0%));
+      outline: none;
+      cursor: pointer;
+      display: block;
+      transition: height 0.15s ease;
+    }
+    .atm-seek-wrap:hover .atm-seek-bar { height: 6px; }
+    .atm-seek-bar::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #dc2626;
+      border: 2px solid rgba(255,255,255,0.85);
+      box-shadow: 0 0 8px rgba(220, 38, 38, 0.75);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .atm-seek-bar:hover::-webkit-slider-thumb {
+      transform: scale(1.3);
+      box-shadow: 0 0 16px rgba(220, 38, 38, 0.95);
+    }
+    .atm-seek-bar::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.85);
+      border-radius: 50%;
+      background: #dc2626;
+      box-shadow: 0 0 8px rgba(220, 38, 38, 0.75);
+      cursor: pointer;
+    }
+    .atm-seek-bar::-moz-range-track {
+      height: 4px;
+      border-radius: 2px;
+      background: transparent;
+    }
+    @media (max-width: 600px) {
+      .atm-play-btn { width: 64px; height: 64px; }
+      .atm-seek-wrap { padding: 20px 16px 14px; }
+    }
   </style>
 </head>
 <body>
@@ -1155,6 +1291,41 @@
   </div>
 </section>
 
+<!-- ══════════ ATMOSPHERE VIDEO ══════════ -->
+<section class="atmosphere-section fade-in" id="atmosfera">
+  <div class="atmosphere-video-wrap">
+    <video autoplay muted loop playsinline preload="metadata" poster="">
+      <source src="hero_video.mp4" type="video/mp4">
+    </video>
+    <button class="atm-play-btn" id="atmPlayBtn" aria-label="Play with sound" title="Play with sound">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v14l11-7-11-7z"/></svg>
+    </button>
+    <div class="atm-seek-wrap">
+      <input type="range" class="atm-seek-bar" id="atmSeekBar" min="0" max="100" value="0" step="0.1" aria-label="Seek video">
+    </div>
+    <div class="atmosphere-overlay">
+      <span class="atmosphere-label">✦ <span data-lang="es">La experiencia</span><span data-lang="en">The experience</span><span data-lang="fr">L'expérience</span><span data-lang="de">Das Erlebnis</span></span>
+      <h2 class="atmosphere-title">
+        <span data-lang="es">Nuestra Atmósfera</span>
+        <span data-lang="en">Our Atmosphere</span>
+        <span data-lang="fr">Notre Atmosphère</span>
+        <span data-lang="de">Unsere Atmosphäre</span>
+      </h2>
+      <p class="atmosphere-sub">
+        <span data-lang="es">Luz atlántica, brisa marina y el rumor de las olas al despertar. Así se siente vivir en OlasDelSur.</span>
+        <span data-lang="en">Atlantic light, sea breeze and the sound of waves at dawn. This is what living at OlasDelSur feels like.</span>
+        <span data-lang="fr">Lumière atlantique, brise marine et murmure des vagues au réveil. C'est ce que l'on ressent à OlasDelSur.</span>
+        <span data-lang="de">Atlantisches Licht, Meeresluft und das Rauschen der Wellen beim Erwachen. So fühlt sich das Leben in OlasDelSur an.</span>
+      </p>
+      <div class="atmosphere-bar">
+        <span class="atmosphere-bar-line"></span>
+        <span class="atmosphere-bar-dot"></span>
+        <span class="atmosphere-bar-line"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════ POI EXPLORER ══════════ -->
 <section class="poi-explorer fade-in" id="explore">
   <div class="section-header">
@@ -1187,75 +1358,6 @@
         <span data-lang="es">Selecciona un lugar para ver todos los detalles</span><span data-lang="en">Select a place to see all details</span><span data-lang="fr">Sélectionnez un lieu pour voir tous les détails</span><span data-lang="de">Wählen Sie einen Ort, um alle Details zu sehen</span>
       </div>
       <div id="poiDetailContent" style="display:none"></div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════ DINTORNI ══════════ -->
-<section class="nearby-section fade-in">
-  <div class="section-header" style="padding-top:0">
-    <span class="section-label">🗺️ <span data-lang="es">Alrededores</span><span data-lang="en">Surroundings</span><span data-lang="fr">Environs</span><span data-lang="de">Umgebung</span></span>
-    <h2 class="section-title"><span data-lang="es">Qué encontrarás cerca</span><span data-lang="en">What's around you</span></h2>
-    <p class="section-desc"><span data-lang="es">La Bajamar es el punto de acceso privilegiado al alma entera de El Puerto.</span><span data-lang="en">La Bajamar is the privileged gateway to the entire soul of El Puerto.</span><span data-lang="fr">La Bajamar est la porte d'accès privilégiée à toute l'âme d'El Puerto.</span><span data-lang="de">La Bajamar ist der privilegierte Zugang zur gesamten Seele von El Puerto.</span><span data-lang="fr">La Bajamar est la porte d'accès privilégiée à toute l'âme d'El Puerto.</span><span data-lang="de">La Bajamar ist der privilegierte Zugang zur gesamten Seele von El Puerto.</span></p>
-  </div>
-
-  <div class="nearby-grid">
-    <div class="nearby-card">
-      <div class="nearby-icon-wrap nc-gastro">🦞</div>
-      <div>
-        <div class="nearby-title">Ribera del Marisco</div>
-        <div class="nearby-dist"><span data-lang="es">20 min a pie</span><span data-lang="en">20 min walk</span><span data-lang="fr">20 min à pied</span><span data-lang="de">20 Min. zu Fuß</span></div>
-        <div class="nearby-desc"><span data-lang="es">El paseo del marisco. Bares, tapas, vino de Jerez y vida nocturna junto al Guadalete. Animado cada noche.</span><span data-lang="en">The seafood promenade. Bars, tapas, sherry wine and evening life along the Guadalete. Buzzing every night.</span><span data-lang="fr">La promenade des fruits de mer. Bars, tapas, vin de xérès et vie nocturne le long du Guadalete. Animé chaque soir.</span><span data-lang="de">Die Meeresfrüchtepromenade. Bars, Tapas, Sherry-Wein und Abendleben am Guadalete. Jeden Abend belebt.</span></div>
-      </div>
-    </div>
-    <div class="nearby-card">
-      <div class="nearby-icon-wrap nc-beach">🏖️</div>
-      <div>
-        <div class="nearby-title">Playa de la Puntilla</div>
-        <div class="nearby-dist"><span data-lang="es">A pie por el pinar</span><span data-lang="en">Walk through the pine forest</span></div>
-        <div class="nearby-desc"><span data-lang="es">2,5 km de playa dorada. Dog-friendly, chiringuitos. Acceso peatonal desde el fondo de la Bajamar.</span><span data-lang="en">2.5 km of golden beach. Dog-friendly, beach bars. Pedestrian access from the end of Bajamar.</span></div>
-      </div>
-    </div>
-    <div class="nearby-card">
-      <div class="nearby-icon-wrap nc-transport">⛵</div>
-      <div>
-        <div class="nearby-title"><span data-lang="es">Catamarán a Cádiz</span><span data-lang="en">Catamaran to Cádiz</span></div>
-        <div class="nearby-dist"><span data-lang="es">10 min a pie · 25 min de travesía</span><span data-lang="en">10 min walk · 25 min crossing</span></div>
-        <div class="nearby-desc"><span data-lang="es">15+ salidas al día. La forma más bonita de visitar Cádiz — desde la Estación Marítima del puerto.</span><span data-lang="en">15+ departures daily. The most beautiful way to visit Cádiz — from the harbour's Maritime Station.</span><span data-lang="fr">15+ départs quotidiens. La plus belle façon de visiter Cádiz — depuis la gare maritime du port.</span><span data-lang="de">15+ tägliche Abfahrten. Der schönste Weg, Cádiz zu besuchen — vom Seebahnhof des Hafens.</span></div>
-      </div>
-    </div>
-    <div class="nearby-card">
-      <div class="nearby-icon-wrap nc-culture">🏰</div>
-      <div>
-        <div class="nearby-title">Castillo de San Marcos</div>
-        <div class="nearby-dist"><span data-lang="es">15 min a pie</span><span data-lang="en">15 min walk</span></div>
-        <div class="nearby-desc"><span data-lang="es">Fortaleza del s. XII vinculada a los viajes de Colón. 14.428 visitantes/año. Degustaciones de jerez incluidas.</span><span data-lang="en">12th-century fortress linked to Columbus's voyages. 14,428 visitors/year. Sherry tastings included.</span><span data-lang="fr">Forteresse du XIIe siècle liée aux voyages de Colomb. 14 428 visiteurs/an. Dégustations de xérès incluses.</span><span data-lang="de">Festung aus dem 12. Jahrhundert, verbunden mit Kolumbus' Reisen. 14.428 Besucher/Jahr. Sherry-Verkostungen inklusive.</span></div>
-      </div>
-    </div>
-    <div class="nearby-card">
-      <div class="nearby-icon-wrap nc-culture">🍷</div>
-      <div>
-        <div class="nearby-title">Bodegas Osborne</div>
-        <div class="nearby-dist"><span data-lang="es">15 min a pie</span><span data-lang="en">15 min walk</span></div>
-        <div class="nearby-desc"><span data-lang="es">La bodega más visitada: 33.603 visitas/año. El Toro de Osborne, jerez y brandy. Imprescindible.</span><span data-lang="en">Most visited winery: 33,603 visits/year. The Osborne Bull, sherry and brandy. An absolute must.</span><span data-lang="fr">Bodega la plus visitée : 33 603 visites/an. Le Taureau Osborne, xérès et brandy. Un incontournable.</span><span data-lang="de">Meistbesuchtes Weingut: 33.603 Besuche/Jahr. Der Osborne-Stier, Sherry und Brandy. Ein absolutes Muss.</span></div>
-      </div>
-    </div>
-    <div class="nearby-card">
-      <div class="nearby-icon-wrap nc-beach">🌊</div>
-      <div>
-        <div class="nearby-title"><span data-lang="es">Puerto Sherry + Vida Nocturna</span><span data-lang="en">Puerto Sherry + Nightlife</span><span data-lang="fr">Puerto Sherry + Vie nocturne</span><span data-lang="de">Puerto Sherry + Nachtleben</span></div>
-        <div class="nearby-dist"><span data-lang="es">10 min en coche</span><span data-lang="en">10 min by car</span></div>
-        <div class="nearby-desc"><span data-lang="es">PhiPhi Beach, Margarita y Playa Canalla — tres locales icónicos. Atardecer + cócteles + música sobre el Atlántico.</span><span data-lang="en">PhiPhi Beach, Margarita and Playa Canalla — three iconic venues. Sunset + cocktails + music over the Atlantic.</span></div>
-      </div>
-    </div>
-    <div class="nearby-card">
-      <div class="nearby-icon-wrap nc-beach">🏖️</div>
-      <div>
-        <div class="nearby-title">Playa la Calita</div>
-        <div class="nearby-dist"><span data-lang="es">10 min en coche · Puerto Sherry</span><span data-lang="en">10 min by car · Puerto Sherry</span><span data-lang="fr">10 min en voiture · Puerto Sherry</span><span data-lang="de">10 Min. mit dem Auto · Puerto Sherry</span></div>
-        <div class="nearby-desc"><span data-lang="es">Cala pequeña y recogida junto a Puerto Sherry. Aguas tranquilas, fondo arenoso, perfecta para familias y para un baño tranquilo.</span><span data-lang="en">Small sheltered cove next to Puerto Sherry. Calm waters, sandy bottom — perfect for families and a peaceful swim.</span><span data-lang="fr">Petite crique abritée près de Puerto Sherry. Eaux calmes, fond sableux — parfait pour les familles.</span><span data-lang="de">Kleine geschützte Bucht bei Puerto Sherry. Ruhige Gewässer, Sandboden — ideal für Familien.</span></div>
-      </div>
     </div>
   </div>
 </section>
@@ -2180,6 +2282,62 @@
   (function() {
     var saved = window._olasLang;
     if (saved && saved !== 'es') setLang(saved);
+  })();
+
+  // ── Atmosphere section play / stop / seek ──
+  (function() {
+    var btn  = document.getElementById('atmPlayBtn');
+    var seek = document.getElementById('atmSeekBar');
+    var vid  = document.querySelector('#atmosfera video');
+    if (!btn || !vid) return;
+
+    var SVG_PLAY  = '<svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v14l11-7-11-7z"/></svg>';
+    var SVG_PAUSE = '<svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1.5"/><rect x="14" y="4" width="4" height="16" rx="1.5"/></svg>';
+
+    function syncBtn() {
+      var playing = !vid.paused && !vid.muted;
+      btn.innerHTML = playing ? SVG_PAUSE : SVG_PLAY;
+      btn.setAttribute('aria-label', playing ? 'Pause' : 'Play with sound');
+      btn.setAttribute('title',      playing ? 'Pause' : 'Play with sound');
+    }
+
+    function syncSeek() {
+      if (!seek || !vid.duration) return;
+      var pct = (vid.currentTime / vid.duration) * 100;
+      seek.value = pct;
+      seek.style.setProperty('--seek-pct', pct + '%');
+    }
+
+    var firstPlay = true;
+
+    btn.addEventListener('click', function() {
+      if (vid.paused || vid.muted) {
+        if (firstPlay) {
+          firstPlay = false;
+          vid.currentTime = 0;
+        }
+        vid.muted = false;
+        vid.play().catch(function() { vid.muted = true; vid.play(); });
+      } else {
+        vid.pause();
+        vid.muted = true;
+      }
+      syncBtn();
+    });
+
+    if (seek) {
+      seek.addEventListener('input', function() {
+        if (vid.duration) {
+          vid.currentTime = (seek.value / 100) * vid.duration;
+          seek.style.setProperty('--seek-pct', seek.value + '%');
+        }
+      });
+    }
+
+    vid.addEventListener('play',       syncBtn);
+    vid.addEventListener('pause',      syncBtn);
+    vid.addEventListener('timeupdate', syncSeek);
+    syncBtn();
   })();
 </script>
 
