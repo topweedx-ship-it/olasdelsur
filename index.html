@@ -77,17 +77,19 @@
     /* ══════════ HERO ══════════ */
     .hero {
       position: relative;
-      padding: 130px 24px 70px; /* Recupera spazio rimuovendo 100svh e 600px */
+      min-height: 100svh;
+      padding: 130px 24px 70px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      background: linear-gradient(to bottom, #fcecd2, #f9999a); /* Gradiente identico ai bordi del logo */
+      background: #0a1628;
     }
 
     .hero-content {
       position: relative;
+      z-index: 2;
       text-align: center;
       width: 100%;
     }
@@ -248,6 +250,121 @@
       animation: ghost-pulse 2s ease-out infinite, checkin-bounce 3.5s ease-in-out infinite;
     }
     .btn-ghost:hover { background: rgba(255,255,255,0.3); border-color: #fff; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); animation: none; }
+
+    /* ══════════ HERO CINEMATIC SLIDESHOW ══════════ */
+    .hero-bg-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      background: #0a1628;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 1;
+      visibility: visible;
+      animation: hero-slide-seq 24s infinite;
+    }
+    .hero-slide:nth-child(1) { animation-delay: 0s; }
+    .hero-slide:nth-child(2) { animation-delay: 6s; }
+    .hero-slide:nth-child(3) { animation-delay: 12s; }
+    .hero-slide:nth-child(4) { animation-delay: 18s; }
+
+    @keyframes hero-slide-seq {
+      0%, 23%  { opacity: 1; visibility: visible; }
+      24%      { opacity: 1; }
+      25%      { opacity: 0; }
+      25.1%    { visibility: hidden; }
+      100%     { opacity: 0; visibility: hidden; }
+    }
+
+    .hero-slide-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      animation: hero-ken-burns 6s ease-out infinite;
+    }
+
+    @keyframes hero-ken-burns {
+      0%   { transform: scale(1.08); }
+      100% { transform: scale(1.0); }
+    }
+
+    .hero-slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(8,18,36,0.35) 0%,
+        rgba(8,18,36,0.05) 35%,
+        rgba(8,18,36,0.05) 55%,
+        rgba(8,18,36,0.65) 80%,
+        rgba(8,18,36,0.82) 100%
+      );
+    }
+
+    /* Cinematic lower-third caption */
+    .hero-slide-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 48px 52px 40px;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: hero-caption-seq 24s infinite;
+    }
+    .hero-slide:nth-child(1) .hero-slide-caption { animation-delay: 0.6s; }
+    .hero-slide:nth-child(2) .hero-slide-caption { animation-delay: 6.6s; }
+    .hero-slide:nth-child(3) .hero-slide-caption { animation-delay: 12.6s; }
+    .hero-slide:nth-child(4) .hero-slide-caption { animation-delay: 18.6s; }
+
+    @keyframes hero-caption-seq {
+      0%    { opacity: 0; transform: translateY(14px); }
+      7%    { opacity: 1; transform: translateY(0); }
+      21%   { opacity: 1; transform: translateY(0); }
+      25%   { opacity: 0; transform: translateY(-8px); }
+      100%  { opacity: 0; transform: translateY(14px); }
+    }
+
+    .hero-caption-tagline {
+      font-family: var(--font-body);
+      font-size: clamp(0.65rem, 1.8vw, 0.88rem);
+      font-weight: 700;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold2);
+      text-shadow: 0 1px 10px rgba(0,0,0,0.8);
+      margin-bottom: 10px;
+    }
+    .hero-caption-tagline [data-lang] { margin: 0; padding: 0; }
+
+    .hero-caption-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5.5vw, 3.8rem);
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.6);
+      line-height: 1.1;
+    }
+    .hero-caption-title [data-lang] { margin: 0; padding: 0; }
+    .hero-caption-title em { font-style: italic; color: var(--coral2); }
+
+    /* ── Electric flicker overlay ── */
+    .hero-flicker-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      background: #000;
+      opacity: 0;
+      pointer-events: none;
+      will-change: opacity;
+    }
 
     /* ══════════ STATS BAR ══════════ */
     .curiosidad-bar {
@@ -774,6 +891,8 @@
       .hero-ctas .btn { padding: 12px 22px; font-size: 0.88rem; }
       .section-header { padding: 32px 20px 20px; }
       .nightlife-section, .pricing-section, .market-section, .cta-section { padding: 36px 20px; }
+      .hero-slide-caption { padding: 32px 24px 28px; }
+      .hero-caption-tagline { letter-spacing: 0.22em; }
     }
 
     * { -webkit-tap-highlight-color: transparent; }
@@ -1180,6 +1299,92 @@
 
 <!-- ══════════ HERO ══════════ -->
 <section class="hero">
+
+  <!-- ── Cinematic background slideshow ── -->
+  <div class="hero-bg-wrap" aria-hidden="true">
+
+    <div class="hero-slide">
+      <div class="hero-slide-bg" style="background-image:url('assets/promo_hero_drone_view_1774801703561.png')"></div>
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-slide-caption">
+        <div class="hero-caption-tagline">
+          <div data-lang="es">La Ciudad de los Cien Palacios</div>
+          <div data-lang="en">The City of a Hundred Palaces</div>
+          <div data-lang="fr">La Ville aux Cent Palais</div>
+          <div data-lang="de">Die Stadt der hundert Paläste</div>
+        </div>
+        <div class="hero-caption-title">
+          <div data-lang="es">El Puerto de <em>Santa María</em></div>
+          <div data-lang="en">Where History <em>Meets the Sea</em></div>
+          <div data-lang="fr">Là où l'Histoire <em>Rencontre la Mer</em></div>
+          <div data-lang="de">Wo Geschichte <em>auf das Meer</em> trifft</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide">
+      <div class="hero-slide-bg" style="background-image:url('assets/promo_luxury_sherry_tasting_1774801732154.png')"></div>
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-slide-caption">
+        <div class="hero-caption-tagline">
+          <div data-lang="es">Sabores Auténticos del Atlántico</div>
+          <div data-lang="en">Authentic Atlantic Flavours</div>
+          <div data-lang="fr">Saveurs Authentiques de l'Atlantique</div>
+          <div data-lang="de">Authentische Aromen des Atlantiks</div>
+        </div>
+        <div class="hero-caption-title">
+          <div data-lang="es">El Corazón del <em>Jerez</em></div>
+          <div data-lang="en">Heart of <em>Sherry Country</em></div>
+          <div data-lang="fr">Au Cœur du Pays <em>du Sherry</em></div>
+          <div data-lang="de">Im Herzen des <em>Sherry-Landes</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide">
+      <div class="hero-slide-bg" style="background-image:url('assets/promo_andalusian_street_scene_1774801745864.png')"></div>
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-slide-caption">
+        <div class="hero-caption-tagline">
+          <div data-lang="es">Brisa Atlántica</div>
+          <div data-lang="en">Atlantic Breeze</div>
+          <div data-lang="fr">Brise Atlantique</div>
+          <div data-lang="de">Atlantikbrise</div>
+        </div>
+        <div class="hero-caption-title">
+          <div data-lang="es">Tu Refugio de <em>Verano</em></div>
+          <div data-lang="en">Your <em>Summer Haven</em></div>
+          <div data-lang="fr">Votre Refuge <em>d'Été</em></div>
+          <div data-lang="de">Ihr persönliches <em>Sommerparadies</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide">
+      <div class="hero-slide-bg" style="background-image:url('assets/promo_beachfront_evening_vibes_1774801764370.png')"></div>
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-slide-caption">
+        <div class="hero-caption-tagline">
+          <div data-lang="es">Noches de Leyenda</div>
+          <div data-lang="en">Legendary Evenings</div>
+          <div data-lang="fr">Soirées Légendaires</div>
+          <div data-lang="de">Legendäre Abende</div>
+        </div>
+        <div class="hero-caption-title">
+          <div data-lang="es">Magia Bajo <em>las Estrellas</em></div>
+          <div data-lang="en">Magic <em>Beneath the Stars</em></div>
+          <div data-lang="fr">Magie <em>sous les Étoiles</em></div>
+          <div data-lang="de">Magie <em>unter dem Sternenzelt</em></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /hero-bg-wrap -->
+
+  <!-- Electric flicker overlay (covers full hero including logo) -->
+  <div class="hero-flicker-layer" id="heroFlicker"></div>
+
+  <!-- Brand content -->
   <div class="hero-content">
     <div class="hero-badge-wrap">
       <a href="https://forms.gle/QbenMfacF8cNuoDbA" target="_blank" class="hero-checkin-btn" style="margin-bottom: 24px;">
@@ -1187,7 +1392,6 @@
       </a>
     </div>
 
-    <!-- Nuovo Logo Immagine perfettamente omogeneo -->
     <img src="logo.png" alt="OlasDelSur Logo" style="max-width: 90vw; width: 750px; height: auto; display: block; margin: 0 auto 16px; border: none; box-shadow: none; -webkit-mask-image: radial-gradient(circle at center, black 52%, rgba(0,0,0,0) 72%); mask-image: radial-gradient(circle at center, black 52%, rgba(0,0,0,0) 72%);">
 
     <div class="hero-ctas">
@@ -1195,6 +1399,7 @@
       <a href="#explore" class="btn btn-ghost" data-lang="es">🔍 Explora cada lugar</a><a href="#explore" class="btn btn-ghost" data-lang="en">🔍 Explore every place</a><a href="#explore" class="btn btn-ghost" data-lang="fr">🔍 Explorez chaque lieu</a><a href="#explore" class="btn btn-ghost" data-lang="de">🔍 Jeden Ort erkunden</a>
     </div>
   </div>
+
 </section>
 
 <!-- ══════════ CURIOSIDAD ══════════ -->
@@ -2338,6 +2543,39 @@
     vid.addEventListener('pause',      syncBtn);
     vid.addEventListener('timeupdate', syncSeek);
     syncBtn();
+  })();
+
+  // ── Hero electric flicker effect ──
+  (function() {
+    var el = document.getElementById('heroFlicker');
+    if (!el) return;
+    function flick() {
+      // Irregular interval: 4–14 seconds between flickers
+      var delay = 4000 + Math.random() * 10000;
+      setTimeout(function() {
+        var intensity = 0.5 + Math.random() * 0.4;
+        var isDouble  = Math.random() > 0.4;
+        // First flash
+        el.style.opacity = intensity;
+        setTimeout(function() {
+          el.style.opacity = 0;
+          if (isDouble) {
+            // Brief pause then second weaker flash
+            setTimeout(function() {
+              el.style.opacity = intensity * 0.65;
+              setTimeout(function() {
+                el.style.opacity = 0;
+                flick();
+              }, 35 + Math.random() * 55);
+            }, 55 + Math.random() * 90);
+          } else {
+            flick();
+          }
+        }, 45 + Math.random() * 110);
+      }, delay);
+    }
+    // Start with a short initial delay so the page loads first
+    setTimeout(flick, 2500);
   })();
 </script>
 
