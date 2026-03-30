@@ -1164,15 +1164,15 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      right: 0;
+      bottom: 0;
       background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('assets/promo_hero_drone_view_1774801703561.png');
       background-size: cover;
       background-position: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 10;
+      z-index: 20; /* High enough to be over everything */
       cursor: pointer;
       transition: opacity 0.8s ease, visibility 0.8s;
       border-radius: 12px;
@@ -1184,32 +1184,40 @@
     }
 
     .red-play-btn {
-      width: 90px;
-      height: 90px;
+      width: 100px;
+      height: 100px;
       background: #ff0000;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 35px rgba(255, 0, 0, 0.6);
+      box-shadow: 0 0 40px rgba(255, 0, 0, 0.7);
       transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s;
       position: relative;
+      animation: playPulse 2.5s infinite;
+    }
+
+    @keyframes playPulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+      70% { box-shadow: 0 0 0 25px rgba(255, 0, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
     }
 
     .video-overlay:hover .red-play-btn {
-      transform: scale(1.15);
+      transform: scale(1.12);
       background: #e60000;
-      box-shadow: 0 0 50px rgba(255, 0, 0, 0.8);
+      box-shadow: 0 0 60px rgba(255, 0, 0, 0.9);
+      animation: none;
     }
 
     .red-play-btn::after {
       content: "";
       width: 0;
       height: 0;
-      border-top: 18px solid transparent;
-      border-bottom: 18px solid transparent;
-      border-left: 30px solid white;
-      margin-left: 8px;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+      border-left: 32px solid white;
+      margin-left: 10px;
     }
 
     .atmosphere-bar {
