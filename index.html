@@ -1142,6 +1142,7 @@
       opacity: 0;
       transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
                   opacity 0.65s ease;
+      cursor: pointer;
     }
 
     .atmosphere-section.visible .atm-video-frame {
@@ -1151,11 +1152,64 @@
 
     .atm-video-frame iframe {
       position: absolute;
+      top: -16.65%; /* Clipping top/bottom branding */
+      left: 0;
+      width: 100%;
+      height: 133.3%;
+      border: 0;
+      pointer-events: none;
+    }
+
+    /* Video Cover Overlay */
+    .video-cover {
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      border: 0;
+      background-size: cover;
+      background-position: center;
+      background-image: url('assets/promo_hero_drone_view_1774801703561.png');
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: opacity 0.8s ease, visibility 0.8s;
+      background-color: #000;
+      border-radius: 12px;
+    }
+
+    .video-cover.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .play-btn-circle {
+      width: 85px;
+      height: 85px;
+      background: rgba(255, 107, 53, 0.95);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 40px rgba(255, 107, 53, 0.5);
+      transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 3px solid rgba(255,255,255,0.3);
+    }
+
+    .atm-video-frame:hover .play-btn-circle {
+      transform: scale(1.18);
+      background: #FF6B35;
+      box-shadow: 0 0 60px rgba(255, 107, 53, 0.7);
+    }
+
+    .play-icon {
+      width: 0;
+      height: 0;
+      border-top: 16px solid transparent;
+      border-bottom: 16px solid transparent;
+      border-left: 28px solid white;
+      margin-left: 8px;
     }
 
     .atmosphere-bar {
@@ -1423,8 +1477,13 @@
         <span data-lang="it">Lasciati affascinare dalla magia di El Puerto de Santa María in questo video.</span>
       </p>
     </div>
-    <div class="atm-video-frame">
+    <div class="atm-video-frame" onclick="startCinematicVideo()">
       <div id="atmYTPlayer"></div>
+      <div class="video-cover" id="videoCover">
+        <div class="play-btn-circle">
+          <div class="play-icon"></div>
+        </div>
+      </div>
     </div>
     <script>
       var tag = document.createElement('script');
@@ -1444,7 +1503,10 @@
               e.target.setPlaybackQuality('hd2160');
             },
             onStateChange: function(e) {
+              // Hide cover automatically if video starts (e.g. from script or interaction)
               if (e.data === YT.PlayerState.PLAYING) {
+                const cover = document.getElementById('videoCover');
+                if (cover) cover.classList.add('hidden');
                 e.target.setPlaybackQuality('hd2160');
               }
             },
@@ -1457,6 +1519,25 @@
             }
           }
         });
+      }
+      function startCinematicVideo() {
+        const cover = document.getElementById('videoCover');
+        if (cover && !cover.classList.contains('hidden')) {
+          cover.classList.add('hidden');
+          if (atmPlayer && atmPlayer.playVideo) {
+            atmPlayer.playVideo();
+          }
+        } else {
+          // If already playing, toggle play/pause since iframe has pointer-events: none
+          if (atmPlayer && atmPlayer.getPlayerState) {
+            const state = atmPlayer.getPlayerState();
+            if (state === YT.PlayerState.PLAYING) {
+              atmPlayer.pauseVideo();
+            } else {
+              atmPlayer.playVideo();
+            }
+          }
+        }
       }
     </script>
     <div class="atmosphere-bar">
