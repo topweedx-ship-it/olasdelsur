@@ -1247,8 +1247,8 @@
   <!-- Brand content -->
   <div class="hero-content">
     <div class="hero-badge-wrap">
-      <button id="heroAudioToggle" class="hero-audio-btn" onclick="toggleHeroAudio(event)">
-        🔊 <span data-lang="es">Activar Audio</span><span data-lang="en">Activate Audio</span><span data-lang="fr">Activer l'audio</span><span data-lang="de">Audio aktivieren</span><span data-lang="it">Attiva Audio</span>
+      <button id="heroAudioToggle" class="hero-audio-btn" onclick="scrollToAtmosphere(event)">
+        🎬 <span data-lang="es">Ver la Atmósfera</span><span data-lang="en">Watch Atmosphere</span><span data-lang="fr">Voir l'Atmosfere</span><span data-lang="de">Atmosphäre sehen</span><span data-lang="it">Vedi Atmosfera</span>
       </button>
       <a href="https://forms.gle/QbenMfacF8cNuoDbA" target="_blank" class="hero-checkin-btn" style="margin-bottom: 24px;">
         🗝️ <span data-lang="es">Check-in Online</span><span data-lang="en">Online Check-in</span><span data-lang="fr">Check-in en ligne</span><span data-lang="de">Online Check-in</span><span data-lang="it">Check-in Online</span> <span class="hero-checkin-arrow">→</span>
@@ -2481,17 +2481,19 @@
     setTimeout(flick, 2500);
   })();
 
-  // ── Hero Audio Toggle ──
-  function toggleHeroAudio(e) {
+  // ── Hero Atmosfera Toggle ──
+  function scrollToAtmosphere(e) {
     if (e) e.preventDefault();
-    const v = document.querySelector('.hero-bg-video');
-    const btn = document.getElementById('heroAudioToggle');
-    if (v) {
-      v.muted = false;
-      v.play().catch(err => console.log("Audio play blocked:", err));
-      // Subtle feedback: hide the button after activation
-      if (btn) btn.classList.add('hidden');
+    const section = document.getElementById('atmosfera');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
     }
+    // Start video after a short delay for smooth scroll finishing
+    setTimeout(function() {
+      if (atmPlayer && typeof atmPlayer.playVideo === 'function') {
+        atmPlayer.playVideo();
+      }
+    }, 800);
   }
 </script>
 
