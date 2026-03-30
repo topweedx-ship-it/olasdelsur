@@ -1101,7 +1101,7 @@
       justify-content: center;
       z-index: 20; /* High enough to be over everything */
       cursor: pointer;
-      transition: opacity 0.8s ease, visibility 0.8s;
+      transition: opacity 1.2s ease, visibility 1.2s;
       border-radius: 12px;
     }
 
@@ -1363,7 +1363,10 @@
             onStateChange: function(e) {
               const overlay = document.getElementById('videoOverlay');
               if (e.data === YT.PlayerState.PLAYING) {
-                if (overlay) overlay.classList.add('hidden');
+                // Wait for the video to truly buffer and play for a moment before hiding
+                setTimeout(function() {
+                  if (overlay) overlay.classList.add('hidden');
+                }, 1500);
               } else if (e.data === YT.PlayerState.ENDED) {
                 if (overlay) {
                   overlay.classList.add('ended');
@@ -1378,7 +1381,7 @@
         const overlay = document.getElementById('videoOverlay');
         if (overlay) {
           overlay.classList.remove('ended');
-          overlay.classList.add('hidden');
+          // No longer hiding immediately to allow buffering behind the overlay
         }
         if (atmPlayer && atmPlayer.playVideo) {
           atmPlayer.unMute();
