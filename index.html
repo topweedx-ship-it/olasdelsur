@@ -936,10 +936,12 @@
     .lang-btn:hover:not(.active) { color: var(--coral); }
 
     [data-lang] { display: none; }
-    .lang-es [data-lang="es"],
-    .lang-en [data-lang="en"],
-    .lang-fr [data-lang="fr"],
-    .lang-de [data-lang="de"] { display: block; }
+    .lang-de .hero-ctas [data-lang="de"],
+    .lang-de .stats-inner [data-lang="de"],
+    .lang-de .poi-filters [data-lang="de"],
+    .lang-de .footer-links [data-lang="de"] { display: inline-flex; }
+
+    .lang-it [data-lang="it"] { display: block; }
     /* for inline elements */
     span[data-lang], a[data-lang], li[data-lang] {
       display: none;
@@ -955,7 +957,10 @@
     .lang-fr li[data-lang="fr"],
     .lang-de span[data-lang="de"],
     .lang-de a[data-lang="de"],
-    .lang-de li[data-lang="de"] { display: inline; }
+    .lang-de li[data-lang="de"],
+    .lang-it span[data-lang="it"],
+    .lang-it a[data-lang="it"],
+    .lang-it li[data-lang="it"] { display: inline; }
     /* for flex items */
     .hero-ctas [data-lang],
     .stats-inner [data-lang],
@@ -976,7 +981,11 @@
     .lang-de .hero-ctas [data-lang="de"],
     .lang-de .stats-inner [data-lang="de"],
     .lang-de .poi-filters [data-lang="de"],
-    .lang-de .footer-links [data-lang="de"] { display: inline-flex; }
+    .lang-de .footer-links [data-lang="de"],
+    .lang-it .hero-ctas [data-lang="it"],
+    .lang-it .stats-inner [data-lang="it"],
+    .lang-it .poi-filters [data-lang="it"],
+    .lang-it .footer-links [data-lang="it"] { display: inline-flex; }
 
 
     /* ══ POI EXPLORER ══════════════════════════════════════════════ */
@@ -996,7 +1005,6 @@
     }
 
     /* Left panel: category filters + poi chips */
-    .poi-explorer-left {}
     .poi-cat-tabs {
       display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;
     }
@@ -1097,75 +1105,57 @@
 
     /* ══════════ ATMOSPHERE VIDEO SECTION ══════════ */
     .atmosphere-section {
-      position: relative;
-      overflow: hidden;
       background: #0a0a0a;
+      padding: 72px 24px 60px;
     }
 
-    .atmosphere-video-wrap {
+    .atmosphere-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .atmosphere-section .section-header {
+      padding: 0 0 36px;
+    }
+
+    .atmosphere-section .section-title {
+      color: var(--white);
+    }
+
+    .atmosphere-section .section-desc {
+      color: rgba(255, 255, 255, 0.70);
+      max-width: 620px;
+    }
+
+    .atm-video-frame {
       position: relative;
-      width: 100%;
-      max-height: 85vh;
-      min-height: 420px;
+      padding-bottom: 56.25%;
+      height: 0;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 107, 53, 0.22);
+      box-shadow:
+        0 0 0 1px rgba(255, 107, 53, 0.10),
+        0 12px 60px rgba(0, 0, 0, 0.75),
+        inset 0 0 40px rgba(0, 0, 0, 0.35);
+      transform: scale(0.96);
+      opacity: 0;
+      transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 0.65s ease;
     }
 
-    .atmosphere-video-wrap video {
+    .atmosphere-section.visible .atm-video-frame {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .atm-video-frame iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      display: block;
-      min-height: 420px;
-      max-height: 85vh;
-    }
-
-    .atmosphere-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(10,10,10,0.35) 0%,
-        rgba(10,10,10,0.1) 40%,
-        rgba(10,10,10,0.1) 60%,
-        rgba(10,10,10,0.65) 100%
-      );
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 48px 24px;
-      text-align: center;
-    }
-
-    .atmosphere-label {
-      display: inline-block;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold2);
-      margin-bottom: 12px;
-      opacity: 0.9;
-    }
-
-    .atmosphere-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.2rem, 7vw, 4.2rem);
-      color: var(--white);
-      line-height: 1.1;
-      text-shadow: 0 2px 24px rgba(0,0,0,0.5);
-      margin-bottom: 14px;
-    }
-
-    .atmosphere-sub {
-      max-width: 520px;
-      color: rgba(255,255,255,0.78);
-      font-size: clamp(0.95rem, 2.2vw, 1.1rem);
-      line-height: 1.55;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.45);
+      border: 0;
     }
 
     .atmosphere-bar {
@@ -1173,7 +1163,7 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      margin-top: 20px;
+      margin-top: 28px;
     }
 
     .atmosphere-bar-line {
@@ -1190,99 +1180,12 @@
       background: var(--coral);
     }
 
-    @media (max-width: 600px) {
-      .atmosphere-overlay { padding: 32px 16px; }
-      .atmosphere-video-wrap,
-      .atmosphere-video-wrap video { min-height: 300px; max-height: 70vh; }
+    @media (max-width: 768px) {
+      .atmosphere-section { padding: 52px 16px 44px; }
     }
 
-    /* ── Atmosphere play/stop button ── */
-    .atm-play-btn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 20;
-      width: 84px;
-      height: 84px;
-      border-radius: 50%;
-      border: 3px solid rgba(255, 255, 255, 0.35);
-      background: rgba(220, 38, 38, 0.88);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      color: var(--white);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.22s ease, border-color 0.22s ease,
-                  transform 0.18s ease, box-shadow 0.22s ease;
-      box-shadow: 0 4px 32px rgba(220, 38, 38, 0.6), 0 2px 16px rgba(0, 0, 0, 0.5);
-      outline: none;
-    }
-    .atm-play-btn:hover {
-      background: rgba(239, 68, 68, 0.97);
-      border-color: rgba(255, 255, 255, 0.55);
-      transform: translate(-50%, -50%) scale(1.1);
-      box-shadow: 0 8px 48px rgba(220, 38, 38, 0.75), 0 4px 24px rgba(0, 0, 0, 0.6);
-    }
-    .atm-play-btn:active { transform: translate(-50%, -50%) scale(0.94); }
-
-    /* ── Atmosphere seek bar ── */
-    .atm-seek-wrap {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 20;
-      padding: 28px 24px 18px;
-      background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, transparent 100%);
-    }
-    .atm-seek-bar {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 100%;
-      height: 4px;
-      border-radius: 2px;
-      background: linear-gradient(to right, #dc2626 var(--seek-pct, 0%), rgba(255,255,255,0.28) var(--seek-pct, 0%));
-      outline: none;
-      cursor: pointer;
-      display: block;
-      transition: height 0.15s ease;
-    }
-    .atm-seek-wrap:hover .atm-seek-bar { height: 6px; }
-    .atm-seek-bar::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: #dc2626;
-      border: 2px solid rgba(255,255,255,0.85);
-      box-shadow: 0 0 8px rgba(220, 38, 38, 0.75);
-      cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-    .atm-seek-bar:hover::-webkit-slider-thumb {
-      transform: scale(1.3);
-      box-shadow: 0 0 16px rgba(220, 38, 38, 0.95);
-    }
-    .atm-seek-bar::-moz-range-thumb {
-      width: 16px;
-      height: 16px;
-      border: 2px solid rgba(255,255,255,0.85);
-      border-radius: 50%;
-      background: #dc2626;
-      box-shadow: 0 0 8px rgba(220, 38, 38, 0.75);
-      cursor: pointer;
-    }
-    .atm-seek-bar::-moz-range-track {
-      height: 4px;
-      border-radius: 2px;
-      background: transparent;
-    }
-    @media (max-width: 600px) {
-      .atm-play-btn { width: 64px; height: 64px; }
-      .atm-seek-wrap { padding: 20px 16px 14px; }
+    @media (max-width: 480px) {
+      .atmosphere-section { padding: 36px 12px 32px; }
     }
   </style>
 </head>
@@ -1294,6 +1197,7 @@
   <button class="lang-btn" id="btn-en" onclick="setLang('en')" aria-label="English">🇬🇧 EN</button>
   <button class="lang-btn" id="btn-fr" onclick="setLang('fr')" aria-label="Français">🇫🇷 FR</button>
   <button class="lang-btn" id="btn-de" onclick="setLang('de')" aria-label="Deutsch">🇩🇪 DE</button>
+  <button class="lang-btn" id="btn-it" onclick="setLang('it')" aria-label="Italiano">🇮🇹 IT</button>
 </div>
 
 
@@ -1312,12 +1216,14 @@
           <div data-lang="en">The City of a Hundred Palaces</div>
           <div data-lang="fr">La Ville aux Cent Palais</div>
           <div data-lang="de">Die Stadt der hundert Paläste</div>
+          <div data-lang="it">La Città dei Cento Palazzi</div>
         </div>
         <div class="hero-caption-title">
           <div data-lang="es">El Puerto de <em>Santa María</em></div>
           <div data-lang="en">Where History <em>Meets the Sea</em></div>
           <div data-lang="fr">Là où l'Histoire <em>Rencontre la Mer</em></div>
           <div data-lang="de">Wo Geschichte <em>auf das Meer</em> trifft</div>
+          <div data-lang="it">Dove la Storia <em>Incontra il Mare</em></div>
         </div>
       </div>
     </div>
@@ -1331,12 +1237,14 @@
           <div data-lang="en">Authentic Atlantic Flavours</div>
           <div data-lang="fr">Saveurs Authentiques de l'Atlantique</div>
           <div data-lang="de">Authentische Aromen des Atlantiks</div>
+          <div data-lang="it">Sapori Autentici dell'Atlantico</div>
         </div>
         <div class="hero-caption-title">
           <div data-lang="es">El Corazón del <em>Jerez</em></div>
           <div data-lang="en">Heart of <em>Sherry Country</em></div>
           <div data-lang="fr">Au Cœur du Pays <em>du Sherry</em></div>
           <div data-lang="de">Im Herzen des <em>Sherry-Landes</em></div>
+          <div data-lang="it">Il Cuore del <em>Jerez</em></div>
         </div>
       </div>
     </div>
@@ -1350,12 +1258,14 @@
           <div data-lang="en">Atlantic Breeze</div>
           <div data-lang="fr">Brise Atlantique</div>
           <div data-lang="de">Atlantikbrise</div>
+          <div data-lang="it">Brezza dell'Atlantico</div>
         </div>
         <div class="hero-caption-title">
           <div data-lang="es">Tu Refugio de <em>Verano</em></div>
           <div data-lang="en">Your <em>Summer Haven</em></div>
           <div data-lang="fr">Votre Refuge <em>d'Été</em></div>
           <div data-lang="de">Ihr persönliches <em>Sommerparadies</em></div>
+          <div data-lang="it">Il Tuo Rifugio <em>Estivo</em></div>
         </div>
       </div>
     </div>
@@ -1369,12 +1279,14 @@
           <div data-lang="en">Legendary Evenings</div>
           <div data-lang="fr">Soirées Légendaires</div>
           <div data-lang="de">Legendäre Abende</div>
+          <div data-lang="it">Serate Leggendarie</div>
         </div>
         <div class="hero-caption-title">
           <div data-lang="es">Magia Bajo <em>las Estrellas</em></div>
           <div data-lang="en">Magic <em>Beneath the Stars</em></div>
           <div data-lang="fr">Magie <em>sous les Étoiles</em></div>
           <div data-lang="de">Magie <em>unter dem Sternenzelt</em></div>
+          <div data-lang="it">Magia Sotto <em>le Stelle</em></div>
         </div>
       </div>
     </div>
@@ -1388,15 +1300,15 @@
   <div class="hero-content">
     <div class="hero-badge-wrap">
       <a href="https://forms.gle/QbenMfacF8cNuoDbA" target="_blank" class="hero-checkin-btn" style="margin-bottom: 24px;">
-        🗝️ <span data-lang="es">Check-in Online</span><span data-lang="en">Online Check-in</span><span data-lang="fr">Check-in en ligne</span><span data-lang="de">Online Check-in</span> <span class="hero-checkin-arrow">→</span>
+        🗝️ <span data-lang="es">Check-in Online</span><span data-lang="en">Online Check-in</span><span data-lang="fr">Check-in en ligne</span><span data-lang="de">Online Check-in</span><span data-lang="it">Check-in Online</span> <span class="hero-checkin-arrow">→</span>
       </a>
     </div>
 
     <img src="logo.png" alt="OlasDelSur Logo" style="max-width: 90vw; width: 750px; height: auto; display: block; margin: 0 auto 16px; border: none; box-shadow: none; -webkit-mask-image: radial-gradient(circle at center, black 52%, rgba(0,0,0,0) 72%); mask-image: radial-gradient(circle at center, black 52%, rgba(0,0,0,0) 72%);">
 
     <div class="hero-ctas">
-      <a href="#mappa" class="btn btn-primary" data-lang="es">🎯 Explorar el mapa</a><a href="#mappa" class="btn btn-primary" data-lang="en">🎯 Explore the map</a><a href="#mappa" class="btn btn-primary" data-lang="fr">🎯 Explorer la carte</a><a href="#mappa" class="btn btn-primary" data-lang="de">🎯 Karte erkunden</a>
-      <a href="#explore" class="btn btn-ghost" data-lang="es">🔍 Explora cada lugar</a><a href="#explore" class="btn btn-ghost" data-lang="en">🔍 Explore every place</a><a href="#explore" class="btn btn-ghost" data-lang="fr">🔍 Explorez chaque lieu</a><a href="#explore" class="btn btn-ghost" data-lang="de">🔍 Jeden Ort erkunden</a>
+      <a href="#mappa" class="btn btn-primary" data-lang="es">🎯 Explorar el mapa</a><a href="#mappa" class="btn btn-primary" data-lang="en">🎯 Explore the map</a><a href="#mappa" class="btn btn-primary" data-lang="fr">🎯 Explorer la carte</a><a href="#mappa" class="btn btn-primary" data-lang="de">🎯 Karte erkunden</a><a href="#mappa" class="btn btn-primary" data-lang="it">🎯 Esplora la mappa</a>
+      <a href="#explore" class="btn btn-ghost" data-lang="es">🔍 Explora cada lugar</a><a href="#explore" class="btn btn-ghost" data-lang="en">🔍 Explore every place</a><a href="#explore" class="btn btn-ghost" data-lang="fr">🔍 Explorez chaque lieu</a><a href="#explore" class="btn btn-ghost" data-lang="de">🔍 Jeden Ort erkunden</a><a href="#explore" class="btn btn-ghost" data-lang="it">🔍 Esplora ogni luogo</a>
     </div>
   </div>
 
@@ -1410,6 +1322,7 @@
     <span data-lang="en"><strong>El Puerto de Santa María</strong> is known as the “City of a Hundred Palaces”, and it was here that Juan de la Cosa drew in 1500 the <em>first world map to include America</em>.</span>
     <span data-lang="fr"><strong>El Puerto de Santa María</strong> est connue comme la “Ville aux Cent Palais”, et c’est ici que Juan de la Cosa dressa en 1500 la <em>première carte du monde représentant l’Amérique</em>.</span>
     <span data-lang="de"><strong>El Puerto de Santa María</strong> ist als die “Stadt der hundert Paläste” bekannt und hier zeichnete Juan de la Cosa 1500 die <em>erste Weltkarte, auf der Amerika abgebildet ist</em>.</span>
+    <span data-lang="it"><strong>El Puerto de Santa María</strong> è conosciuta come la "Città dei Cento Palazzi", ed è qui che Juan de la Cosa disegnò nel 1500 la <em>prima mappa del mondo che include l'America</em>.</span>
   </span>
 </div>
 
@@ -1417,116 +1330,139 @@
 <div class="stats-bar">
   <div class="stats-inner">
     <!-- Set 1 -->
-    <div class="stat-item"><span class="stat-value">300+</span><span class="stat-label" data-lang="es">Días de sol</span><span class="stat-label" data-lang="en">Sunny days</span><span class="stat-label" data-lang="fr">Jours de soleil</span><span class="stat-label" data-lang="de">Sonnentage</span></div>
-    <div class="stat-item"><span class="stat-value">1500 🗺️</span><span class="stat-label" data-lang="es">Primer mapa de América</span><span class="stat-label" data-lang="en">First map of America</span><span class="stat-label" data-lang="fr">1ᵉʳ carte des Amériques</span><span class="stat-label" data-lang="de">Erstes Amerika-Karte</span></div>
-    <div class="stat-item"><span class="stat-value">25' ⛵</span><span class="stat-label" data-lang="es">Cádiz en catamarán</span><span class="stat-label" data-lang="en">Cádiz by catamaran</span><span class="stat-label" data-lang="fr">Cadix en catamaran</span><span class="stat-label" data-lang="de">Cádiz per Katamaran</span></div>
-    <div class="stat-item"><span class="stat-value">20' 🚶</span><span class="stat-label" data-lang="es">Ribera del Marisco</span><span class="stat-label" data-lang="en">Ribera del Marisco</span><span class="stat-label" data-lang="fr">Ribera del Marisco</span><span class="stat-label" data-lang="de">Ribera del Marisco</span></div>
-    <div class="stat-item"><span class="stat-value">600m 🏖️</span><span class="stat-label" data-lang="es">Playa de la Puntilla</span><span class="stat-label" data-lang="en">Playa de la Puntilla</span><span class="stat-label" data-lang="fr">Playa de la Puntilla</span><span class="stat-label" data-lang="de">Playa de la Puntilla</span></div>
-    <div class="stat-item"><span class="stat-value">1.4km 🚶</span><span class="stat-label" data-lang="es">a pie del centro</span><span class="stat-label" data-lang="en">walk to old town</span><span class="stat-label" data-lang="fr">à pied du centre</span><span class="stat-label" data-lang="de">zu Fuß ins Zentrum</span></div>
+    <div class="stat-item"><span class="stat-value">300+</span><span class="stat-label" data-lang="es">Días de sol</span><span class="stat-label" data-lang="en">Sunny days</span><span class="stat-label" data-lang="fr">Jours de soleil</span><span class="stat-label" data-lang="de">Sonnentage</span><span class="stat-label" data-lang="it">Giorni di sole</span></div>
+    <div class="stat-item"><span class="stat-value">1500 🗺️</span><span class="stat-label" data-lang="es">Primer mapa de América</span><span class="stat-label" data-lang="en">First map of America</span><span class="stat-label" data-lang="fr">1ᵉʳ carte des Amériques</span><span class="stat-label" data-lang="de">Erstes Amerika-Karte</span><span class="stat-label" data-lang="it">Prima mappa d'America</span></div>
+    <div class="stat-item"><span class="stat-value">25' ⛵</span><span class="stat-label" data-lang="es">Cádiz en catamarán</span><span class="stat-label" data-lang="en">Cádiz by catamaran</span><span class="stat-label" data-lang="fr">Cadix en catamaran</span><span class="stat-label" data-lang="de">Cádiz per Katamaran</span><span class="stat-label" data-lang="it">Cadice in catamarano</span></div>
+    <div class="stat-item"><span class="stat-value">20' 🚶</span><span class="stat-label" data-lang="es">Ribera del Marisco</span><span class="stat-label" data-lang="en">Ribera del Marisco</span><span class="stat-label" data-lang="fr">Ribera del Marisco</span><span class="stat-label" data-lang="de">Ribera del Marisco</span><span class="stat-label" data-lang="it">Ribera del Marisco</span></div>
+    <div class="stat-item"><span class="stat-value">600m 🏖️</span><span class="stat-label" data-lang="es">Playa de la Puntilla</span><span class="stat-label" data-lang="en">Playa de la Puntilla</span><span class="stat-label" data-lang="fr">Playa de la Puntilla</span><span class="stat-label" data-lang="de">Playa de la Puntilla</span><span class="stat-label" data-lang="it">Spiaggia della Puntilla</span></div>
+    <div class="stat-item"><span class="stat-value">1.4km 🚶</span><span class="stat-label" data-lang="es">a pie del centro</span><span class="stat-label" data-lang="en">walk to old town</span><span class="stat-label" data-lang="fr">à pied du centre</span><span class="stat-label" data-lang="de">zu Fuß ins Zentrum</span><span class="stat-label" data-lang="it">a piedi dal centro</span></div>
     <!-- Set 2 – duplicato per loop senza interruzioni -->
-    <div class="stat-item" aria-hidden="true"><span class="stat-value">300+</span><span class="stat-label" data-lang="es">Días de sol</span><span class="stat-label" data-lang="en">Sunny days</span><span class="stat-label" data-lang="fr">Jours de soleil</span><span class="stat-label" data-lang="de">Sonnentage</span></div>
-    <div class="stat-item" aria-hidden="true"><span class="stat-value">1500 🗺️</span><span class="stat-label" data-lang="es">Primer mapa de América</span><span class="stat-label" data-lang="en">First map of America</span><span class="stat-label" data-lang="fr">1ᵉʳ carte des Amériques</span><span class="stat-label" data-lang="de">Erstes Amerika-Karte</span></div>
-    <div class="stat-item" aria-hidden="true"><span class="stat-value">25' ⛵</span><span class="stat-label" data-lang="es">Cádiz en catamarán</span><span class="stat-label" data-lang="en">Cádiz by catamaran</span><span class="stat-label" data-lang="fr">Cadix en catamaran</span><span class="stat-label" data-lang="de">Cádiz per Katamaran</span></div>
-    <div class="stat-item" aria-hidden="true"><span class="stat-value">20' 🚶</span><span class="stat-label" data-lang="es">Ribera del Marisco</span><span class="stat-label" data-lang="en">Ribera del Marisco</span><span class="stat-label" data-lang="fr">Ribera del Marisco</span><span class="stat-label" data-lang="de">Ribera del Marisco</span></div>
-    <div class="stat-item" aria-hidden="true"><span class="stat-value">600m 🏖️</span><span class="stat-label" data-lang="es">Playa de la Puntilla</span><span class="stat-label" data-lang="en">Playa de la Puntilla</span><span class="stat-label" data-lang="fr">Playa de la Puntilla</span><span class="stat-label" data-lang="de">Playa de la Puntilla</span></div>
-    <div class="stat-item" aria-hidden="true"><span class="stat-value">1.4km 🚶</span><span class="stat-label" data-lang="es">a pie del centro</span><span class="stat-label" data-lang="en">walk to old town</span><span class="stat-label" data-lang="fr">à pied du centre</span><span class="stat-label" data-lang="de">zu Fuß ins Zentrum</span></div>
+    <div class="stat-item" aria-hidden="true"><span class="stat-value">300+</span><span class="stat-label" data-lang="es">Días de sol</span><span class="stat-label" data-lang="en">Sunny days</span><span class="stat-label" data-lang="fr">Jours de soleil</span><span class="stat-label" data-lang="de">Sonnentage</span><span class="stat-label" data-lang="it">Giorni di sole</span></div>
+    <div class="stat-item" aria-hidden="true"><span class="stat-value">1500 🗺️</span><span class="stat-label" data-lang="es">Primer mapa de América</span><span class="stat-label" data-lang="en">First map of America</span><span class="stat-label" data-lang="fr">1ᵉʳ carte des Amériques</span><span class="stat-label" data-lang="de">Erstes Amerika-Karte</span><span class="stat-label" data-lang="it">Prima mappa d'America</span></div>
+    <div class="stat-item" aria-hidden="true"><span class="stat-value">25' ⛵</span><span class="stat-label" data-lang="es">Cádiz en catamarán</span><span class="stat-label" data-lang="en">Cádiz by catamaran</span><span class="stat-label" data-lang="fr">Cadix en catamaran</span><span class="stat-label" data-lang="de">Cádiz per Katamaran</span><span class="stat-label" data-lang="it">Cadice in catamarano</span></div>
+    <div class="stat-item" aria-hidden="true"><span class="stat-value">20' 🚶</span><span class="stat-label" data-lang="es">Ribera del Marisco</span><span class="stat-label" data-lang="en">Ribera del Marisco</span><span class="stat-label" data-lang="fr">Ribera del Marisco</span><span class="stat-label" data-lang="de">Ribera del Marisco</span><span class="stat-label" data-lang="it">Ribera del Marisco</span></div>
   </div>
 </div>
 
 <!-- ══════════ MAPPA ══════════ -->
 <section class="map-section" id="mappa">
   <div class="section-header">
-    <span class="section-label">📍 <span data-lang="es">Explora el territorio</span><span data-lang="en">Explore the area</span><span data-lang="fr">Explorer la région</span><span data-lang="de">Die Gegend erkunden</span></span>
-    <h2 class="section-title"><span data-lang="es">Todo a tu alcance</span><span data-lang="en">Everything within reach</span><span data-lang="fr">Tout à portée de main</span><span data-lang="de">Alles in Reichweite</span></h2>
-    <p class="section-desc"><span data-lang="es">Playas, vida nocturna, cultura y gastronomía — descubre por qué la Bajamar es la mejor ubicación de El Puerto.</span><span data-lang="en">Beaches, nightlife, culture and gastronomy — discover why Bajamar is El Puerto's most strategic location.</span><span data-lang="fr">Plages, vie nocturne, culture et gastronomie — découvrez pourquoi Bajamar est l'emplacement le plus stratégique d'El Puerto.</span><span data-lang="de">Strände, Nachtleben, Kultur und Gastronomie — entdecken Sie, warum Bajamar die beste Lage in El Puerto ist.</span></p>
+    <span class="section-label">📍 <span data-lang="es">Explora el territorio</span><span data-lang="en">Explore the area</span><span data-lang="fr">Explorer la région</span><span data-lang="de">Die Gegend erkunden</span><span data-lang="it">Esplora il territorio</span></span>
+    <h2 class="section-title"><span data-lang="es">Todo a tu alcance</span><span data-lang="en">Everything within reach</span><span data-lang="fr">Tout à portée de main</span><span data-lang="de">Alles in Reichweite</span><span data-lang="it">Tutto a portata di mano</span></h2>
+    <p class="section-desc"><span data-lang="es">Playas, vida nocturna, cultura y gastronomía — descubre por qué la Bajamar è la mejor ubicación de El Puerto.</span><span data-lang="en">Beaches, nightlife, culture and gastronomy — discover why Bajamar is El Puerto's most strategic location.</span><span data-lang="fr">Plages, vie nocturne, culture et gastronomie — découvrez pourquoi Bajamar est l'emplacement le plus stratégique d'El Puerto.</span><span data-lang="de">Strände, Nachtleben, Kultur und Gastronomie — entdecken Sie, warum Bajamar die beste Lage in El Puerto ist.</span><span data-lang="it">Spiagge, vita notturna, cultura e gastronomia — scopri perché Bajamar è la migliore posizione di El Puerto.</span></p>
   </div>
 
   <div class="filter-bar">
-    <button class="filter-btn active" data-cat="all"><span data-lang="es">🌍 Todos</span><span data-lang="en">🌍 All</span><span data-lang="fr">🌍 Tout</span><span data-lang="de">🌍 Alle</span></button>
+    <button class="filter-btn active" data-cat="all"><span data-lang="es">🌍 Todos</span><span data-lang="en">🌍 All</span><span data-lang="fr">🌍 Tout</span><span data-lang="de">🌍 Alle</span><span data-lang="it">🌍 Tutti</span></button>
     <button class="filter-btn" data-cat="home">🏠 Airbnb</button>
-    <button class="filter-btn" data-cat="beach"><span data-lang="es">🏖️ Playas</span><span data-lang="en">🏖️ Beaches</span><span data-lang="fr">🏖️ Plages</span><span data-lang="de">🏖️ Strände</span></button>
-    <button class="filter-btn" data-cat="nightlife"><span data-lang="es">🎶 Vida nocturna</span><span data-lang="en">🎶 Nightlife</span><span data-lang="fr">🎶 Vie nocturne</span><span data-lang="de">🎶 Nachtleben</span></button>
-    <button class="filter-btn" data-cat="culture">🏰 Cultura</button>
-    <button class="filter-btn" data-cat="gastro"><span data-lang="es">🦞 Gastronomía</span><span data-lang="en">🦞 Gastronomy</span><span data-lang="fr">🦞 Gastronomie</span><span data-lang="de">🦞 Gastronomie</span></button>
-    <button class="filter-btn" data-cat="transport"><span data-lang="es">⛵ Transporte</span><span data-lang="en">⛵ Transport</span><span data-lang="fr">⛵ Transport</span><span data-lang="de">⛵ Transport</span></button>
-    <button class="filter-btn" data-cat="nature"><span data-lang="es">🌿 Naturaleza</span><span data-lang="en">🌿 Nature</span><span data-lang="fr">🌿 Nature</span><span data-lang="de">🌿 Natur</span></button>
-    <button class="filter-btn" data-cat="nautica"><span data-lang="es">⚓ Náutica</span><span data-lang="en">⚓ Nautical</span><span data-lang="fr">⚓ Nautique</span><span data-lang="de">⚓ Nautik</span></button>
-    <button class="filter-btn" data-cat="supermercado"><span data-lang="es">🛒 Supermercados</span><span data-lang="en">🛒 Supermarkets</span><span data-lang="fr">🛒 Supermarchés</span><span data-lang="de">🛒 Supermärkte</span></button>
+    <button class="filter-btn" data-cat="beach"><span data-lang="es">🏖️ Playas</span><span data-lang="en">🏖️ Beaches</span><span data-lang="fr">🏖️ Plages</span><span data-lang="de">🏖️ Strände</span><span data-lang="it">🏖️ Spiagge</span></button>
+    <button class="filter-btn" data-cat="nightlife"><span data-lang="es">🎶 Vida nocturna</span><span data-lang="en">🎶 Nightlife</span><span data-lang="fr">🎶 Vie nocturne</span><span data-lang="de">🎶 Nachtleben</span><span data-lang="it">🎶 Vita notturna</span></button>
+    <button class="filter-btn" data-cat="culture">🏰 <span data-lang="es">Cultura</span><span data-lang="en">Culture</span><span data-lang="fr">Culture</span><span data-lang="de">Kultur</span><span data-lang="it">Cultura</span></button>
+    <button class="filter-btn" data-cat="gastro"><span data-lang="es">🦞 Gastronomía</span><span data-lang="en">🦞 Gastronomy</span><span data-lang="fr">🦞 Gastronomie</span><span data-lang="de">🦞 Gastronomie</span><span data-lang="it">🦞 Gastronomia</span></button>
+    <button class="filter-btn" data-cat="transport"><span data-lang="es">⛵ Transporte</span><span data-lang="en">⛵ Transport</span><span data-lang="fr">⛵ Transport</span><span data-lang="de">⛵ Trasporto</span><span data-lang="it">⛵ Trasporti</span></button>
+    <button class="filter-btn" data-cat="nature"><span data-lang="es">🌿 Naturaleza</span><span data-lang="en">🌿 Nature</span><span data-lang="fr">🌿 Nature</span><span data-lang="de">🌿 Natur</span><span data-lang="it">🌿 Natura</span></button>
+    <button class="filter-btn" data-cat="nautica"><span data-lang="es">⚓ Náutica</span><span data-lang="en">⚓ Nautical</span><span data-lang="fr">⚓ Nautique</span><span data-lang="de">⚓ Nautik</span><span data-lang="it">⚓ Nautica</span></button>
+    <button class="filter-btn" data-cat="supermercado"><span data-lang="es">🛒 Supermercados</span><span data-lang="en">🛒 Supermarkets</span><span data-lang="fr">🛒 Supermarchés</span><span data-lang="de">🛒 Supermärkte</span><span data-lang="it">🛒 Supermercati</span></button>
   </div>
 
   <div class="map-layout">
     <div id="map"></div>
     <div class="poi-sidebar">
-      <div class="poi-card" id="card-home"><span class="poi-emoji">🏠</span><div class="poi-info"><div class="poi-name">OlasDelSur</div><div class="poi-addr">Av. de la Bajamar 88</div><div class="poi-cat cat-home"><span data-lang="es">Tu Airbnb</span><span data-lang="en">Your Airbnb</span><span data-lang="fr">Votre Airbnb</span><span data-lang="de">Ihr Airbnb</span></div></div></div>
-      <div class="poi-card" id="card-puntilla"><span class="poi-emoji">🏖️</span><div class="poi-info"><div class="poi-name">Playa de la Puntilla</div><div class="poi-addr"><span data-lang="es">600m · apta para perros</span><span data-lang="en">600m · dog-friendly</span><span data-lang="fr">600m · chiens bienvenus</span><span data-lang="de">600m · hundefreundlich</span></div><div class="poi-cat cat-beach"><span data-lang="es">Playa</span><span data-lang="en">Beach</span><span data-lang="fr">Plage</span><span data-lang="de">Strand</span></div></div></div>
-      <div class="poi-card" id="card-valdelagrana"><span class="poi-emoji">🏖️</span><div class="poi-info"><div class="poi-name">Playa Valdelagrana</div><div class="poi-addr"><span data-lang="es">Playa principal</span><span data-lang="en">Main beach</span><span data-lang="fr">Plage principale</span><span data-lang="de">Hauptstrand</span></div><div class="poi-cat cat-beach"><span data-lang="es">Playa</span><span data-lang="en">Beach</span><span data-lang="fr">Plage</span><span data-lang="de">Strand</span></div></div></div>
-      <div class="poi-card" id="card-muralla"><span class="poi-emoji">🏖️</span><div class="poi-info"><div class="poi-name">Playa La Muralla</div><div class="poi-addr"><span data-lang="es">Puerto Sherry · Bandera Azul</span><span data-lang="en">Puerto Sherry · Blue Flag</span><span data-lang="fr">Puerto Sherry · Pavillon Bleu</span><span data-lang="de">Puerto Sherry · Blaue Flagge</span></div><div class="poi-cat cat-beach"><span data-lang="es">Playa</span><span data-lang="en">Beach</span><span data-lang="fr">Plage</span><span data-lang="de">Strand</span></div></div></div>
-      <div class="poi-card" id="card-phiphi"><span class="poi-emoji">🍹</span><div class="poi-info"><div class="poi-name">PhiPhi Beach</div><div class="poi-addr"><span data-lang="es">Puerto Sherry</span><span data-lang="en">Puerto Sherry</span></div><div class="poi-cat cat-nightlife"><span data-lang="es">Vida nocturna</span><span data-lang="en">Nightlife</span><span data-lang="fr">Vie nocturne</span><span data-lang="de">Nachtleben</span></div></div></div>
-      <div class="poi-card" id="card-margarita"><span class="poi-emoji">🌅</span><div class="poi-info"><div class="poi-name">Margarita</div><div class="poi-addr"><span data-lang="es">Puerto Sherry</span><span data-lang="en">Puerto Sherry</span></div><div class="poi-cat cat-nightlife"><span data-lang="es">Vida nocturna</span><span data-lang="en">Nightlife</span><span data-lang="fr">Vie nocturne</span><span data-lang="de">Nachtleben</span></div></div></div>
-      <div class="poi-card" id="card-canalla"><span class="poi-emoji">🎶</span><div class="poi-info"><div class="poi-name">Playa Canalla</div><div class="poi-addr"><span data-lang="es">Puerto Sherry</span><span data-lang="en">Puerto Sherry</span></div><div class="poi-cat cat-nightlife">Beach Club</div></div></div>
-      <div class="poi-card" id="card-lioclub"><span class="poi-emoji">🎭</span><div class="poi-info"><div class="poi-name">Lio Club Puntilla</div><div class="poi-addr"><span data-lang="es">Av. de la Bajamar</span><span data-lang="en">Av. de la Bajamar</span><span data-lang="fr">Av. de la Bajamar</span><span data-lang="de">Av. de la Bajamar</span></div><div class="poi-cat cat-nightlife"><span data-lang="es">Vida nocturna</span><span data-lang="en">Nightlife</span><span data-lang="fr">Vie nocturne</span><span data-lang="de">Nachtleben</span></div></div></div>
-      <div class="poi-card" id="card-cristalera"><span class="poi-emoji">🎹</span><div class="poi-info"><div class="poi-name">Bar La Cristalera</div><div class="poi-addr"><span data-lang="es">Pl. Galeras Reales</span><span data-lang="en">Pl. Galeras Reales</span><span data-lang="fr">Pl. Galeras Reales</span><span data-lang="de">Pl. Galeras Reales</span></div><div class="poi-cat cat-nightlife"><span data-lang="es">Piano bar</span><span data-lang="en">Piano bar</span><span data-lang="fr">Piano bar</span><span data-lang="de">Piano-Bar</span></div></div></div>
-      <div class="poi-card" id="card-banana"><span class="poi-emoji">🍌</span><div class="poi-info"><div class="poi-name">Banana Club</div><div class="poi-addr"><span data-lang="es">Ribera del Marisco</span><span data-lang="en">Ribera del Marisco</span><span data-lang="fr">Ribera del Marisco</span><span data-lang="de">Ribera del Marisco</span></div><div class="poi-cat cat-nightlife"><span data-lang="es">Discoteca</span><span data-lang="en">Disco club</span><span data-lang="fr">Discothèque</span><span data-lang="de">Diskothek</span></div></div></div>
-      <div class="poi-card" id="card-castillo"><span class="poi-emoji">🏰</span><div class="poi-info"><div class="poi-name">Castillo San Marcos</div><div class="poi-addr"><span data-lang="es">Casco histórico</span><span data-lang="en">Historic centre</span><span data-lang="fr">Centre historique</span><span data-lang="de">Historisches Zentrum</span></div><div class="poi-cat cat-culture"><span data-lang="es">Cultura</span><span data-lang="en">Culture</span><span data-lang="fr">Culture</span><span data-lang="de">Kultur</span></div></div></div>
-      <div class="poi-card" id="card-plazatoros"><span class="poi-emoji">🐂</span><div class="poi-info"><div class="poi-name">Real Plaza de Toros</div><div class="poi-addr"><span data-lang="es">Construida en 1880</span><span data-lang="en">Built in 1880</span><span data-lang="fr">Construite en 1880</span><span data-lang="de">Gebaut 1880</span></div><div class="poi-cat cat-culture"><span data-lang="es">Cultura</span><span data-lang="en">Culture</span><span data-lang="fr">Culture</span><span data-lang="de">Kultur</span></div></div></div>
-      <div class="poi-card" id="card-alberti"><span class="poi-emoji">🎨</span><div class="poi-info"><div class="poi-name">Museo Rafael Alberti</div><div class="poi-addr"><span data-lang="es">Premio Cervantes 1983</span><span data-lang="en">1983 Cervantes Prize</span><span data-lang="fr">Prix Cervantes 1983</span><span data-lang="de">Cervantes-Preis 1983</span></div><div class="poi-cat cat-culture"><span data-lang="es">Museo</span><span data-lang="en">Museum</span><span data-lang="fr">Musée</span><span data-lang="de">Museum</span></div></div></div>
-      <div class="poi-card" id="card-valdivieso"><span class="poi-emoji">🏛️</span><div class="poi-info"><div class="poi-name">Palacio de Valdivieso</div><div class="poi-addr"><span data-lang="es">Barroco s. XVIII</span><span data-lang="en">18th-c. Baroque</span><span data-lang="fr">Baroque XVIIIe</span><span data-lang="de">Barock 18. Jh.</span></div><div class="poi-cat cat-culture"><span data-lang="es">Patrimonio</span><span data-lang="en">Heritage</span><span data-lang="fr">Patrimoine</span><span data-lang="de">Kulturerbe</span></div></div></div>
-      <div class="poi-card" id="card-aranibar"><span class="poi-emoji">🏩</span><div class="poi-info"><div class="poi-name">Palacio de Araníbar</div><div class="poi-addr"><span data-lang="es">Oficina de Turismo · Gratis</span><span data-lang="en">Tourist Office · Free</span><span data-lang="fr">Office de tourisme · Gratuit</span><span data-lang="de">Touristbüro · Kostenlos</span></div><div class="poi-cat cat-culture"><span data-lang="es">Palacio</span><span data-lang="en">Palace</span><span data-lang="fr">Palais</span><span data-lang="de">Palast</span></div></div></div>
-      <div class="poi-card" id="card-iglesia"><span class="poi-emoji">⛪</span><div class="poi-info"><div class="poi-name">Iglesia Mayor Prioral</div><div class="poi-addr"><span data-lang="es">Plaza de España · Gótico-renacentista</span><span data-lang="en">Plaza de España · Gothic-Renaissance</span><span data-lang="fr">Plaza de España · Gothique-Renaissance</span><span data-lang="de">Plaza de España · Gotik-Renaissance</span></div><div class="poi-cat cat-culture"><span data-lang="es">Iglesia</span><span data-lang="en">Church</span><span data-lang="fr">Église</span><span data-lang="de">Kirche</span></div></div></div>
-      <div class="poi-card" id="card-osborne"><span class="poi-emoji">🍷</span><div class="poi-info"><div class="poi-name">Bodegas Osborne</div><div class="poi-addr"><span data-lang="es">33.603 visitas/año</span><span data-lang="en">33,603 visits/year</span><span data-lang="fr">33 603 visites/an</span><span data-lang="de">33.603 Besuche/Jahr</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Bodega</span><span data-lang="en">Winery</span><span data-lang="fr">Bodega</span><span data-lang="de">Weingut</span></div></div></div>
-      <div class="poi-card" id="card-aponiente"><span class="poi-emoji">⭐</span><div class="poi-info"><div class="poi-name">Aponiente</div><div class="poi-addr"><span data-lang="es">3 Estrellas Michelin</span><span data-lang="en">3 Michelin Stars</span><span data-lang="fr">3 Étoiles Michelin</span><span data-lang="de">3 Michelin-Sterne</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Alta Cocina</span><span data-lang="en">Fine Dining</span><span data-lang="fr">Haute Cuisine</span><span data-lang="de">Gourmetküche</span></div></div></div>
-      <div class="poi-card" id="card-ribera"><span class="poi-emoji">🦞</span><div class="poi-info"><div class="poi-name">Ribera del Marisco</div><div class="poi-addr"><span data-lang="es">20 min a pie</span><span data-lang="en">20 min walk</span><span data-lang="fr">20 min à pied</span><span data-lang="de">20 Min. zu Fuß</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Gastronomía</span><span data-lang="en">Gastronomy</span><span data-lang="fr">Gastronomie</span><span data-lang="de">Gastronomie</span></div></div></div>
-      <div class="poi-card" id="card-venencia"><span class="poi-emoji">🐟</span><div class="poi-info"><div class="poi-name">La Venencia</div><div class="poi-addr"><span data-lang="es">Frente al mar</span><span data-lang="en">Seafront</span><span data-lang="fr">Bord de mer</span><span data-lang="de">Am Meer</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Restaurante</span><span data-lang="en">Restaurant</span><span data-lang="fr">Restaurant</span><span data-lang="de">Restaurant</span></div></div></div>
-      <div class="poi-card" id="card-barpepito"><span class="poi-emoji">🥘</span><div class="poi-info"><div class="poi-name">Bar Pepito</div><div class="poi-addr"><span data-lang="es">Tapas · 1.258 reseñas</span><span data-lang="en">Tapas · 1,258 reviews</span><span data-lang="fr">Tapas · 1 258 avis</span><span data-lang="de">Tapas · 1.258 Bewertungen</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Bar de Tapas</span><span data-lang="en">Tapas Bar</span><span data-lang="fr">Bar à tapas</span><span data-lang="de">Tapas-Bar</span></div></div></div>
-      <div class="poi-card" id="card-torotapas"><span class="poi-emoji">🐂</span><div class="poi-info"><div class="poi-name">Toro Tapas</div><div class="poi-addr"><span data-lang="es">En Bodegas Osborne</span><span data-lang="en">Inside Bodegas Osborne</span><span data-lang="fr">Dans Bodegas Osborne</span><span data-lang="de">In Bodegas Osborne</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Tapas</span><span data-lang="en">Tapas</span><span data-lang="fr">Tapas</span><span data-lang="de">Tapas</span></div></div></div>
-      <div class="poi-card" id="card-ditaly"><span class="poi-emoji">🍕</span><div class="poi-info"><div class="poi-name">DITALY</div><div class="poi-addr"><span data-lang="es">4,8★ · Italiano</span><span data-lang="en">4.8★ · Italian</span><span data-lang="fr">4,8★ · Italien</span><span data-lang="de">4,8★ · Italienisch</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Restaurante italiano</span><span data-lang="en">Italian restaurant</span><span data-lang="fr">Restaurant italien</span><span data-lang="de">Ital. Restaurant</span></div></div></div>
-      <div class="poi-card" id="card-tabernachef"><span class="poi-emoji">🎣</span><div class="poi-info"><div class="poi-name">Taberna Chef del Mar</div><div class="poi-addr"><span data-lang="es">Universo Ángel León</span><span data-lang="en">Ángel León universe</span><span data-lang="fr">Univers Ángel León</span><span data-lang="de">Ángel León Universum</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Taberna</span><span data-lang="en">Tavern</span><span data-lang="fr">Taverne</span><span data-lang="de">Taverne</span></div></div></div>
-      <div class="poi-card" id="card-romerijo"><span class="poi-emoji">🦐</span><div class="poi-info"><div class="poi-name">Romerijo</div><div class="poi-addr"><span data-lang="es">13.100 reseñas · Temp. cerrado</span><span data-lang="en">13,100 reviews · Temp. closed</span><span data-lang="fr">13 100 avis · Fermé temp.</span><span data-lang="de">13.100 Bew. · Vorübgh. geschl.</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Marisquería</span><span data-lang="en">Seafood</span><span data-lang="fr">Fruits de mer</span><span data-lang="de">Meeresfrüchte</span></div></div></div>
-      <div class="poi-card" id="card-rcn"><span class="poi-emoji">⚓</span><div class="poi-info"><div class="poi-name">Real Club Náutico</div><div class="poi-addr">Av. de la Bajamar 13</div><div class="poi-cat cat-nautica"><span data-lang="es">Náutica · Gastronomía · Deporte</span><span data-lang="en">Nautical · Gastronomy · Sport</span><span data-lang="fr">Nautique · Gastronomie · Sport</span><span data-lang="de">Nautik · Gastronomie · Sport</span></div></div></div>
-      <div class="poi-card" id="card-tren"><span class="poi-emoji">🚆</span><div class="poi-info"><div class="poi-name">Estación de Tren</div><div class="poi-addr"><span data-lang="es">Cercanías C1 · Alvia · MD</span><span data-lang="en">Cercanías C1 · Alvia · MD</span><span data-lang="fr">Cercanías C1 · Alvia · MD</span><span data-lang="de">Cercanías C1 · Alvia · MD</span></div><div class="poi-cat cat-transport"><span data-lang="es">Transporte</span><span data-lang="en">Transport</span><span data-lang="fr">Transport</span><span data-lang="de">Transport</span></div></div></div>
-      <div class="poi-card" id="card-catamaran"><span class="poi-emoji">⛵</span><div class="poi-info"><div class="poi-name">Catamaran Cádiz</div><div class="poi-addr"><span data-lang="es">15+ travesías al día</span><span data-lang="en">15+ crossings/day</span><span data-lang="fr">15+ traversées/jour</span><span data-lang="de">15+ Überfahrten/Tag</span></div><div class="poi-cat cat-transport"><span data-lang="es">Transporte</span><span data-lang="en">Transport</span><span data-lang="fr">Transport</span><span data-lang="de">Transport</span></div></div></div>
-      <div class="poi-card" id="card-calita"><span class="poi-emoji">🏖️</span><div class="poi-info"><div class="poi-name">Playa la Calita</div><div class="poi-addr"><span data-lang="es">Puerto Sherry · cala recogida</span><span data-lang="en">Puerto Sherry · sheltered cove</span><span data-lang="fr">Puerto Sherry · crique abritée</span><span data-lang="de">Puerto Sherry · geschützte Bucht</span></div><div class="poi-cat cat-beach"><span data-lang="es">Playa</span><span data-lang="en">Beach</span><span data-lang="fr">Plage</span><span data-lang="de">Strand</span></div></div></div>
-      <div class="poi-card" id="card-torunos"><span class="poi-emoji">🌿</span><div class="poi-info"><div class="poi-name">Parque Los Toruños</div><div class="poi-addr"><span data-lang="es">Dunas y naturaleza</span><span data-lang="en">Dunes &amp; nature</span><span data-lang="fr">Dunes &amp; nature</span><span data-lang="de">Dünen &amp; Natur</span></div><div class="poi-cat cat-nature"><span data-lang="es">Naturaleza</span><span data-lang="en">Nature</span><span data-lang="fr">Nature</span><span data-lang="de">Natur</span></div></div></div>
-      <div class="poi-card" id="card-puertosherry"><span class="poi-emoji">⚓</span><div class="poi-info"><div class="poi-name">Puerto Sherry Marina</div><div class="poi-addr"><span data-lang="es">Atardecer sobre la bahía</span><span data-lang="en">Sunset over the bay</span><span data-lang="fr">Coucher de soleil sur la baie</span><span data-lang="de">Sonnenuntergang über der Bucht</span></div><div class="poi-cat cat-nautica"><span data-lang="es">Marina</span><span data-lang="en">Marina</span><span data-lang="fr">Marina</span><span data-lang="de">Marina</span></div></div></div>
-      <div class="poi-card" id="card-mercadona"><span class="poi-emoji">🛒</span><div class="poi-info"><div class="poi-name">Supermercados El Jamón</div><div class="poi-addr"><span data-lang="es">6 min a pie</span><span data-lang="en">6 min walk</span><span data-lang="fr">6 min à pied</span><span data-lang="de">6 Min. zu Fuß</span></div><div class="poi-cat cat-supermercado"><span data-lang="es">Supermercado</span><span data-lang="en">Supermarket</span><span data-lang="fr">Supermarché</span><span data-lang="de">Supermarkt</span></div></div></div>
-      <div class="poi-card" id="card-aldi"><span class="poi-emoji">🛒</span><div class="poi-info"><div class="poi-name">Aldi</div><div class="poi-addr"><span data-lang="es">C. Valdés s/n</span><span data-lang="en">C. Valdés s/n</span><span data-lang="fr">C. Valdés s/n</span><span data-lang="de">C. Valdés s/n</span></div><div class="poi-cat cat-supermercado"><span data-lang="es">Supermercado</span><span data-lang="en">Supermarket</span><span data-lang="fr">Supermarché</span><span data-lang="de">Supermarkt</span></div></div></div>
-      <div class="poi-card" id="card-mercadona2"><span class="poi-emoji">🛒</span><div class="poi-info"><div class="poi-name">Mercadona Dunas</div><div class="poi-addr"><span data-lang="es">Rda. de las Dunas 7</span><span data-lang="en">Rda. de las Dunas 7</span><span data-lang="fr">Rda. de las Dunas 7</span><span data-lang="de">Rda. de las Dunas 7</span></div><div class="poi-cat cat-supermercado"><span data-lang="es">Supermercado</span><span data-lang="en">Supermarket</span><span data-lang="fr">Supermarché</span><span data-lang="de">Supermarkt</span></div></div></div>
-      <div class="poi-card" id="card-dia"><span class="poi-emoji">🛒</span><div class="poi-info"><div class="poi-name">Supermercados Dia</div><div class="poi-addr"><span data-lang="es">Av. Pintor A. F. Sevilla 18A</span><span data-lang="en">Av. Pintor A. F. Sevilla 18A</span><span data-lang="fr">Av. Pintor A. F. Sevilla 18A</span><span data-lang="de">Av. Pintor A. F. Sevilla 18A</span></div><div class="poi-cat cat-supermercado"><span data-lang="es">Supermercado</span><span data-lang="en">Supermarket</span><span data-lang="fr">Supermarché</span><span data-lang="de">Supermarkt</span></div></div></div>
+      <div class="poi-card" id="card-home"><span class="poi-emoji">🏠</span><div class="poi-info"><div class="poi-name">OlasDelSur</div><div class="poi-addr">Av. de la Bajamar 88</div><div class="poi-cat cat-home"><span data-lang="es">Tu Airbnb</span><span data-lang="en">Your Airbnb</span><span data-lang="fr">Votre Airbnb</span><span data-lang="de">Ihr Airbnb</span><span data-lang="it">Il tuo Airbnb</span></div></div></div>
+      <div class="poi-card" id="card-puntilla"><span class="poi-emoji">🏖️</span><div class="poi-info"><div class="poi-name">Playa de la Puntilla</div><div class="poi-addr"><span data-lang="es">600m · apta para perros</span><span data-lang="en">600m · dog-friendly</span><span data-lang="fr">600m · chiens bienvenus</span><span data-lang="de">600m · hundefreundlich</span><span data-lang="it">600m · adatta ai cani</span></div><div class="poi-cat cat-beach"><span data-lang="es">Playa</span><span data-lang="en">Beach</span><span data-lang="fr">Plage</span><span data-lang="de">Strand</span><span data-lang="it">Spiaggia</span></div></div></div>
+      <div class="poi-card" id="card-valdelagrana"><span class="poi-emoji">🏖️</span><div class="poi-info"><div class="poi-name">Playa Valdelagrana</div><div class="poi-addr"><span data-lang="es">Playa principal</span><span data-lang="en">Main beach</span><span data-lang="fr">Plage principale</span><span data-lang="de">Hauptstrand</span><span data-lang="it">Spiaggia principale</span></div><div class="poi-cat cat-beach"><span data-lang="es">Playa</span><span data-lang="en">Beach</span><span data-lang="fr">Plage</span><span data-lang="de">Strand</span><span data-lang="it">Spiaggia</span></div></div></div>
+      <div class="poi-card" id="card-muralla"><span class="poi-emoji">🏖️</span><div class="poi-info"><div class="poi-name">Playa La Muralla</div><div class="poi-addr"><span data-lang="es">Puerto Sherry · Bandera Azul</span><span data-lang="en">Puerto Sherry · Blue Flag</span><span data-lang="fr">Puerto Sherry · Pavillon Bleu</span><span data-lang="de">Puerto Sherry · Blaue Flagge</span><span data-lang="it">Puerto Sherry · Bandiera Blu</span></div><div class="poi-cat cat-beach"><span data-lang="es">Playa</span><span data-lang="en">Beach</span><span data-lang="fr">Plage</span><span data-lang="de">Strand</span><span data-lang="it">Spiaggia</span></div></div></div>
+      <div class="poi-card" id="card-phiphi"><span class="poi-emoji">🍹</span><div class="poi-info"><div class="poi-name">PhiPhi Beach</div><div class="poi-addr"><span data-lang="es">Puerto Sherry</span><span data-lang="en">Puerto Sherry</span><span data-lang="it">Puerto Sherry</span></div><div class="poi-cat cat-nightlife"><span data-lang="es">Vida nocturna</span><span data-lang="en">Nightlife</span><span data-lang="fr">Vie nocturne</span><span data-lang="de">Nachtleben</span><span data-lang="it">Vita notturna</span></div></div></div>
+      <div class="poi-card" id="card-margarita"><span class="poi-emoji">🌅</span><div class="poi-info"><div class="poi-name">Margarita</div><div class="poi-addr"><span data-lang="es">Puerto Sherry</span><span data-lang="en">Puerto Sherry</span><span data-lang="it">Puerto Sherry</span></div><div class="poi-cat cat-nightlife"><span data-lang="es">Vida nocturna</span><span data-lang="en">Nightlife</span><span data-lang="fr">Vie nocturne</span><span data-lang="de">Nachtleben</span><span data-lang="it">Vita notturna</span></div></div></div>
+      <div class="poi-card" id="card-canalla"><span class="poi-emoji">🎶</span><div class="poi-info"><div class="poi-name">Playa Canalla</div><div class="poi-addr"><span data-lang="es">Puerto Sherry</span><span data-lang="en">Puerto Sherry</span><span data-lang="it">Puerto Sherry</span></div><div class="poi-cat cat-nightlife">Beach Club</div></div></div>
+      <div class="poi-card" id="card-lioclub"><span class="poi-emoji">🎭</span><div class="poi-info"><div class="poi-name">Lio Club Puntilla</div><div class="poi-addr"><span data-lang="es">Av. de la Bajamar</span><span data-lang="en">Av. de la Bajamar</span><span data-lang="fr">Av. de la Bajamar</span><span data-lang="de">Av. de la Bajamar</span><span data-lang="it">Av. de la Bajamar</span></div><div class="poi-cat cat-nightlife"><span data-lang="es">Vida nocturna</span><span data-lang="en">Nightlife</span><span data-lang="fr">Vie nocturne</span><span data-lang="de">Nachtleben</span><span data-lang="it">Vita notturna</span></div></div></div>
+      <div class="poi-card" id="card-cristalera"><span class="poi-emoji">🎹</span><div class="poi-info"><div class="poi-name">Bar La Cristalera</div><div class="poi-addr"><span data-lang="es">Pl. Galeras Reales</span><span data-lang="en">Pl. Galeras Reales</span><span data-lang="fr">Pl. Galeras Reales</span><span data-lang="de">Pl. Galeras Reales</span><span data-lang="it">Pl. Galeras Reales</span></div><div class="poi-cat cat-nightlife"><span data-lang="es">Piano bar</span><span data-lang="en">Piano bar</span><span data-lang="fr">Piano bar</span><span data-lang="de">Piano-Bar</span><span data-lang="it">Piano bar</span></div></div></div>
+      <div class="poi-card" id="card-banana"><span class="poi-emoji">🍌</span><div class="poi-info"><div class="poi-name">Banana Club</div><div class="poi-addr"><span data-lang="es">Ribera del Marisco</span><span data-lang="en">Ribera del Marisco</span><span data-lang="fr">Ribera del Marisco</span><span data-lang="de">Ribera del Marisco</span><span data-lang="it">Ribera del Marisco</span></div><div class="poi-cat cat-nightlife"><span data-lang="es">Discoteca</span><span data-lang="en">Disco club</span><span data-lang="fr">Discothèque</span><span data-lang="de">Diskothek</span><span data-lang="it">Discoteca</span></div></div></div>
+      <div class="poi-card" id="card-castillo"><span class="poi-emoji">🏰</span><div class="poi-info"><div class="poi-name">Castillo San Marcos</div><div class="poi-addr"><span data-lang="es">Casco histórico</span><span data-lang="en">Historic centre</span><span data-lang="fr">Centre historique</span><span data-lang="de">Historisches Zentrum</span><span data-lang="it">Centro storico</span></div><div class="poi-cat cat-culture"><span data-lang="es">Cultura</span><span data-lang="en">Culture</span><span data-lang="fr">Culture</span><span data-lang="de">Kultur</span><span data-lang="it">Cultura</span></div></div></div>
+      <div class="poi-card" id="card-plazatoros"><span class="poi-emoji">🐂</span><div class="poi-info"><div class="poi-name">Real Plaza de Toros</div><div class="poi-addr"><span data-lang="es">Construida en 1880</span><span data-lang="en">Built in 1880</span><span data-lang="fr">Construite en 1880</span><span data-lang="de">Gebaut 1880</span><span data-lang="it">Costruita nel 1880</span></div><div class="poi-cat cat-culture"><span data-lang="es">Cultura</span><span data-lang="en">Culture</span><span data-lang="fr">Culture</span><span data-lang="de">Kultur</span><span data-lang="it">Cultura</span></div></div></div>
+      <div class="poi-card" id="card-alberti"><span class="poi-emoji">🎨</span><div class="poi-info"><div class="poi-name">Museo Rafael Alberti</div><div class="poi-addr"><span data-lang="es">Premio Cervantes 1983</span><span data-lang="en">1983 Cervantes Prize</span><span data-lang="fr">Prix Cervantes 1983</span><span data-lang="de">Cervantes-Preis 1983</span><span data-lang="it">Premio Cervantes 1983</span></div><div class="poi-cat cat-culture"><span data-lang="es">Museo</span><span data-lang="en">Museum</span><span data-lang="fr">Musée</span><span data-lang="de">Museum</span><span data-lang="it">Museo</span></div></div></div>
+      <div class="poi-card" id="card-valdivieso"><span class="poi-emoji">🏛️</span><div class="poi-info"><div class="poi-name">Palacio de Valdivieso</div><div class="poi-addr"><span data-lang="es">Barroco s. XVIII</span><span data-lang="en">18th-c. Baroque</span><span data-lang="fr">Baroque XVIIIe</span><span data-lang="de">Barock 18. Jh.</span><span data-lang="it">Barocco XVIII sec.</span></div><div class="poi-cat cat-culture"><span data-lang="es">Patrimonio</span><span data-lang="en">Heritage</span><span data-lang="fr">Patrimoine</span><span data-lang="de">Kulturerbe</span><span data-lang="it">Patrimonio</span></div></div></div>
+      <div class="poi-card" id="card-aranibar"><span class="poi-emoji">🏩</span><div class="poi-info"><div class="poi-name">Palacio de Araníbar</div><div class="poi-addr"><span data-lang="es">Oficina de Turismo · Gratis</span><span data-lang="en">Tourist Office · Free</span><span data-lang="fr">Office de tourisme · Gratuit</span><span data-lang="de">Touristbüro · Kostenlos</span><span data-lang="it">Ufficio del Turismo · Gratis</span></div><div class="poi-cat cat-culture"><span data-lang="es">Palacio</span><span data-lang="en">Palace</span><span data-lang="fr">Palais</span><span data-lang="de">Palast</span><span data-lang="it">Palazzo</span></div></div></div>
+      <div class="poi-card" id="card-iglesia"><span class="poi-emoji">⛪</span><div class="poi-info"><div class="poi-name">Iglesia Mayor Prioral</div><div class="poi-addr"><span data-lang="es">Plaza de España · Gótico-renacentista</span><span data-lang="en">Plaza de España · Gothic-Renaissance</span><span data-lang="fr">Plaza de España · Gothique-Renaissance</span><span data-lang="de">Plaza de España · Gotik-Renaissance</span><span data-lang="it">Plaza de España · Gotico-rinascimentale</span></div><div class="poi-cat cat-culture"><span data-lang="es">Iglesia</span><span data-lang="en">Church</span><span data-lang="fr">Église</span><span data-lang="de">Kirche</span><span data-lang="it">Chiesa</span></div></div></div>
+      <div class="poi-card" id="card-osborne"><span class="poi-emoji">🍷</span><div class="poi-info"><div class="poi-name">Bodegas Osborne</div><div class="poi-addr"><span data-lang="es">33.603 visitas/año</span><span data-lang="en">33,603 visits/year</span><span data-lang="fr">33 603 visites/an</span><span data-lang="de">33.603 Besuche/Jahr</span><span data-lang="it">33.603 visite/anno</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Bodega</span><span data-lang="en">Winery</span><span data-lang="fr">Bodega</span><span data-lang="de">Weingut</span><span data-lang="it">Cantina</span></div></div></div>
+      <div class="poi-card" id="card-aponiente"><span class="poi-emoji">⭐</span><div class="poi-info"><div class="poi-name">Aponiente</div><div class="poi-addr"><span data-lang="es">3 Estrellas Michelin</span><span data-lang="en">3 Michelin Stars</span><span data-lang="fr">3 Étoiles Michelin</span><span data-lang="de">3 Michelin-Sterne</span><span data-lang="it">3 Stelle Michelin</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Alta Cocina</span><span data-lang="en">Fine Dining</span><span data-lang="fr">Haute Cuisine</span><span data-lang="de">Gourmetküche</span><span data-lang="it">Alta Cucina</span></div></div></div>
+      <div class="poi-card" id="card-ribera"><span class="poi-emoji">🦞</span><div class="poi-info"><div class="poi-name">Ribera del Marisco</div><div class="poi-addr"><span data-lang="es">20 min a pie</span><span data-lang="en">20 min walk</span><span data-lang="fr">20 min à pied</span><span data-lang="de">20 Min. zu Fuß</span><span data-lang="it">20 min a piedi</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Gastronomía</span><span data-lang="en">Gastronomy</span><span data-lang="fr">Gastronomie</span><span data-lang="de">Gastronomie</span><span data-lang="it">Gastronomia</span></div></div></div>
+      <div class="poi-card" id="card-venencia"><span class="poi-emoji">🐟</span><div class="poi-info"><div class="poi-name">La Venencia</div><div class="poi-addr"><span data-lang="es">Frente al mar</span><span data-lang="en">Seafront</span><span data-lang="fr">Bord de mer</span><span data-lang="de">Am Meer</span><span data-lang="it">Fronte mare</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Restaurante</span><span data-lang="en">Restaurant</span><span data-lang="fr">Restaurant</span><span data-lang="de">Restaurant</span><span data-lang="it">Ristorante</span></div></div></div>
+      <div class="poi-card" id="card-barpepito"><span class="poi-emoji">🥘</span><div class="poi-info"><div class="poi-name">Bar Pepito</div><div class="poi-addr"><span data-lang="es">Tapas · 1.258 reseñas</span><span data-lang="en">Tapas · 1,258 reviews</span><span data-lang="fr">Tapas · 1 258 avis</span><span data-lang="de">Tapas · 1.258 Bewertungen</span><span data-lang="it">Tapas · 1.258 recensioni</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Bar de Tapas</span><span data-lang="en">Tapas Bar</span><span data-lang="fr">Bar à tapas</span><span data-lang="de">Tapas-Bar</span><span data-lang="it">Tapas Bar</span></div></div></div>
+      <div class="poi-card" id="card-torotapas"><span class="poi-emoji">🐂</span><div class="poi-info"><div class="poi-name">Toro Tapas</div><div class="poi-addr"><span data-lang="es">En Bodegas Osborne</span><span data-lang="en">Inside Bodegas Osborne</span><span data-lang="fr">Dans Bodegas Osborne</span><span data-lang="de">In Bodegas Osborne</span><span data-lang="it">All'interno delle Bodegas Osborne</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Tapas</span><span data-lang="en">Tapas</span><span data-lang="fr">Tapas</span><span data-lang="de">Tapas</span><span data-lang="it">Tapas</span></div></div></div>
+      <div class="poi-card" id="card-ditaly"><span class="poi-emoji">🍕</span><div class="poi-info"><div class="poi-name">DITALY</div><div class="poi-addr"><span data-lang="es">4,8★ · Italiano</span><span data-lang="en">4.8★ · Italian</span><span data-lang="fr">4,8★ · Italien</span><span data-lang="de">4,8★ · Italienisch</span><span data-lang="it">4,8★ · Italiano</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Restaurante italiano</span><span data-lang="en">Italian restaurant</span><span data-lang="fr">Restaurant italien</span><span data-lang="de">Ital. Restaurant</span><span data-lang="it">Ristorante italiano</span></div></div></div>
+      <div class="poi-card" id="card-tabernachef"><span class="poi-emoji">🎣</span><div class="poi-info"><div class="poi-name">Taberna Chef del Mar</div><div class="poi-addr"><span data-lang="es">Universo Ángel León</span><span data-lang="en">Ángel León universe</span><span data-lang="fr">Univers Ángel León</span><span data-lang="de">Ángel León Universum</span><span data-lang="it">Universo Ángel León</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Taberna</span><span data-lang="en">Tavern</span><span data-lang="fr">Taverne</span><span data-lang="de">Taverne</span><span data-lang="it">Taberna</span></div></div></div>
+      <div class="poi-card" id="card-romerijo"><span class="poi-emoji">🦐</span><div class="poi-info"><div class="poi-name">Romerijo</div><div class="poi-addr"><span data-lang="es">13.100 reseñas · Temp. cerrado</span><span data-lang="en">13,100 reviews · Temp. closed</span><span data-lang="fr">13 100 avis · Fermé temp.</span><span data-lang="de">13.100 Bew. · Vorübgh. geschl.</span><span data-lang="it">13.100 recensioni · temp. chiuso</span></div><div class="poi-cat cat-gastro"><span data-lang="es">Marisquería</span><span data-lang="en">Seafood</span><span data-lang="fr">Fruits de mer</span><span data-lang="de">Meeresfrüchte</span><span data-lang="it">Frutti di mare</span></div></div></div>
+      <div class="poi-card" id="card-rcn"><span class="poi-emoji">⚓</span><div class="poi-info"><div class="poi-name">Real Club Náutico</div><div class="poi-addr">Av. de la Bajamar 13</div><div class="poi-cat cat-nautica"><span data-lang="es">Náutica · Gastronomía · Deporte</span><span data-lang="en">Nautical · Gastronomy · Sport</span><span data-lang="fr">Nautique · Gastronomie · Sport</span><span data-lang="de">Nautik · Gastronomie · Sport</span><span data-lang="it">Nautica · Gastronomia · Sport</span></div></div></div>
+      <div class="poi-card" id="card-tren"><span class="poi-emoji">🚆</span><div class="poi-info"><div class="poi-name">Estación de Tren</div><div class="poi-addr"><span data-lang="es">Cercanías C1 · Alvia · MD</span><span data-lang="en">Cercanías C1 · Alvia · MD</span><span data-lang="fr">Cercanías C1 · Alvia · MD</span><span data-lang="de">Cercanías C1 · Alvia · MD</span><span data-lang="it">Cercanías C1 · Alvia · MD</span></div><div class="poi-cat cat-transport"><span data-lang="es">Transporte</span><span data-lang="en">Transport</span><span data-lang="fr">Transport</span><span data-lang="de">Transport</span><span data-lang="it">Trasporto</span></div></div></div>
+      <div class="poi-card" id="card-catamaran"><span class="poi-emoji">⛵</span><div class="poi-info"><div class="poi-name">Catamaran Cádiz</div><div class="poi-addr"><span data-lang="es">15+ travesías al día</span><span data-lang="en">15+ crossings/day</span><span data-lang="fr">15+ traversées/jour</span><span data-lang="de">15+ Überfahrten/Tag</span><span data-lang="it">15+ traversate al giorno</span></div><div class="poi-cat cat-transport"><span data-lang="es">Transporte</span><span data-lang="en">Transport</span><span data-lang="fr">Transport</span><span data-lang="de">Transport</span><span data-lang="it">Trasporto</span></div></div></div>
+      <div class="poi-card" id="card-calita"><span class="poi-emoji">🏖️</span><div class="poi-info"><div class="poi-name">Playa la Calita</div><div class="poi-addr"><span data-lang="es">Puerto Sherry · cala recogida</span><span data-lang="en">Puerto Sherry · sheltered cove</span><span data-lang="fr">Puerto Sherry · crique abritée</span><span data-lang="de">Puerto Sherry · geschützte Bucht</span><span data-lang="it">Puerto Sherry · cala riparata</span></div><div class="poi-cat cat-beach"><span data-lang="es">Playa</span><span data-lang="en">Beach</span><span data-lang="fr">Plage</span><span data-lang="de">Strand</span><span data-lang="it">Spiaggia</span></div></div></div>
+      <div class="poi-card" id="card-torunos"><span class="poi-emoji">🌿</span><div class="poi-info"><div class="poi-name">Parque Los Toruños</div><div class="poi-addr"><span data-lang="es">Dunas y naturaleza</span><span data-lang="en">Dunes &amp; nature</span><span data-lang="fr">Dunes &amp; nature</span><span data-lang="de">Dünen &amp; Natur</span><span data-lang="it">Dune e natura</span></div><div class="poi-cat cat-nature"><span data-lang="es">Naturaleza</span><span data-lang="en">Nature</span><span data-lang="fr">Nature</span><span data-lang="de">Natur</span><span data-lang="it">Natura</span></div></div></div>
+      <div class="poi-card" id="card-puertosherry"><span class="poi-emoji">⚓</span><div class="poi-info"><div class="poi-name">Puerto Sherry Marina</div><div class="poi-addr"><span data-lang="es">Atardecer sobre la bahía</span><span data-lang="en">Sunset over the bay</span><span data-lang="fr">Coucher de soleil sur la baie</span><span data-lang="de">Sonnenuntergang über der Bucht</span><span data-lang="it">Tramonto sulla baia</span></div><div class="poi-cat cat-nautica"><span data-lang="es">Marina</span><span data-lang="en">Marina</span><span data-lang="fr">Marina</span><span data-lang="de">Marina</span><span data-lang="it">Marina</span></div></div></div>
+      <div class="poi-card" id="card-mercadona"><span class="poi-emoji">🛒</span><div class="poi-info"><div class="poi-name">Supermercados El Jamón</div><div class="poi-addr"><span data-lang="es">6 min a pie</span><span data-lang="en">6 min walk</span><span data-lang="fr">6 min à pied</span><span data-lang="de">6 Min. zu Fuß</span><span data-lang="it">6 min a piedi</span></div><div class="poi-cat cat-supermercado"><span data-lang="es">Supermercado</span><span data-lang="en">Supermarket</span><span data-lang="fr">Supermarché</span><span data-lang="de">Supermarkt</span><span data-lang="it">Supermercato</span></div></div></div>
+      <div class="poi-card" id="card-aldi"><span class="poi-emoji">🛒</span><div class="poi-info"><div class="poi-name">Aldi</div><div class="poi-addr"><span data-lang="es">C. Valdés s/n</span><span data-lang="en">C. Valdés s/n</span><span data-lang="fr">C. Valdés s/n</span><span data-lang="de">C. Valdés s/n</span><span data-lang="it">C. Valdés s/n</span></div><div class="poi-cat cat-supermercado"><span data-lang="es">Supermercado</span><span data-lang="en">Supermarket</span><span data-lang="fr">Supermarché</span><span data-lang="de">Supermarkt</span><span data-lang="it">Supermercato</span></div></div></div>
+      <div class="poi-card" id="card-mercadona2"><span class="poi-emoji">🛒</span><div class="poi-info"><div class="poi-name">Mercadona Dunas</div><div class="poi-addr"><span data-lang="es">Rda. de las Dunas 7</span><span data-lang="en">Rda. de las Dunas 7</span><span data-lang="fr">Rda. de las Dunas 7</span><span data-lang="de">Rda. de las Dunas 7</span><span data-lang="it">Rda. de las Dunas 7</span></div><div class="poi-cat cat-supermercado"><span data-lang="es">Supermercado</span><span data-lang="en">Supermarket</span><span data-lang="fr">Supermarché</span><span data-lang="de">Supermarkt</span><span data-lang="it">Supermercato</span></div></div></div>
+      <div class="poi-card" id="card-dia"><span class="poi-emoji">🛒</span><div class="poi-info"><div class="poi-name">Supermercados Dia</div><div class="poi-addr"><span data-lang="es">Av. Pintor A. F. Sevilla 18A</span><span data-lang="en">Av. Pintor A. F. Sevilla 18A</span><span data-lang="fr">Av. Pintor A. F. Sevilla 18A</span><span data-lang="de">Av. Pintor A. F. Sevilla 18A</span><span data-lang="it">Av. Pintor A. F. Sevilla 18A</span></div><div class="poi-cat cat-supermercado"><span data-lang="es">Supermercado</span><span data-lang="en">Supermarket</span><span data-lang="fr">Supermarché</span><span data-lang="de">Supermarkt</span><span data-lang="it">Supermercato</span></div></div></div>
     </div>
   </div>
 </section>
 
 <!-- ══════════ ATMOSPHERE VIDEO ══════════ -->
 <section class="atmosphere-section fade-in" id="atmosfera">
-  <div class="atmosphere-video-wrap">
-    <video autoplay muted loop playsinline preload="metadata" poster="">
-      <source src="hero_video.mp4" type="video/mp4">
-    </video>
-    <button class="atm-play-btn" id="atmPlayBtn" aria-label="Play with sound" title="Play with sound">
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v14l11-7-11-7z"/></svg>
-    </button>
-    <div class="atm-seek-wrap">
-      <input type="range" class="atm-seek-bar" id="atmSeekBar" min="0" max="100" value="0" step="0.1" aria-label="Seek video">
-    </div>
-    <div class="atmosphere-overlay">
-      <span class="atmosphere-label">✦ <span data-lang="es">La experiencia</span><span data-lang="en">The experience</span><span data-lang="fr">L'expérience</span><span data-lang="de">Das Erlebnis</span></span>
-      <h2 class="atmosphere-title">
-        <span data-lang="es">Nuestra Atmósfera</span>
-        <span data-lang="en">Our Atmosphere</span>
-        <span data-lang="fr">Notre Atmosphère</span>
-        <span data-lang="de">Unsere Atmosphäre</span>
-      </h2>
-      <p class="atmosphere-sub">
-        <span data-lang="es">Luz atlántica, brisa marina y el rumor de las olas al despertar. Así se siente vivir en OlasDelSur.</span>
-        <span data-lang="en">Atlantic light, sea breeze and the sound of waves at dawn. This is what living at OlasDelSur feels like.</span>
-        <span data-lang="fr">Lumière atlantique, brise marine et murmure des vagues au réveil. C'est ce que l'on ressent à OlasDelSur.</span>
-        <span data-lang="de">Atlantisches Licht, Meeresluft und das Rauschen der Wellen beim Erwachen. So fühlt sich das Leben in OlasDelSur an.</span>
+  <div class="atmosphere-inner">
+    <div class="section-header">
+      <span class="section-label">
+        <span data-lang="es">🎬 Descubre</span><span data-lang="en">🎬 Discover</span><span data-lang="fr">🎬 Découvrez</span><span data-lang="de">🎬 Entdecken</span><span data-lang="it">🎬 Scopri</span>
+      </span>
+      <h2 class="section-title">El Puerto de Santa María</h2>
+      <p class="section-desc">
+        <span data-lang="es">Déjate cautivar por la magia de El Puerto de Santa María en este vídeo.</span>
+        <span data-lang="en">Let yourself be captivated by the magic of El Puerto de Santa María in this video.</span>
+        <span data-lang="fr">Laissez-vous séduire par la magie d'El Puerto de Santa María dans cette vidéo.</span>
+        <span data-lang="de">Lassen Sie sich von der Magie von El Puerto de Santa María in diesem Video verzaubern.</span>
+        <span data-lang="it">Lasciati affascinare dalla magia di El Puerto de Santa María in questo video.</span>
       </p>
-      <div class="atmosphere-bar">
-        <span class="atmosphere-bar-line"></span>
-        <span class="atmosphere-bar-dot"></span>
-        <span class="atmosphere-bar-line"></span>
-      </div>
+    </div>
+    <div class="atm-video-frame">
+      <div id="atmYTPlayer"></div>
+    </div>
+    <script>
+      var tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+      var atmPlayer;
+      function onYouTubeIframeAPIReady() {
+        atmPlayer = new YT.Player('atmYTPlayer', {
+          videoId: '-zQbS5or5-k',
+          host: 'https://www.youtube-nocookie.com',
+          playerVars: {
+            controls: 1, rel: 0, modestbranding: 1,
+            iv_load_policy: 3, playsinline: 1
+          },
+          events: {
+            onReady: function(e) {
+              e.target.setPlaybackQuality('hd2160');
+            },
+            onStateChange: function(e) {
+              if (e.data === YT.PlayerState.PLAYING) {
+                e.target.setPlaybackQuality('hd2160');
+              }
+            },
+            onPlaybackQualityChange: function(e) {
+              if (e.data !== 'hd2160') {
+                var avail = atmPlayer.getAvailableQualityLevels();
+                var best = avail[0] || 'hd2160';
+                atmPlayer.setPlaybackQuality(best);
+              }
+            }
+          }
+        });
+      }
+    </script>
+    <div class="atmosphere-bar">
+      <span class="atmosphere-bar-line"></span>
+      <span class="atmosphere-bar-dot"></span>
+      <span class="atmosphere-bar-line"></span>
     </div>
   </div>
 </section>
@@ -1542,15 +1478,15 @@
     <!-- Left: filter tabs + chips -->
     <div class="poi-explorer-left">
       <div class="poi-cat-tabs" id="poiCatTabs">
-        <button class="poi-cat-tab active" data-filter="all">🌍 <span data-lang="es">Todos</span><span data-lang="en">All</span><span data-lang="fr">Tous</span><span data-lang="de">Alle</span></button>
-        <button class="poi-cat-tab" data-filter="beach">🏖️ <span data-lang="es">Playas</span><span data-lang="en">Beaches</span><span data-lang="fr">Plages</span><span data-lang="de">Strände</span></button>
-        <button class="poi-cat-tab" data-filter="gastro">🦞 <span data-lang="es">Gastro</span><span data-lang="en">Gastro</span><span data-lang="fr">Gastro</span><span data-lang="de">Gastro</span></button>
-        <button class="poi-cat-tab" data-filter="nightlife">🎶 <span data-lang="es">Noche</span><span data-lang="en">Night</span><span data-lang="fr">Nuit</span><span data-lang="de">Nacht</span></button>
-        <button class="poi-cat-tab" data-filter="culture">🏰 <span data-lang="es">Cultura</span><span data-lang="en">Culture</span><span data-lang="fr">Culture</span><span data-lang="de">Kultur</span></button>
-        <button class="poi-cat-tab" data-filter="nautica">⚓ <span data-lang="es">Náutica</span><span data-lang="en">Nautical</span><span data-lang="fr">Nautique</span><span data-lang="de">Nautik</span></button>
-        <button class="poi-cat-tab" data-filter="nature">🌿 <span data-lang="es">Naturaleza</span><span data-lang="en">Nature</span><span data-lang="fr">Nature</span><span data-lang="de">Natur</span></button>
-        <button class="poi-cat-tab" data-filter="transport">⛵ <span data-lang="es">Transporte</span><span data-lang="en">Transport</span><span data-lang="fr">Transport</span><span data-lang="de">Transport</span></button>
-        <button class="poi-cat-tab" data-filter="supermercado">🛒 <span data-lang="es">Supermercados</span><span data-lang="en">Supermarkets</span><span data-lang="fr">Supermarchés</span><span data-lang="de">Supermärkte</span></button>
+        <button class="poi-cat-tab active" data-filter="all">🌍 <span data-lang="es">Todos</span><span data-lang="en">All</span><span data-lang="fr">Tous</span><span data-lang="de">Alle</span><span data-lang="it">Tutti</span></button>
+        <button class="poi-cat-tab" data-filter="beach">🏖️ <span data-lang="es">Playas</span><span data-lang="en">Beaches</span><span data-lang="fr">Plages</span><span data-lang="de">Strände</span><span data-lang="it">Spiagge</span></button>
+        <button class="poi-cat-tab" data-filter="gastro">🦞 <span data-lang="es">Gastro</span><span data-lang="en">Gastro</span><span data-lang="fr">Gastro</span><span data-lang="de">Gastro</span><span data-lang="it">Gastro</span></button>
+        <button class="poi-cat-tab" data-filter="nightlife">🎶 <span data-lang="es">Noche</span><span data-lang="en">Night</span><span data-lang="fr">Nuit</span><span data-lang="de">Nacht</span><span data-lang="it">Notte</span></button>
+        <button class="poi-cat-tab" data-filter="culture">🏰 <span data-lang="es">Cultura</span><span data-lang="en">Culture</span><span data-lang="fr">Culture</span><span data-lang="de">Kultur</span><span data-lang="it">Cultura</span></button>
+        <button class="poi-cat-tab" data-filter="nautica">⚓ <span data-lang="es">Náutica</span><span data-lang="en">Nautical</span><span data-lang="fr">Nautique</span><span data-lang="de">Nautik</span><span data-lang="it">Nautica</span></button>
+        <button class="poi-cat-tab" data-filter="nature">🌿 <span data-lang="es">Naturaleza</span><span data-lang="en">Nature</span><span data-lang="fr">Nature</span><span data-lang="de">Natur</span><span data-lang="it">Natura</span></button>
+        <button class="poi-cat-tab" data-filter="transport">⛵ <span data-lang="es">Transporte</span><span data-lang="en">Transport</span><span data-lang="fr">Transport</span><span data-lang="de">Transport</span><span data-lang="it">Trasporto</span></button>
+        <button class="poi-cat-tab" data-filter="supermercado">🛒 <span data-lang="es">Supermercados</span><span data-lang="en">Supermarkets</span><span data-lang="fr">Supermarchés</span><span data-lang="de">Supermärkte</span><span data-lang="it">Supermercati</span></button>
       </div>
       <div class="poi-chips" id="poiChips"></div>
     </div>
@@ -1559,7 +1495,7 @@
     <div class="poi-detail-panel" id="poiDetailPanel">
       <div class="poi-default-msg" id="poiDefaultMsg">
         <span class="poi-default-msg-icon">👆</span>
-        <span data-lang="es">Selecciona un lugar para ver todos los detalles</span><span data-lang="en">Select a place to see all details</span><span data-lang="fr">Sélectionnez un lieu pour voir tous les détails</span><span data-lang="de">Wählen Sie einen Ort, um alle Details zu sehen</span>
+        <span data-lang="es">Selecciona un lugar para ver todos los detalles</span><span data-lang="en">Select a place to see all details</span><span data-lang="fr">Sélectionnez un lieu pour voir tous les détails</span><span data-lang="de">Wählen Sie einen Ort, um alle Details zu sehen</span><span data-lang="it">Seleziona un luogo per vedere tutti i dettagli</span>
       </div>
       <div id="poiDetailContent" style="display:none"></div>
     </div>
@@ -1573,16 +1509,16 @@
     <path d="M0,35 C360,70 720,0 1080,35 C1260,52 1380,18 1440,35 L1440,70 L0,70Z" fill="rgba(255,255,255,0.12)"/>
   </svg>
 
-  <h2 class="cta-title"><span data-lang="es">Reserva OlasDelSur</span><span data-lang="en">Book OlasDelSur</span><span data-lang="fr">Réserver OlasDelSur</span><span data-lang="de">OlasDelSur buchen</span></h2>
-  <p class="cta-sub"><span data-lang="es">Playa, gastronomía, cultura y vida nocturna — todo al alcance de la mano desde la Bajamar recién renovada.</span><span data-lang="en">Beach, gastronomy, culture and nightlife — everything within reach from the newly renovated Bajamar.</span><span data-lang="fr">Plage, gastronomie, culture et vie nocturne — tout à portée de main depuis la Bajamar nouvellement rénovée.</span><span data-lang="de">Strand, Gastronomie, Kultur und Nachtleben — alles in Reichweite der neu renovierten Bajamar.</span></p>
+  <h2 class="cta-title"><span data-lang="es">Reserva OlasDelSur</span><span data-lang="en">Book OlasDelSur</span><span data-lang="fr">Réserver OlasDelSur</span><span data-lang="de">OlasDelSur buchen</span><span data-lang="it">Prenota OlasDelSur</span></h2>
+  <p class="cta-sub"><span data-lang="es">Playa, gastronomía, cultura y vida nocturna — todo al alcance de la mano desde la Bajamar recién renovada.</span><span data-lang="en">Beach, gastronomy, culture and nightlife — everything within reach from the newly renovated Bajamar.</span><span data-lang="fr">Plage, gastronomie, culture et vie nocturne — tout à portée de main depuis la Bajamar nouvellement rénovée.</span><span data-lang="de">Strand, Gastronomie, Kultur und Nachtleben — alles in Reichweite der neu renovierten Bajamar.</span><span data-lang="it">Spiaggia, gastronomia, cultura e vita notturna — tutto a portata di mano dalla Bajamar appena rinnovata.</span></p>
 
   <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative">
     <a href="https://www.airbnb.com/rooms/833027419091697738?unique_share_id=b44f9908-1b50-4db7-8c14-f85f222d304c&viralityEntryPoint=1&s=76" target="_blank" class="btn btn-white" style="font-size:1rem;padding:16px 38px">
-      <span data-lang="es">🏠 Reservar en Airbnb</span><span data-lang="en">🏠 Book on Airbnb</span><span data-lang="fr">🏠 Réserver sur Airbnb</span><span data-lang="de">🏠 Bei Airbnb buchen</span>
+      <span data-lang="es">🏠 Reservar en Airbnb</span><span data-lang="en">🏠 Book on Airbnb</span><span data-lang="fr">🏠 Réserver sur Airbnb</span><span data-lang="de">🏠 Bei Airbnb buchen</span><span data-lang="it">🏠 Prenota su Airbnb</span>
     </a>
     <a href="#mappa" class="btn btn-outline-white" style="font-size:1rem;padding:16px 38px" data-lang="es">
       📍 Ver en el mapa
-    </a><a href="#mappa" class="btn btn-outline-white" style="font-size:1rem;padding:16px 38px" data-lang="en">📍 View on map</a><a href="#mappa" class="btn btn-outline-white" style="font-size:1rem;padding:16px 38px" data-lang="fr">📍 Voir sur la carte</a><a href="#mappa" class="btn btn-outline-white" style="font-size:1rem;padding:16px 38px" data-lang="de">📍 Auf der Karte</a>
+    </a><a href="#mappa" class="btn btn-outline-white" style="font-size:1rem;padding:16px 38px" data-lang="en">📍 View on map</a><a href="#mappa" class="btn btn-outline-white" style="font-size:1rem;padding:16px 38px" data-lang="fr">📍 Voir sur la carte</a><a href="#mappa" class="btn btn-outline-white" style="font-size:1rem;padding:16px 38px" data-lang="de">📍 Auf der Karte</a><a href="#mappa" class="btn btn-outline-white" style="font-size:1rem;padding:16px 38px" data-lang="it">📍 Vedi sulla mappa</a>
   </div>
 
   <p style="margin-top:22px;font-size:0.78rem;color:rgba(255,255,255,0.65);position:relative">
@@ -1628,7 +1564,7 @@
   </div>
 
   <div class="footer-links">
-    <a href="#mappa"><span data-lang="es">🗺️ Mapa</span><span data-lang="en">🗺️ Map</span><span data-lang="fr">🗺️ Carte</span><span data-lang="de">🗺️ Karte</span></a>
+    <a href="#mappa"><span data-lang="es">🗺️ Mapa</span><span data-lang="en">🗺️ Map</span><span data-lang="fr">🗺️ Carte</span><span data-lang="de">🗺️ Karte</span><span data-lang="it">🗺️ Mappa</span></a>
     
     <a href="https://playacanalla.com" target="_blank">🎶 Playa Canalla</a>
     <a href="https://www.instagram.com/margaritapuertosherry/" target="_blank">🍹 Margarita</a>
@@ -1639,7 +1575,7 @@
   </div>
 
   <p class="footer-copy">© 2026 OlasDelSur · Avenida de la Bajamar 88 · El Puerto de Santa María, Cádiz, España</p>
-  <p class="footer-copy" style="margin-top:4px">Dati: <a href="https://www.airdna.co" target="_blank" style="color:rgba(255,220,160,0.35)">AirDNA</a> · <a href="https://www.elpuertodesantamaria.es" target="_blank" style="color:rgba(255,220,160,0.35)">Ayuntamiento PSM</a></p>
+  <p class="footer-copy" style="margin-top:4px"><span data-lang="es">Datos:</span><span data-lang="en">Data:</span><span data-lang="fr">Données:</span><span data-lang="de">Daten:</span><span data-lang="it">Dati:</span> <a href="https://www.airdna.co" target="_blank" style="color:rgba(255,220,160,0.35)">AirDNA</a> · <a href="https://www.elpuertodesantamaria.es" target="_blank" style="color:rgba(255,220,160,0.35)">Ayuntamiento PSM</a></p>
 
   <div class="footer-pplx">
     <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
@@ -1656,7 +1592,7 @@
       zoomControl: true,
     });
 
-    // Light tile — CartoDB Positron (chiaro, caldo, ottimo leggibilità)
+    // Light tile — CartoDB Positron
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
       subdomains: 'abcd',
@@ -1664,41 +1600,41 @@
     }).addTo(map);
 
     const places = [
-      { id:"home",       lat:36.588769, lng:-6.231999, title:"OlasDelSur",          category:"home",      icon:"🏠", address:"Avenida de la Bajamar 88",                  desc:"Tu refugio estival en el Guadalete. Acceso peatonal a la playa. Ribera del Marisco a 20 min a pie.", desc_en:"Your summer retreat on the Guadalete. Walking access to the beach. Ribera del Marisco 20 min walk.",                                                                                    rating:null,    link:null },
-      { id:"puntilla",   lat:36.584956, lng:-6.23841, title:"Playa de la Puntilla",                 category:"beach",     icon:"🏖️",address:"Playa de la Puntilla, El Puerto de Santa María",desc:"A solo 600m. 2,5 km de playa dorada con bares e chiringuitos, apta para perros. La más cercana al casco histórico. Pinar de las Dunas de San Antón.", desc_en:"Just 600m away. 2.5 km of golden beach with bars and chiringuitos, dog-friendly. Closest to the historic centre.",                                                                          rating:"4.2★",  link:"https://maps.google.com/?q=Playa+de+la+Puntilla+El+Puerto+de+Santa+Maria" },
-      { id:"valdelagrana",lat:36.5737, lng:-6.2253, title:"Playa de Valdelagrana",                category:"beach",     icon:"🏖️",address:"Valdelagrana, El Puerto de Santa María",       desc:"La playa más famosa. 2+ km, paseo marítimo con bares y restaurantes, surf y kitesurf.", desc_en:"The most famous beach. 2+ km, seafront promenade with bars and restaurants, surf and kitesurf.",                                                                                               rating:"4.2★",  link:"https://maps.google.com/?q=Playa+de+Valdelagrana+El+Puerto+de+Santa+Maria" },
-      { id:"muralla",    lat:36.580832, lng:-6.262349, title:"Playa La Muralla (Puerto Sherry)",     category:"beach",     icon:"🏖️",address:"Puerto Sherry, El Puerto de Santa María",       desc:"Playa Bandera Azul resguardada del viento. Vistas panorámicas a la bahía de Cádiz.", desc_en:"Blue Flag beach sheltered from the wind. Panoramic views over the Bay of Cádiz.",                                                                                                    rating:"4.5★",  link:"https://maps.google.com/?q=Playa+La+Muralla+Puerto+Sherry" },
-      { id:"phiphi",     lat:36.582551, lng:-6.250359, title:"PhiPhi Beach",                         category:"nightlife", icon:"🍹", address:"Avenida del Puerto, Puerto Sherry, 11500",     desc:"Bar al aire libre con impresionantes vistas al atardecer de Cádiz. Cócteles tropicales, música lounge. Horario: todos los días 15:30–00:00.", desc_en:"Open-air bar facing the bay with stunning Cádiz sunset views. Tropical cocktails, lounge music. Hours: daily 3:30 PM–midnight.",                                             rating:"★★★",   link:"https://www.instagram.com/phiphibeachpuertosherry/" },
-      { id:"margarita",  lat:36.582276, lng:-6.250725, title:"Margarita Puerto Sherry",              category:"nightlife", icon:"🌅", address:"Puerto Sherry, El Puerto de Santa María",       desc:"A place for happiness — Music, sun & drinks. Bar de cócteles con terraza vista marina. Abierto todos los días. Reservas: 601 88 50 51.", desc_en:"A place for happiness — Music, sun & drinks. Cocktail bar with sea-view terrace. Open every day. Bookings: 601 88 50 51.",                                                rating:"★★★★",  link:"https://www.instagram.com/margaritapuertosherry/" },
-      { id:"canalla",    lat:36.581865, lng:-6.250394, title:"Playa Canalla",                        category:"nightlife", icon:"🎶", address:"Puerto Sherry, El Puerto de Santa María",       desc:"Beach club boho-chic a orillas del mar. Espíritu Formentera — colores crema, madera y cálidos. Jueves, viernes y sábado. 21K seguidores Instagram.", desc_en:"Boho-chic beach club at the water's edge. Formentera spirit — cream, wood and warm tones. Thu, Fri & Sat. 21K Instagram followers.",                                      rating:"★★★★★", link:"https://playacanalla.com" },
-      { id:"lioclub",   lat:36.5868786, lng:-6.2337538, title:"Lio Club Puntilla Playa",              category:"nightlife", icon:"🎭", address:"Av. de la Bajamar, El Puerto de Santa María",  desc:"Club de ocio nocturno frente al mar, junto a la Playa de la Puntilla. Ambiente festivo con terraza costera. Reservas: +34 662 33 70 28. Temporalmente cerrado.", desc_en:"Seafront nightclub next to Playa de la Puntilla. Festive atmosphere with a coastal terrace. Bookings: +34 662 33 70 28. Currently temporarily closed.", rating:"★★★★½", link:"https://maps.app.goo.gl/GiSgZ18XSrp8zCn27" },
-      { id:"cristalera", lat:36.597649, lng:-6.2236862, title:"Bar La Cristalera",                    category:"nightlife", icon:"🎹", address:"Pl. de las Galeras Reales s/n, El Puerto de Santa María", desc:"Bar musical y piano bar junto al río Guadalete, en pleno centro. Copas, DJ y música en vivo. Abre desde las 15:30. Tel: +34 647 84 54 47.", desc_en:"Music bar and piano bar by the Guadalete river in the city centre. Drinks, DJ and live music. Opens from 3:30 PM. Tel: +34 647 84 54 47.", rating:"★★★★", link:"https://m.facebook.com/lacristaleracopas" },
-      { id:"banana",    lat:36.5982164, lng:-6.2242166, title:"Banana Club",                          category:"nightlife", icon:"🍌", address:"C. Ribera del Marisco 13, El Puerto de Santa María", desc:"La discoteca más animada del Puerto, referencia de la vida nocturna desde hace 5 años. Abre a las 23:00. Reservas WhatsApp: 697 85 00 50.", desc_en:"The liveliest club in El Puerto, a nightlife landmark for 5 years. Opens at 11 PM. Bookings WhatsApp: 697 85 00 50.", rating:"★★★", link:"https://bananaelpuerto.com" },
-      { id:"castillo",   lat:36.596356, lng:-6.226796, title:"Castillo de San Marcos",               category:"culture",   icon:"🏰", address:"Plaza del Castillo s/n, El Puerto de Santa María",desc:"Fortaleza del s. XII construida sobre las ruinas de una mezquita árabe. Vinculada a los viajes de Colón. Incluye degustaciones de jerez.", desc_en:"12th-century fortress built on the ruins of an Arab mosque. Linked to Columbus's voyages. Includes sherry tastings.",                                                  rating:"★★★★",  link:"https://maps.google.com/?q=Castillo+San+Marcos+El+Puerto+de+Santa+Maria" },
-      { id:"plazatoros",  lat:36.5967774, lng:-6.2327389, title:"Real Plaza de Toros",                 category:"culture",   icon:"🐂", address:"Pl. de Elías Ahuja s/n, El Puerto de Santa María",    desc:"Plaza de toros construida en 1880. Icono arquitectónico de El Puerto. Aforo de 15.000 localidades. Visitas guíadas disponibles.",                desc_en:"Bullring built in 1880. Architectural icon of El Puerto. Capacity 15,000. Guided tours available.",                                rating:"4.3★", link:"https://www.elpuertodesantamaria.es/plaza-de-toros/" },
-      { id:"alberti",     lat:36.5981903, lng:-6.2282341, title:"Museo Fundación Rafael Alberti",        category:"culture",   icon:"🎨", address:"C. Santo Domingo 25, El Puerto de Santa María",         desc:"Museo dedicado al poeta Rafael Alberti, Premio Cervantes 1983. Exposiciones permanentes y temporales. Audio guías en varios idiomas. Entrada: 4,50€.", desc_en:"Museum dedicated to poet Rafael Alberti, 1983 Cervantes Prize winner. Permanent and temporary exhibitions. Audio guides available. Entry: €4.50.", rating:"4.6★ (489)", link:"http://www.rafaelalberti.com/" },
-      { id:"valdivieso",  lat:36.595989,  lng:-6.226993,  title:"Palacio de Valdivieso",                category:"culture",   icon:"🏛️", address:"C. de la Palma 4, El Puerto de Santa María",             desc:"Palacio barroco del siglo XVIII en el centro histórico. Ejemplo destacado de la arquitectura palaciega de El Puerto.",                             desc_en:"18th-century Baroque palace in the historic centre. A fine example of palatial architecture in El Puerto.",                                         rating:"4.5★", link:"https://maps.google.com/?q=Palacio+de+Valdivieso+El+Puerto+de+Santa+Maria" },
-      { id:"aranibar",    lat:36.5965023, lng:-6.2261947, title:"Palacio de Araníbar",                  category:"culture",   icon:"🏩", address:"Pl. Alfonso X el Sabio 9, El Puerto de Santa María",     desc:"Palacio histórico que alberga la Oficina de Turismo de El Puerto. Visita gratuita con patio interior. Centro de interpretación de la ciudad.",       desc_en:"Historic palace housing El Puerto's Tourist Office. Free entry with historic courtyard. City interpretation centre.",                               rating:"4.3★ (75)", link:"http://www.elpuertodesantamaria.es/" },
-      { id:"iglesia",     lat:36.5996956, lng:-6.2288963, title:"Iglesia Mayor Prioral",                category:"culture",   icon:"⛪", address:"Pl. de España s/n, El Puerto de Santa María",            desc:"Iglesia gótico-renacentista del s. XV. Principal templo católico de El Puerto, en la Plaza de España. 2.087 reseñas en Google.",                         desc_en:"15th-century Gothic-Renaissance church. Main Catholic temple of El Puerto on Plaza de España. 2,087 Google reviews.",                              rating:"4.5★ (2.087)", link:"https://iglesiamayorprioralelpuerto.com" },
-      { id:"osborne",    lat:36.595001, lng:-6.229006, title:"Bodegas Osborne",                      category:"gastro",   icon:"🍷", address:"Calle Los Moros 7, El Puerto de Santa María",   desc:"La más visitada: 33.603 visitas/año. Casa del Toro de Osborne. Degustaciones de jerez y brandy. Imprescindible.", desc_en:"Most visited: 33,603 visits/year. Home of the Osborne Bull. Sherry and brandy tastings. Absolute must.",                                                                     rating:"★★★★★", link:"https://maps.google.com/?q=Bodegas+Osborne+El+Puerto+de+Santa+Maria" },
-      { id:"aponiente",  lat:36.6031417, lng:-6.2164111, title:"Aponiente", category:"gastro", icon:"⭐", address:"C. Francisco Cossi Ochoa s/n, El Puerto de Santa María", desc:"Restaurante 3 Estrellas Michelin del chef Ángel León. Alta cocina del mar en un antiguo molino de mareas. Menús degustación con maridaje.", desc_en:"3 Michelin Star restaurant by chef Ángel León. Avant-garde sea cuisine in a historic tidal mill. Tasting menus with wine pairing.", rating:"4.7★", link:"https://aponiente.com" },
-      { id:"ribera",     lat:36.5991, lng:-6.2235, title:"Ribera del Marisco",                   category:"gastro",    icon:"🦞", address:"Ribera del Marisco, El Puerto de Santa María",   desc:"El paseo del marisco. Concentración de bares y restaurantes junto al río Guadalete. Muy animado por las noches.", desc_en:"The seafood promenade. Bars and restaurants along the Guadalete River. Buzzing every evening.",                                                                         rating:"★★★★★", link:"https://maps.google.com/?q=Ribera+del+Marisco+El+Puerto+de+Santa+Maria" },
-      { id:"venencia",   lat:36.5893859, lng:-6.2312539, title:"Restaurante La Venencia",           category:"gastro",    icon:"🐟", address:"Av. de la Bajamar 78-80, El Puerto de Santa María", desc:"Restaurante frente al mar en la Avenida de la Bajamar. Cocina tradicional andaluza y mariscos frescos con vistas a la marina.", desc_en:"Seafront restaurant on Avenida de la Bajamar. Traditional Andalusian cuisine and fresh seafood with marina views.", rating:"4.0★", link:"https://maps.google.com/?q=Restaurante+La+Venencia+El+Puerto+de+Santa+Maria" },
-      { id:"barpepito",  lat:36.5917628, lng:-6.2342126, title:"Bar Pepito",                         category:"gastro",    icon:"🥘", address:"C. Crucero Baleares 7, El Puerto de Santa María",   desc:"Bar de tapas muy popular. Coquinas y solomillo al queso de oveja. Excelente relación calidad-precio. 1.258 reseñas Google.", desc_en:"Very popular tapas bar. Coquinas clams and beef fillet with sheep cheese. Excellent value for money. 1,258 Google reviews.", rating:"4.3★", link:"https://www.facebook.com/Bar-Pepito-282424711778851" },
-      { id:"torotapas",  lat:36.5949591, lng:-6.2291652, title:"Toro Tapas (Osborne)",               category:"gastro",    icon:"🐂", address:"C. Los Moros 7, El Puerto de Santa María",          desc:"Restaurante de tapas dentro de Bodegas Osborne. Cocina española en el corazón de la bodega más icónica de El Puerto. 2.713 reseñas.", desc_en:"Tapas restaurant inside Bodegas Osborne. Spanish cuisine in the heart of El Puerto's most iconic winery. 2,713 reviews.", rating:"4.4★", link:"https://www.osborne.es/es/restaurante-osborne-toro-tapas-el-puerto-de-santa-maria" },
-      { id:"ditaly",     lat:36.5977907, lng:-6.2246438, title:"DITALY",                              category:"gastro",    icon:"🍕", address:"C. Luna 1, El Puerto de Santa María",               desc:"Restaurante italiano con 4,8★ en Google. Pizzas artesanas, pasta fresca y tiramisú de pistacho. Cocina italiana para compartir.", desc_en:"Italian restaurant with 4.8★ on Google. Artisan pizzas, fresh pasta and pistachio tiramisu. Italian cuisine for sharing.", rating:"4.8★", link:"https://www.ditaly.es/locales/local-puerto-de-santa-maria/" },
-      { id:"tabernachef",lat:36.5999432, lng:-6.2230816, title:"La Taberna del Chef del Mar",         category:"gastro",    icon:"🎣", address:"C. Puerto Escondido 6, El Puerto de Santa María",    desc:"Taberna del universo culinario de Ángel León. Tapas y mariscos elevados en un ambiente informal y animado.", desc_en:"Tavern from Ángel León's culinary universe. Elevated tapas and seafood in a lively, informal setting.", rating:"4.4★", link:"http://latabernadelchefdelmar.com/" },
-      { id:"romerijo",   lat:36.5986168, lng:-6.2238748, title:"Romerijo",                            category:"gastro",    icon:"🦐", address:"C. Ribera del Marisco 1, El Puerto de Santa María",  desc:"Marisquería icónica de El Puerto. 13.100 reseñas Google. Tortillitas de camarones, gambas y erizos. Temporalmente cerrado (incendio ene. 2026).", desc_en:"Iconic seafood institution in El Puerto. 13,100 Google reviews. Shrimp tortillas, prawns and sea urchins. Temporarily closed (fire Jan 2026).", rating:"4.0★", link:"https://romerijo.com" },
-      { id:"tren", lat:36.6040121, lng:-6.2179023, title:"Estación de Tren", category:"transport", icon:"🚆", address:"Pl. de la Estación s/n, El Puerto de Santa María", desc:"Cercanías C1 (Cádiz–Jerez–Sevilla), Alvia y Media Distancia. Conexión directa con Sevilla ~1h y Cádiz ~30 min.", desc_en:"Cercanías C1 (Cádiz–Jerez–Seville), Alvia and MD services. Direct connection to Seville ~1h and Cádiz ~30 min.", rating:"3.0★", link:"http://www.adif.es/es_ES/infraestructuras/estaciones/51400/informacion_000311.shtml" },
-      { id:"catamaran",  lat:36.593651, lng:-6.226607, title:"Catamaran → Cádiz",                   category:"transport", icon:"⛵", address:"Estación Marítima, El Puerto de Santa María",   desc:"15+ travesías al día. Solo 25–30 minutos para llegar a Cádiz. La forma más bonita de visitar la ciudad.", desc_en:"15+ crossings daily. Just 25–30 minutes to Cádiz. The most beautiful way to visit the city.",                                                                  rating:null,    link:"https://maps.google.com/?q=Estacion+Maritima+El+Puerto+de+Santa+Maria" },
-      { id:"torunos",    lat:36.572096, lng:-6.2162876, title:"Parque Natural Los Toruños",          category:"nature",    icon:"🌿", address:"Av. del Mar 7, El Puerto de Santa María",          desc:"Reserva natural de marismas con paseos de madera, alquiler de kayaks y bicicletas, observación de aves y zonas de picnic. Abierto 24h. Tel: +34 856 58 05 24.", desc_en:"Tidal marsh nature reserve with boardwalks, kayak & bike rental, birdwatching and picnic areas. Open 24h. Tel: +34 856 58 05 24.",                                rating:"4.7★",  link:"https://www.juntadeandalucia.es/medioambiente/portal/areas-tematicas/espacios-naturales-protegidos" },
-      { id:"calita", lat:36.583343, lng:-6.268132, title:"Playa la Calita", category:"beach", icon:"🏖️", address:"Puerto Sherry, El Puerto de Santa María", desc:"Cala pequeña y recogida junto a Puerto Sherry. Aguas tranquilas, fondo arenoso, perfecta para familias. Acceso a pie desde el paseo.", desc_en:"Small sheltered cove by Puerto Sherry. Calm waters, sandy bottom, perfect for families. Walking access from the promenade.", rating:"★★★★", link:"https://maps.google.com/?q=Playa+la+Calita+Puerto+Sherry+El+Puerto+de+Santa+Maria" },
-      { id:"rcn", lat:36.5895, lng:-6.2309, title:"Real Club Náutico", category:"nautica", icon:"⚓", address:"Avenida de la Bajamar 13, El Puerto de Santa María", desc:"Club náutico histórico a orillas del Guadalete. Restaurante-bar <b>La Venecia</b> (tapas, arroces · 9:00–00:00). Club de copas <b>Chang Bay</b> (15:00–02:00). Pantalán con alquiler de motos de agua y embarcaciones con/sin patrón. Pistas de pádel y tenis.", desc_en:"Historic yacht club on the Guadalete. Restaurant <b>La Venecia</b> (tapas & rice · 9am–midnight). <b>Chang Bay</b> club (3pm–2am). Pontoon with jet ski & boat rental (skippered or bareboat). Padel & tennis courts.", rating:"★★★★", link:"https://www.rcnpsm.es" },
-      { id:"puertosherry",lat:36.5803, lng:-6.2552, title:"Puerto Sherry Marina",                 category:"nautica",    icon:"⚓", address:"Puerto Sherry, El Puerto de Santa María",       desc:"Marina moderna con vela, clubes náuticos y restaurantes. Atardeceres espectaculares sobre la bahía de Cádiz.", desc_en:"Modern marina with sailing, yacht clubs and restaurants. Spectacular sunsets over the Bay of Cádiz.",                                                                                      rating:"★★★★★", link:null },
-      { id:"mercadona",  lat:36.59193396903639, lng:-6.230806553247762, title:"Supermercados El Jamón", category:"supermercado", icon:"🛒", address:"Av. de la Bajamar, El Puerto de Santa María",      desc:"El supermercado más cercano al Airbnb. Cadena andaluza El Jamón con gran variedad de frescos, carnes, charcutería ibérica y precios competitivos. A solo 6 min a pie.", desc_en:"The closest supermarket to the Airbnb. El Jamón is a well-known Andalusian chain with fresh produce, meats, Iberian cold cuts and competitive prices. Only 6-min walk.", rating:"4.1★", link:"https://maps.app.goo.gl/kYb8NvJs5nnVXmXT9" },
-      { id:"aldi",       lat:36.593597,  lng:-6.2288349, title:"Aldi",             category:"supermercado", icon:"🛒", address:"C. Valdés s/n, El Puerto de Santa María",            desc:"Supermercado Aldi. Precios bajos garantizados, sección especial de productos locales, frescos y artículos de temporada. Muy bien valorado.", desc_en:"Aldi supermarket. Guaranteed low prices, local produce section and seasonal items. Highly rated by locals.", rating:"4.2★", link:"https://maps.app.goo.gl/eLoWrx2oRU8eyNKa9" },
-      { id:"mercadona2",lat:36.5913517,  lng:-6.2378415, title:"Mercadona Dunas",  category:"supermercado", icon:"🛒", address:"Rda. de las Dunas 7, El Puerto de Santa María",      desc:"Segundo Mercadona de El Puerto, en la zona de las Dunas. Gran superficie, parking gratuito y amplia sección de frescos y panadería.", desc_en:"Second Mercadona in El Puerto, near the Dunas area. Large store, free parking and wide fresh produce and bakery section.", rating:"4.1★", link:"https://maps.app.goo.gl/iMzrKyCVCL2jZtUU6" },
-      { id:"dia",        lat:36.594634,  lng:-6.2374774, title:"Supermercados Dia", category:"supermercado", icon:"🛒", address:"Av. Pintor Antonio Fernández Sevilla 18A, El Puerto de Santa María", desc:"Supermercados Dia, cadena española con excelente relación calidad-precio. Productos de marca propia y ofertas diarias.", desc_en:"Dia supermarket, Spanish chain with great value for money. Own-brand products and daily deals.", rating:"3.9★", link:"https://maps.app.goo.gl/ZtKo7JEHFALN6Zho9" },
+      { id:"home",       lat:36.588769, lng:-6.231999, title:"OlasDelSur",          category:"home",      icon:"🏠", address:"Avenida de la Bajamar 88",                  desc:"Tu refugio estival en el Guadalete. Acceso peatonal a la playa. Ribera del Marisco a 20 min a pie.", desc_en:"Your summer retreat on the Guadalete. Walking access to the beach. Ribera del Marisco 20 min walk.", desc_it: "Il tuo rifugio estivo sul Guadalete. Accesso a piedi alla spiaggia. Ribera del Marisco a 20 min a piedi.", rating:null,    link:null },
+      { id:"puntilla",   lat:36.584956, lng:-6.23841, title:"Playa de la Puntilla",                 category:"beach",     icon:"🏖️",address:"Playa de la Puntilla, El Puerto de Santa María",desc:"A solo 600m. 2,5 km de playa dorada con bares e chiringuitos, apta para perros. La más cercana al casco histórico. Pinar de las Dunas de San Antón.", desc_en:"Just 600m away. 2.5 km of golden beach with bars and chiringuitos, dog-friendly. Closest to the historic centre.", desc_it: "A soli 600m. 2,5 km di spiaggia dorata con bar e chiringuitos, adatta ai cani. La più vicina al centro storico.", rating:"4.2★",  link:"https://maps.google.com/?q=Playa+de+la+Puntilla+El+Puerto+de+Santa+Maria" },
+      { id:"valdelagrana",lat:36.5737, lng:-6.2253, title:"Playa de Valdelagrana",                category:"beach",     icon:"🏖️",address:"Valdelagrana, El Puerto de Santa María",       desc:"La playa más famosa. 2+ km, paseo marítimo con bares y restaurantes, surf y kitesurf.", desc_en:"The most famous beach. 2+ km, seafront promenade with bars and restaurants, surf and kitesurf.", desc_it: "La spiaggia più famosa. 2+ km, lungomare con bar e ristoranti, surf e kitesurf.", rating:"4.2★",  link:"https://maps.google.com/?q=Playa+de+Valdelagrana+El+Puerto+de+Santa+Maria" },
+      { id:"muralla",    lat:36.580832, lng:-6.262349, title:"Playa La Muralla (Puerto Sherry)",     category:"beach",     icon:"🏖️",address:"Puerto Sherry, El Puerto de Santa María",       desc:"Playa Bandera Azul resguardada del viento. Vistas panorámicas a la bahía de Cádiz.", desc_en:"Blue Flag beach sheltered from the wind. Panoramic views over the Bay of Cádiz.", desc_it: "Spiaggia Bandiera Blu riparata dal vento. Viste panoramiche sulla baia di Cadice.", rating:"4.5★",  link:"https://maps.google.com/?q=Playa+La+Muralla+Puerto+Sherry" },
+      { id:"phiphi",     lat:36.582551, lng:-6.250359, title:"PhiPhi Beach",                         category:"nightlife", icon:"🍹", address:"Avenida del Puerto, Puerto Sherry, 11500",     desc:"Bar al aire libre con impresionantes vistas al atardecer de Cádiz. Cócteles tropicales, música lounge. Horario: todos los días 15:30–00:00.", desc_en:"Open-air bar facing the bay with stunning Cádiz sunset views. Tropical cocktails, lounge music. Hours: daily 3:30 PM–midnight.", desc_it: "Bar all'aperto con viste spettacolari sul tramonto di Cadice. Cocktail tropicali, musica lounge. Orario: tutti i giorni 15:30–00:00.", rating:"★★★",   link:"https://www.instagram.com/phiphibeachpuertosherry/" },
+      { id:"margarita",  lat:36.582276, lng:-6.250725, title:"Margarita Puerto Sherry",              category:"nightlife", icon:"🌅", address:"Puerto Sherry, El Puerto de Santa María",       desc:"A place for happiness — Music, sun & drinks. Bar de cócteles con terraza vista marina. Abierto todos los días. Reservas: 601 88 50 51.", desc_en:"A place for happiness — Music, sun & drinks. Cocktail bar with sea-view terrace. Open every day. Bookings: 601 88 50 51.", desc_it: "Un luogo di felicità — Musica, sole e drink. Cocktail bar con terrazza vista mare. Aperto ogni giorno.", rating:"★★★★",  link:"https://www.instagram.com/margaritapuertosherry/" },
+      { id:"canalla",    lat:36.581865, lng:-6.250394, title:"Playa Canalla",                        category:"nightlife", icon:"🎶", address:"Puerto Sherry, El Puerto de Santa María",       desc:"Beach club boho-chic a orillas del mar. Espíritu Formentera — colores crema, madera y cálidos. Jueves, viernes y sábado. 21K seguidores Instagram.", desc_en:"Boho-chic beach club at the water's edge. Formentera spirit — cream, wood and warm tones. Thu, Fri & Sat. 21K Instagram followers.", desc_it: "Beach club boho-chic in riva al mare. Spirito Formentera — colori crema, legno e caldi. Gio, Ven e Sab.", rating:"★★★★★", link:"https://playacanalla.com" },
+      { id:"lioclub",   lat:36.5868786, lng:-6.2337538, title:"Lio Club Puntilla Playa",              category:"nightlife", icon:"🎭", address:"Av. de la Bajamar, El Puerto de Santa María",  desc:"Club de ocio nocturno frente al mar, junto a la Playa de la Puntilla. Ambiente festivo con terraza costera. Reservas: +34 662 33 70 28. Temporalmente cerrado.", desc_en:"Seafront nightclub next to Playa de la Puntilla. Festive atmosphere with a coastal terrace. Bookings: +34 662 33 70 28. Currently temporarily closed.", desc_it: "Nightclub fronte mare vicino a Playa de la Puntilla. Atmosfera festosa con terrazza costiera. Temporaneamente chiuso.", rating:"★★★★½", link:"https://maps.app.goo.gl/GiSgZ18XSrp8zCn27" },
+      { id:"cristalera", lat:36.597649, lng:-6.2236862, title:"Bar La Cristalera",                    category:"nightlife", icon:"🎹", address:"Pl. de las Galeras Reales s/n, El Puerto de Santa María", desc:"Bar musical y piano bar junto al río Guadalete, en pleno centro. Copas, DJ y música en vivo. Abre desde las 15:30. Tel: +34 647 84 54 47.", desc_en:"Music bar and piano bar by the Guadalete river in the city centre. Drinks, DJ and live music. Opens from 3:30 PM. Tel: +34 647 84 54 47.", desc_it: "Music bar e piano bar vicino al fiume Guadalete in centro. Drink, DJ e musica dal vivo. Apre dalle 15:30.", rating:"★★★★", link:"https://m.facebook.com/lacristaleracopas" },
+      { id:"banana",    lat:36.5982164, lng:-6.2242166, title:"Banana Club",                          category:"nightlife", icon:"🍌", address:"C. Ribera del Marisco 13, El Puerto de Santa María", desc:"La discoteca más animada del Puerto, referencia de la vida nocturna desde hace 5 años. Abre a las 23:00. Reservas WhatsApp: 697 85 00 50.", desc_en:"The liveliest club in El Puerto, a nightlife landmark for 5 years. Opens at 11 PM. Bookings WhatsApp: 697 85 00 50.", desc_it: "Il club più vivace di El Puerto, un punto di riferimento da 5 anni. Apre alle 23:00. Prenotazioni WhatsApp: 697 85 00 50.", rating:"★★★", link:"https://bananaelpuerto.com" },
+      { id:"castillo",   lat:36.596356, lng:-6.226796, title:"Castillo de San Marcos",               category:"culture",   icon:"🏰", address:"Plaza del Castillo s/n, El Puerto de Santa María",desc:"Fortaleza del s. XII construida sobre las ruinas de una mezquita árabe. Vinculada a los viajes de Colón. Incluye degustaciones de jerez.", desc_en:"12th-century fortress built on the ruins of an Arab mosque. Linked to Columbus's voyages. Includes sherry tastings.", desc_it: "Fortezza del XII secolo costruita sulle rovine di una moschea araba. Legata ai viaggi di Colombo. Include degustazioni di sherry.", rating:"★★★★",  link:"https://maps.google.com/?q=Castillo+San+Marcos+El+Puerto+de+Santa+Maria" },
+      { id:"plazatoros",  lat:36.5967774, lng:-6.2327389, title:"Real Plaza de Toros",                 category:"culture",   icon:"🐂", address:"Pl. de Elías Ahuja s/n, El Puerto de Santa María",    desc:"Plaza de toros construida en 1880. Icono arquitectónico de El Puerto. Aforo de 15.000 localidades. Visitas guíadas disponibles.",                desc_en:"Bullring built in 1880. Architectural icon of El Puerto. Capacity 15,000. Guided tours available.", desc_it: "Plaza de toros costruita nel 1880. Icona architettonica di El Puerto. Visite guidate disponibili.", rating:"4.3★", link:"https://www.elpuertodesantamaria.es/plaza-de-toros/" },
+      { id:"alberti",     lat:36.5981903, lng:-6.2282341, title:"Museo Fundación Rafael Alberti",        category:"culture",   icon:"🎨", address:"C. Santo Domingo 25, El Puerto de Santa María",         desc:"Museo dedicado al poeta Rafael Alberti, Premio Cervantes 1983. Exposiciones permanentes y temporales. Audio guías en varios idiomas. Entrada: 4,50€.", desc_en:"Museum dedicated to poet Rafael Alberti, 1983 Cervantes Prize winner. Permanent and temporary exhibitions. Audio guides available. Entry: €4.50.", desc_it: "Museo dedicato al poeta Rafael Alberti, premio Cervantes 1983. Mostre permanenti e temporanee. Audioguide disponibili.", rating:"4.6★ (489)", link:"http://www.rafaelalberti.com/" },
+      { id:"valdivieso",  lat:36.595989,  lng:-6.226993,  title:"Palacio de Valdivieso",                category:"culture",   icon:"🏛️", address:"C. de la Palma 4, El Puerto de Santa María",             desc:"Palacio barroco del siglo XVIII en el centro histórico. Ejemplo destacado de la arquitectura palaciega de El Puerto.",                             desc_en:"18th-century Baroque palace in the historic centre. A fine example of palatial architecture in El Puerto.", desc_it: "Palazzo barocco del XVIII secolo nel centro storico. Un eccellente esempio di architettura palaziale di El Puerto.", rating:"4.5★", link:"https://maps.google.com/?q=Palacio+de+Valdivieso+El+Puerto+de+Santa+Maria" },
+      { id:"aranibar",    lat:36.5965023, lng:-6.2261947, title:"Palacio de Araníbar",                  category:"culture",   icon:"🏩", address:"Pl. Alfonso X el Sabio 9, El Puerto de Santa María",     desc:"Palacio histórico que alberga la Oficina de Turismo de El Puerto. Visita gratuita con patio interior. Centro de interpretación de la ciudad.",       desc_en:"Historic palace housing El Puerto's Tourist Office. Free entry with historic courtyard. City interpretation centre.", desc_it: "Storico palazzo che ospita l'Ufficio del Turismo. Ingresso gratuito con cortile storico. Centro di interpretazione della città.", rating:"4.3★ (75)", link:"http://www.elpuertodesantamaria.es/" },
+      { id:"iglesia",     lat:36.5996956, lng:-6.2288963, title:"Iglesia Mayor Prioral",                category:"culture",   icon:"⛪", address:"Pl. de España s/n, El Puerto de Santa María",            desc:"Iglesia gótico-renacentista del s. XV. Principal templo católico de El Puerto, en la Plaza de España. 2.087 reseñas en Google.",                         desc_en:"15th-century Gothic-Renaissance church. Main Catholic temple of El Puerto on Plaza de España. 2,087 Google reviews.", desc_it: "Chiesa gotico-rinascimentale del XV secolo. Principale tempio cattolico di El Puerto in Plaza de España.", rating:"4.5★ (2.087)", link:"https://iglesiamayorprioralelpuerto.com" },
+      { id:"osborne",    lat:36.595001, lng:-6.229006, title:"Bodegas Osborne",                      category:"gastro",   icon:"🍷", address:"Calle Los Moros 7, El Puerto de Santa María",   desc:"La más visitada: 33.603 visitas/año. Casa del Toro de Osborne. Degustaciones de jerez y brandy. Imprescindible.", desc_en:"Most visited: 33,603 visits/year. Home of the Osborne Bull. Sherry and brandy tastings. Absolute must.", desc_it: "La più visitata: 33.603 visite all'anno. Casa del Toro Osborne. Degustazioni di sherry e brandy. Imperdibile.", rating:"★★★★★", link:"https://maps.google.com/?q=Bodegas+Osborne+El+Puerto+de+Santa+Maria" },
+      { id:"aponiente",  lat:36.6031417, lng:-6.2164111, title:"Aponiente", category:"gastro", icon:"⭐", address:"C. Francisco Cossi Ochoa s/n, El Puerto de Santa María", desc:"Restaurante 3 Estrellas Michelin del chef Ángel León. Alta cocina del mar en un antiguo molino de mareas. Menús degustación con maridaje.", desc_en:"3 Michelin Star restaurant by chef Ángel León. Avant-garde sea cuisine in a historic tidal mill. Tasting menus with wine pairing.", desc_it: "Ristorante 3 stelle Michelin dello chef Ángel León. Alta cucina di mare in un antico mulino a marea storico.", rating:"4.7★", link:"https://aponiente.com" },
+      { id:"ribera",     lat:36.5991, lng:-6.2235, title:"Ribera del Marisco",                   category:"gastro",    icon:"🦞", address:"Ribera del Marisco, El Puerto de Santa María",   desc:"El paseo del marisco. Concentración de bares y restaurantes junto al río Guadalete. Muy animado por las noches.", desc_en:"The seafood promenade. Bars and restaurants along the Guadalete River. Buzzing every evening.", desc_it: "Il lungomare del pesce. Bar e ristoranti lungo il fiume Guadalete. Molto vivace ogni sera.", rating:"★★★★★", link:"https://maps.google.com/?q=Ribera+del+Marisco+El+Puerto+de+Santa+Maria" },
+      { id:"venencia",   lat:36.5893859, lng:-6.2312539, title:"Restaurante La Venencia",           category:"gastro",    icon:"🐟", address:"Av. de la Bajamar 78-80, El Puerto de Santa María", desc:"Restaurante frente al mar en la Avenida de la Bajamar. Cocina tradicional andaluza y mariscos frescos con vistas a la marina.", desc_en:"Seafront restaurant on Avenida de la Bajamar. Traditional Andalusian cuisine and fresh seafood with marina views.", desc_it: "Ristorante fronte mare in Avenida de la Bajamar. Cucina tradizionale andalusa e pesce fresco con vista sulla marina.", rating:"4.0★", link:"https://maps.google.com/?q=Restaurante+La+Venencia+El+Puerto+de+Santa+Maria" },
+      { id:"barpepito",  lat:36.5917628, lng:-6.2342126, title:"Bar Pepito",                         category:"gastro",    icon:"🥘", address:"C. Crucero Baleares 7, El Puerto de Santa María",   desc:"Bar de tapas muy popular. Coquinas y solomillo al queso de oveja. Excelente relación calidad-precio. 1.258 reseñas Google.", desc_en:"Very popular tapas bar. Coquinas clams and beef fillet with sheep cheese. Excellent value for money. 1,258 Google reviews.", desc_it: "Tapas bar molto popolare. Telline e filetto di manzo al formaggio di pecora. Ottimo rapporto qualità-prezzo.", rating:"4.3★", link:"https://www.facebook.com/Bar-Pepito-282424711778851" },
+      { id:"torotapas",  lat:36.5949591, lng:-6.2291652, title:"Toro Tapas (Osborne)",               category:"gastro",    icon:"🐂", address:"C. Los Moros 7, El Puerto de Santa María",          desc:"Restaurante de tapas dentro de Bodegas Osborne. Cocina española en el corazón de la bodega más icónica de El Puerto. 2.713 reseñas.", desc_en:"Tapas restaurant inside Bodegas Osborne. Spanish cuisine in the heart of El Puerto's most iconic winery. 2,713 reviews.", desc_it: "Ristorante di tapas all'interno di Bodegas Osborne. Cucina spagnola nel cuore della cantina più iconica.", rating:"4.4★", link:"https://www.osborne.es/es/restaurante-osborne-toro-tapas-el-puerto-de-santa-maria" },
+      { id:"ditaly",     lat:36.5977907, lng:-6.2246438, title:"DITALY",                              category:"gastro",    icon:"🍕", address:"C. Luna 1, El Puerto de Santa María",               desc:"Restaurante italiano con 4,8★ en Google. Pizzas artesanas, pasta fresca y tiramisú de pistacho. Cocina italiana para compartir.", desc_en:"Italian restaurant with 4.8★ on Google. Artisan pizzas, fresh pasta and pistachio tiramisu. Italian cuisine for sharing.", desc_it: "Ristorante italiano con 4,8★. Pizze artigianali, pasta fresca e tiramisù al pistacchio. Cucina italiana da condividere.", rating:"4.8★", link:"https://www.ditaly.es/locales/local-puerto-de-santa-maria/" },
+      { id:"tabernachef",lat:36.5999432, lng:-6.2230816, title:"La Taberna del Chef del Mar",         category:"gastro",    icon:"🎣", address:"C. Puerto Escondido 6, El Puerto de Santa María",    desc:"Taberna del universo culinario de Ángel León. Tapas y mariscos elevados en un ambiente informal y animado.", desc_en:"Tavern from Ángel León's culinary universe. Elevated tapas and seafood in a lively, informal setting.", desc_it: "Taverna dell'universo culinario di Ángel León. Tapas e pesce elevati in un ambiente vivace e informale.", rating:"4.4★", link:"http://latabernadelchefdelmar.com/" },
+      { id:"romerijo",   lat:36.5986168, lng:-6.2238748, title:"Romerijo",                            category:"gastro",    icon:"🦐", address:"C. Ribera del Marisco 1, El Puerto de Santa María",  desc:"Marisquería icónica de El Puerto. 13.100 reseñas Google. Tortillitas de camarones, gambas y erizos. Temporalmente cerrado (incendio ene. 2026).", desc_en:"Iconic seafood institution in El Puerto. 13,100 Google reviews. Shrimp tortillas, prawns and sea urchins. Temporarily closed (fire Jan 2026).", desc_it: "Iconica istituzione del pesce a El Puerto. Tortillitas de camarones, gamberi e ricci di mare. Temporaneamente chiusa.", rating:"4.0★", link:"https://romerijo.com" },
+      { id:"tren", lat:36.6040121, lng:-6.2179023, title:"Estación de Tren", category:"transport", icon:"🚆", address:"Pl. de la Estación s/n, El Puerto de Santa María", desc:"Cercanías C1 (Cádiz–Jerez–Sevilla), Alvia y Media Distancia. Conexión directa con Sevilla ~1h y Cádiz ~30 min.", desc_en:"Cercanías C1 (Cádiz–Jerez–Seville), Alvia and MD services. Direct connection to Seville ~1h and Cádiz ~30 min.", desc_it: "Cercanías C1 (Cadice–Jerez–Siviglia), Alvia e Media Distancia. Collegamento diretto con Siviglia ~1h e Cadice ~30 min.", rating:"3.0★", link:"http://www.adif.es/es_ES/infraestructuras/estaciones/51400/informacion_000311.shtml" },
+      { id:"catamaran",  lat:36.593651, lng:-6.226607, title:"Catamaran → Cádiz",                   category:"transport", icon:"⛵", address:"Estación Marítima, El Puerto de Santa María",   desc:"15+ travesías al día. Solo 25–30 minutos para llegar a Cádiz. La forma más bonita de visitar la ciudad.", desc_en:"15+ crossings daily. Just 25–30 minutes to Cádiz. The most beautiful way to visit the city.", desc_it: "Oltre 15 corse al giorno. Solo 25–30 minuti per Cadice. Il modo più bello per visitare la città.", rating:null,    link:"https://maps.google.com/?q=Estacion+Maritima+El+Puerto+de+Santa+Maria" },
+      { id:"torunos",    lat:36.572096, lng:-6.2162876, title:"Parque Natural Los Toruños",          category:"nature",    icon:"🌿", address:"Av. del Mar 7, El Puerto de Santa María",          desc:"Reserva natural de marismas con paseos de madera, alquiler de kayaks y bicicletas, observación de aves y zonas de picnic. Abierto 24h. Tel: +34 856 58 05 24.", desc_en:"Tidal marsh nature reserve with boardwalks, kayak & bike rental, birdwatching and picnic areas. Open 24h. Tel: +34 856 58 05 24.", desc_it: "Riserva naturale con passerelle, noleggio kayak e bici, birdwatching e aree picnic. Aperto 24 ore.", rating:"4.7★",  link:"https://www.juntadeandalucia.es/medioambiente/portal/areas-tematicas/espacios-naturales-protegidos" },
+      { id:"calita", lat:36.583343, lng:-6.268132, title:"Playa la Calita", category:"beach", icon:"🏖️", address:"Puerto Sherry, El Puerto de Santa María", desc:"Cala pequeña y recogida junto a Puerto Sherry. Aguas tranquilas, fondo arenoso, perfecta para familias. Acceso a pie desde el paseo.", desc_en:"Small sheltered cove by Puerto Sherry. Calm waters, sandy bottom, perfect for families. Walking access from the promenade.", desc_it: "Piccola cala riparata vicino a Puerto Sherry. Acque calmi, fondo sabbioso, perfetta per le famiglie.", rating:"★★★★", link:"https://maps.google.com/?q=Playa+la+Calita+Puerto+Sherry+El+Puerto+de+Santa+Maria" },
+      { id:"rcn", lat:36.5895, lng:-6.2309, title:"Real Club Náutico", category:"nautica", icon:"⚓", address:"Avenida de la Bajamar 13, El Puerto de Santa María", desc:"Club náutico histórico a orillas del Guadalete. Restaurante-bar <b>La Venecia</b> (tapas, arroces · 9:00–00:00). Club de copas <b>Chang Bay</b> (15:00–02:00). Pantalán con alquiler de motos de agua y embarcaciones con/sin patrón. Pistas de pádel y tenis.", desc_en:"Historic yacht club on the Guadalete. Restaurant <b>La Venecia</b> (tapas & rice · 9am–midnight). <b>Chang Bay</b> club (3pm–2am). Pontoon with jet ski & boat rental (skippered or bareboat). Padel & tennis courts.", desc_it: "Storico yacht club sul Guadalete. Ristorante La Venecia. Club Chang Bay. Noleggio moto d'acqua e barche. Sport.", rating:"★★★★", link:"https://www.rcnpsm.es" },
+      { id:"puertosherry",lat:36.5803, lng:-6.2552, title:"Puerto Sherry Marina",                 category:"nautica",    icon:"⚓", address:"Puerto Sherry, El Puerto de Santa María",       desc:"Marina moderna con vela, clubes náuticos y restaurantes. Atardeceres espectaculares sobre la bahía de Cádiz.", desc_en:"Modern marina with sailing, yacht clubs and restaurants. Spectacular sunsets over the Bay of Cádiz.", desc_it: "Marina moderna con vela, yacht club e ristoranti. Tramonti spettacolari sulla baia di Cadice.", rating:"★★★★★", link:null },
+      { id:"mercadona",  lat:36.591933, lng:-6.230806, title:"S. El Jamón (6 min)", category:"supermercado", icon:"🛒", address:"Av. de la Bajamar", desc:"El supermercado più cercano al Airbnb. Cadena andaluza con prodotti freschi.", desc_en:"The closest supermarket to the Airbnb. Andalusian chain with fresh produce.", desc_it: "Il supermercato più vicino all'Airbnb. El Jamón è una catena andalusa con prodotti freschi.", rating:"4.1★", link:"https://maps.app.goo.gl/kYb8NvJs5nnVXmXT9" },
+      { id:"aldi",       lat:36.593597,  lng:-6.228834, title:"Aldi",             category:"supermercado", icon:"🛒", address:"C. Valdés s/n", desc:"Supermercado Aldi. Precios bajos garantizzati e prodotti locali.", desc_en:"Aldi supermarket. Guaranteed low prices and local produce section.", desc_it: "Supermercato Aldi. Prezzi bassi garantiti, prodotti locali e articoli stagionali.", rating:"4.2★", link:"https://maps.app.goo.gl/eLoWrx2oRU8eyNKa9" },
+      { id:"mercadona2",lat:36.591351,  lng:-6.237841, title:"Mercadona Dunas",  category:"supermercado", icon:"🛒", address:"Rda. de las Dunas 7", desc:"Secondo Mercadona de El Puerto. Gran superficie e parking gratuito.", desc_en:"Second Mercadona in El Puerto. Large store with free parking.", desc_it: "Secondo Mercadona di El Puerto, zona Dunas. Grande negozio, parcheggio gratuito e ampia sezione freschi.", rating:"4.1★", link:"https://maps.app.goo.gl/iMzrKyCVCL2jZtUU6" },
+      { id:"dia",        lat:36.594634,  lng:-6.237477, title:"S. Dia", category:"supermercado", icon:"🛒", address:"Av. Pintor Antonio Sevilla", desc:"Supermercados Dia, cadena española. Excelente relación qualità-prezzo.", desc_en:"Dia supermarket, Spanish chain with great value for money.", desc_it: "Supermercato Dia, catena spagnola con ottimo valore. Prodotti a marchio proprio e offerte giornaliere.", rating:"3.9★", link:"https://maps.app.goo.gl/ZtKo7JEHFALN6Zho9" },
     ];
 
     const categoryColors = {
@@ -1738,24 +1674,39 @@
       const marker = L.marker([p.lat, p.lng], { icon, zIndexOffset: isHome ? 1000 : 0 });
 
       const ratingHtml = p.rating ? `<span style="font-weight:700;font-size:0.82rem;color:#FF6B35">${p.rating}</span>` : '';
-      const isEn = document.documentElement.classList.contains('lang-en');
-      const linkHtml   = p.link   ? `<a href="${p.link}" target="_blank" style="font-size:0.78rem;font-weight:700;color:#0096A6;text-decoration:none">${isEn ? 'View →' : 'Ver →'}</a>` : '';
+      function renderPopup(p) {
+        const lang = window._olasLang || 'es';
+        const ratingHtml = p.rating ? `<span style="font-weight:700;font-size:0.82rem;color:#FF6B35">${p.rating}</span>` : '';
+        
+        const labelsMap = {
+          es: { view: 'Ver →' },
+          en: { view: 'View →' },
+          fr: { view: 'Voir →' },
+          de: { view: 'Ansehen →' },
+          it: { view: 'Vedi →' }
+        };
+        const L = labelsMap[lang] || labelsMap.es;
+        const desc = p['desc_' + lang] || p.desc;
+        const linkHtml = p.link ? `<a href="${p.link}" target="_blank" style="font-size:0.78rem;font-weight:700;color:#0096A6;text-decoration:none">${L.view}</a>` : '';
 
-      marker.bindPopup(`
-        <div style="font-family:'DM Sans',sans-serif;max-width:240px;padding:4px 0">
-          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:8px">
-            <span style="font-size:1.6rem;line-height:1;flex-shrink:0">${p.icon}</span>
-            <div>
-              <div style="font-weight:700;font-size:0.92rem;color:#2D1A0E;line-height:1.2">${p.title}</div>
-              <div style="font-size:0.72rem;color:#A07850;margin-top:2px">${p.address}</div>
+        return `
+          <div style="font-family:'DM Sans',sans-serif;max-width:240px;padding:4px 0">
+            <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:8px">
+              <span style="font-size:1.6rem;line-height:1;flex-shrink:0">${p.icon}</span>
+              <div>
+                <div style="font-weight:700;font-size:0.92rem;color:#2D1A0E;line-height:1.2">${p.title}</div>
+                <div style="font-size:0.72rem;color:#A07850;margin-top:2px">${p.address}</div>
+              </div>
+            </div>
+            <div style="font-size:0.8rem;color:#5C3D22;line-height:1.5;margin-bottom:8px">${desc}</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:6px">
+              ${ratingHtml}${linkHtml}
             </div>
           </div>
-          <div style="font-size:0.8rem;color:#5C3D22;line-height:1.5;margin-bottom:8px">${isEn && p.desc_en ? p.desc_en : p.desc}</div>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:6px">
-            ${ratingHtml}${linkHtml}
-          </div>
-        </div>
-      `, { maxWidth:260 });
+        `;
+      }
+
+      marker.bindPopup(() => renderPopup(p), { maxWidth: 260 });
 
       marker.addTo(map);
       leafletMarkers[p.id] = { marker, place: p };
@@ -1816,14 +1767,16 @@
     {
       id: 'home', cat: 'home', emoji: '🏠',
       name: 'OlasDelSur',
-      badge_es: 'Tu Airbnb', badge_en: 'Your Airbnb', badge_fr: 'Votre Airbnb', badge_de: 'Ihr Airbnb',
+      badge_es: 'Tu Airbnb', badge_en: 'Your Airbnb', badge_fr: 'Votre Airbnb', badge_de: 'Ihr Airbnb', badge_it: 'Il tuo Airbnb',
       desc_es: 'Tu base en El Puerto de Santa María. Apartamento recién renovado con 2 habitaciones para 4 personas, a 100m del río Guadalete y a 20 min a pie de la Ribera del Marisco.',
       desc_en: 'Your base in El Puerto de Santa María. Newly renovated 2-bedroom apartment for 4 guests, 100m from the Guadalete river and 20 min walk from the seafood promenade.',
       desc_fr: 'Votre base à El Puerto de Santa María. Appartement rénové avec 2 chambres pour 4 personnes, à 100m du fleuve Guadalete.',
       desc_de: 'Ihre Basis in El Puerto de Santa María. Frisch renoviertes 2-Zimmer-Apartment für 4 Gäste, 100m vom Guadalete-Fluss entfernt.',
+      desc_it: 'La tua base a El Puerto de Santa María. Appartamento appena rinnovato con 2 camere per 4 persone, a 100m dal fiume Guadalete e a 20 min a piedi dalla Ribera del Marisco.',
       address: 'Avenida de la Bajamar 88, El Puerto de Santa María',
       hours_es: 'Check-in: 15:00 · Check-out: 11:00',
       hours_en: 'Check-in: 3:00 PM · Check-out: 11:00 AM',
+      hours_it: 'Check-in: 15:00 · Check-out: 11:00',
       phone: null,
       rating: '4.9★ (42 reseñas)',
       link: 'https://www.airbnb.com/rooms/833027419091697738',
@@ -1832,14 +1785,16 @@
     {
       id: 'puntilla', cat: 'beach', emoji: '🏖️',
       name: 'Playa de la Puntilla',
-      badge_es: 'Playa', badge_en: 'Beach', badge_fr: 'Plage', badge_de: 'Strand',
+      badge_es: 'Playa', badge_en: 'Beach', badge_fr: 'Plage', badge_de: 'Strand', badge_it: 'Spiaggia',
       desc_es: 'A solo 600m. Amplia playa de arena dorada de 2,5 km con bares y chiringuitos, apta para perros. La más cercana al casco histórico, con paseo marítimo y pinar.',
       desc_en: 'Only 600m away. 2.5 km of golden sand with bars and chiringuitos, dog-friendly. Closest to the historic centre, with promenade and pine forest.',
-      desc_fr: 'À seulement 600m. Plage de 2,5 km avec bars et chiringuitos, accès chiens autorisé. La plus proche du centre historique.',
+      desc_fr: 'À seulement 600m. Plage de 2,5 km avec bars et chiringuitos, accès chiens autorisé. La più proche du centre historique.',
       desc_de: 'Nur 600m entfernt. 2,5 km goldener Sand mit Bars und Chiringuitos, hundefreundlich. Am nächsten zur Altstadt.',
+      desc_it: 'A soli 600m. Ampia spiaggia di sabbia dorata di 2,5 km con bar e chiringuitos, adatta ai cani. La più vicina al centro storico, con lungomare e pineta.',
       address: 'P.º Marítimo de la Puntilla, El Puerto de Santa María',
       hours_es: 'Abierta 24h',
       hours_en: 'Open 24h',
+      hours_it: 'Aperta 24h',
       phone: null,
       rating: '4.3★ (2.084 reseñas)',
       link: 'https://maps.google.com/?q=Playa+de+la+Puntilla+El+Puerto+de+Santa+Maria',
@@ -1848,14 +1803,16 @@
     {
       id: 'valdelagrana', cat: 'beach', emoji: '🏖️',
       name: 'Playa Valdelagrana',
-      badge_es: 'Playa', badge_en: 'Beach', badge_fr: 'Plage', badge_de: 'Strand',
+      badge_es: 'Playa', badge_en: 'Beach', badge_fr: 'Plage', badge_de: 'Strand', badge_it: 'Spiaggia',
       desc_es: 'La playa principal de El Puerto, extensa y bien equipada. Arena fina, aguas limpias, servicio de socorristas y amplia zona de chiringuitos. Ideal para familias.',
       desc_en: 'The main beach of El Puerto, extensive and well-equipped. Fine sand, clear water, lifeguards and plenty of beach bars. Ideal for families.',
       desc_fr: "La plage principale d'El Puerto, vaste et bien équipée. Sable fin, eaux claires, maîtres-nageurs et nombreux bars de plage.",
       desc_de: 'Der Hauptstrand von El Puerto, weitläufig und gut ausgestattet. Feiner Sand, klares Wasser, Rettungsschwimmer und viele Strandbars.',
+      desc_it: 'La spiaggia principale di El Puerto, estesa e ben attrezzata. Sabbia fine, acque pulite, servizio di bagnini e ampia zona di chiringuitos. Ideale per le famiglie.',
       address: 'Playa de Valdelagrana, El Puerto de Santa María',
       hours_es: 'Abierta 24h',
       hours_en: 'Open 24h',
+      hours_it: 'Aperta 24h',
       phone: null,
       rating: '4.4★',
       link: 'https://maps.google.com/?q=Playa+de+Valdelagrana+El+Puerto+de+Santa+Maria',
@@ -1864,14 +1821,16 @@
     {
       id: 'muralla', cat: 'beach', emoji: '🏖️',
       name: 'Playa La Muralla',
-      badge_es: 'Playa · Bandera Azul', badge_en: 'Beach · Blue Flag', badge_fr: 'Plage · Pavillon Bleu', badge_de: 'Strand · Blaue Flagge',
+      badge_es: 'Playa · Bandera Azul', badge_en: 'Beach · Blue Flag', badge_fr: 'Plage · Pavillon Bleu', badge_de: 'Strand · Blaue Flagge', badge_it: 'Spiaggia · Bandiera Blu',
       desc_es: 'Pequeña playa tranquila con arena dorada y vistas a las ruinas del castillo medieval. Situada junto a la marina de Puerto Sherry, con restaurantes cercanos y olas suaves.',
       desc_en: 'Small, peaceful beach with golden sand and views of medieval castle ruins. Located next to Puerto Sherry marina, with nearby restaurants and calm waves.',
       desc_fr: "Petite plage tranquille avec vue sur les ruines d'un château médiéval. Située près de la marina de Puerto Sherry.",
       desc_de: 'Kleiner, ruhiger Strand mit Blick auf mittelalterliche Burgruinen. Neben der Marina Puerto Sherry gelegen.',
+      desc_it: 'Piccola spiaggia tranquilla con sabbia dorata e vista sulle rovine del castello medievale. Situata vicino alla marina di Puerto Sherry, con ristoranti nelle vicinanze e onde calmi.',
       address: 'P.º Sta. Catalina 3, El Puerto de Santa María',
       hours_es: 'Abierta 24h',
       hours_en: 'Open 24h',
+      hours_it: 'Aperta 24h',
       phone: null,
       rating: '4.4★ (2.333 reseñas)',
       link: 'https://maps.google.com/?q=Playa+La+Muralla+Puerto+Sherry',
@@ -1880,14 +1839,16 @@
     {
       id: 'calita', cat: 'beach', emoji: '🏖️',
       name: 'Playa la Calita',
-      badge_es: 'Cala recogida', badge_en: 'Sheltered cove', badge_fr: 'Crique abritée', badge_de: 'Geschützte Bucht',
+      badge_es: 'Cala recogida', badge_en: 'Sheltered cove', badge_fr: 'Crique abritée', badge_de: 'Geschützte Bucht', badge_it: 'Cala riparata',
       desc_es: 'Cala pequeña y recogida junto a Puerto Sherry. Aguas tranquilas y fondo arenoso, perfecta para familias y para un baño tranquilo. Acceso a pie desde el paseo.',
       desc_en: 'Small sheltered cove by Puerto Sherry. Calm waters and sandy bottom, perfect for families and a peaceful swim. Walking access from the promenade.',
       desc_fr: "Petite crique abritée près de Puerto Sherry. Eaux calmes et fond sableux, idéale pour les familles.",
       desc_de: 'Kleine geschützte Bucht bei Puerto Sherry. Ruhige Gewässer und Sandboden, ideal für Familien.',
+      desc_it: 'Piccola cala riparata vicino a Puerto Sherry. Acque tranquille e fondo sabbioso, perfetta per le famiglie e per un bagno rilassante. Accesso a piedi dal lungomare.',
       address: 'Puerto Sherry, El Puerto de Santa María',
       hours_es: 'Abierta 24h',
       hours_en: 'Open 24h',
+      hours_it: 'Aperta 24h',
       phone: null,
       rating: '4.4★',
       link: 'https://maps.google.com/?q=Playa+la+Calita+Puerto+Sherry',
@@ -1896,14 +1857,16 @@
     {
       id: 'phiphi', cat: 'nightlife', emoji: '🍹',
       name: 'PhiPhi Beach',
-      badge_es: 'Open Air Bar', badge_en: 'Open Air Bar', badge_fr: 'Bar en plein air', badge_de: 'Open-Air-Bar',
+      badge_es: 'Open Air Bar', badge_en: 'Open Air Bar', badge_fr: 'Bar en plein air', badge_de: 'Open-Air-Bar', badge_it: 'Bar all\'aperto',
       desc_es: 'Club de playa al aire libre en Puerto Sherry con vistas espectaculares a la bahía de Cádiz. DJ en directo, cócteles tropicales y atardecer atlántico. Uno de los bares más icónicos de la zona.',
       desc_en: 'Open-air beach club in Puerto Sherry with stunning views of the Bay of Cádiz. Live DJ sets, tropical cocktails and spectacular Atlantic sunsets. One of the most iconic bars in the area.',
       desc_fr: "Club de plage en plein air à Puerto Sherry avec une vue magnifique sur la baie de Cádiz. DJ en direct, cocktails tropicaux et couchers de soleil atlantiques.",
       desc_de: 'Open-Air-Strandclub in Puerto Sherry mit atemberaubender Aussicht auf die Bucht von Cádiz. Live-DJ-Sets, tropische Cocktails und spektakuläre Sonnenuntergänge.',
+      desc_it: 'Beach club all\'aperto a Puerto Sherry con viste spettacolari sulla baia di Cadice. DJ set dal vivo, cocktail tropicali e tramonti atlantici. Uno dei bar più iconici della zona.',
       address: 'C. Puerto Serrano 9, Puerto Sherry, El Puerto de Santa María',
       hours_es: 'Lun–Dom: 17:30 – 00:00 (temporada)',
       hours_en: 'Mon–Sun: 5:30 PM – midnight (seasonal)',
+      hours_it: 'Lun–Dom: 17:30 – 00:00 (stagionale)',
       phone: '+34 647 845 447',
       rating: '3.7★',
       link: 'https://www.instagram.com/phiphibeachpuertosherry/',
@@ -1912,14 +1875,16 @@
     {
       id: 'margarita', cat: 'nightlife', emoji: '🌅',
       name: 'Margarita Puerto Sherry',
-      badge_es: 'A Place for Happiness', badge_en: 'A Place for Happiness', badge_fr: 'Un lieu de bonheur', badge_de: 'Ein Ort des Glücks',
+      badge_es: 'A Place for Happiness', badge_en: 'A Place for Happiness', badge_fr: 'Un lieu de bonheur', badge_de: 'Ein Ort des Glücks', badge_it: 'Un luogo di felicità',
       desc_es: 'Bar de cócteles con terraza y vistas al mar en Puerto Sherry. Ambiente relajado y festivo, música selecta y los mejores atardeceres de la bahía. Abierto todos los días.',
       desc_en: 'Cocktail bar with sea-view terrace at Puerto Sherry. Relaxed and joyful atmosphere, curated music and the best sunsets over the bay. Open every day.',
       desc_fr: 'Bar à cocktails avec terrasse vue mer à Puerto Sherry. Ambiance détendue et festive, musique sélectionnée et les plus beaux couchers de soleil.',
       desc_de: 'Cocktailbar mit Meerblick-Terrasse in Puerto Sherry. Entspannte und fröhliche Atmosphäre, ausgewählte Musik und die schönsten Sonnenuntergänge.',
+      desc_it: 'Cocktail bar con terrazza vista mare a Puerto Sherry. Atmosfera rilassata e festosa, musica selezionata e i migliori tramonti della baia. Aperto tutti i giorni.',
       address: 'Puerto Sherry, El Puerto de Santa María',
       hours_es: 'Todos los días desde las 15:30',
       hours_en: 'Every day from 3:30 PM',
+      hours_it: 'Tutti i giorni dalle 15:30',
       phone: '+34 601 885 051',
       rating: '★★★★',
       link: 'https://www.instagram.com/margaritapuertosherry/',
@@ -1928,14 +1893,16 @@
     {
       id: 'canalla', cat: 'nightlife', emoji: '🎶',
       name: 'Playa Canalla',
-      badge_es: 'Boho-Chic Beach Club', badge_en: 'Boho-Chic Beach Club', badge_fr: 'Beach Club Boho-Chic', badge_de: 'Boho-Chic Beach Club',
+      badge_es: 'Boho-Chic Beach Club', badge_en: 'Boho-Chic Beach Club', badge_fr: 'Beach Club Boho-Chic', badge_de: 'Boho-Chic Beach Club', badge_it: 'Beach Club Boho-Chic',
       desc_es: 'Beach club de estilo boho-chic a orillas del mar en Puerto Sherry. Espíritu Formentera, decoración en tonos crema y madera, elegancia y glamour. Parte del Grupo Banban.',
       desc_en: "Boho-chic beach club at the water's edge in Puerto Sherry. Formentera spirit, cream and wood décor, elegance and glamour. Part of Grupo Banban.",
       desc_fr: "Beach club boho-chic au bord de l'eau à Puerto Sherry. Esprit Formentera, décor crème et bois, élégance et glamour.",
       desc_de: 'Boho-Chic-Strandclub am Wasser in Puerto Sherry. Formentera-Atmosphäre, Creme-Holz-Dekor, Eleganz und Glamour.',
+      desc_it: 'Beach club in stile boho-chic in riva al mare a Puerto Sherry. Spirito Formentera, decorazioni in toni crema e legno, eleganza e glamour. Parte del Gruppo Banban.',
       address: 'C. Puerto Serrano, Puerto Sherry, El Puerto de Santa María',
       hours_es: 'Jueves, Viernes y Sábado: 17:00 – tarde',
       hours_en: 'Thursday, Friday & Saturday: 5:00 PM – late',
+      hours_it: 'Giovedì, Venerdì e Sabato: 17:00 – tardi',
       phone: '+34 620 691 271',
       rating: '4.2★',
       link: 'https://playacanalla.com',
@@ -1944,14 +1911,16 @@
     {
       id: 'lioclub', cat: 'nightlife', emoji: '🎭',
       name: 'Lio Club Puntilla Playa',
-      badge_es: 'Club nocturno frente al mar', badge_en: 'Seafront nightclub', badge_fr: 'Club nocturne en bord de mer', badge_de: 'Strandnaher Nachtclub',
+      badge_es: 'Club nocturno frente al mar', badge_en: 'Seafront nightclub', badge_fr: 'Club nocturne en bord de mer', badge_de: 'Strandnaher Nachtclub', badge_it: 'Club notturno fronte mare',
       desc_es: 'Club nocturno situado en la Avenida de la Bajamar, a orillas del mar junto a la Playa de la Puntilla. Ambiente festivo con terraza costera. Actualmente temporalmente cerrado.',
       desc_en: 'Nightclub located on Avenida de la Bajamar, by the sea next to Playa de la Puntilla. Festive atmosphere with a coastal terrace. Currently temporarily closed.',
       desc_fr: 'Club nocturne sur Avenida de la Bajamar, au bord de la mer près de Playa de la Puntilla. Ambiance festive avec terrasse côtière. Actuellement temporairement fermé.',
       desc_de: 'Nachtclub an der Avenida de la Bajamar, am Meer neben der Playa de la Puntilla. Festliche Atmosphäre mit Küstentetrasse. Aktuell vorübergehend geschlossen.',
+      desc_it: 'Club notturno situato in Avenida de la Bajamar, in riva al mare vicino alla Playa de la Puntilla. Atmosfera festosa con terrazza costiera. Attualmente temporaneamente chiuso.',
       address: 'Av. de la Bajamar, El Puerto de Santa María',
       hours_es: 'Temporalmente cerrado · Consultar redes sociales',
       hours_en: 'Temporarily closed · Check social media for updates',
+      hours_it: 'Temporaneamente chiuso · Consulta i social media per aggiornamenti',
       phone: '+34 662 33 70 28',
       rating: '4.5★ (31)',
       link: 'https://maps.app.goo.gl/GiSgZ18XSrp8zCn27',
@@ -1960,14 +1929,16 @@
     {
       id: 'cristalera', cat: 'nightlife', emoji: '🎹',
       name: 'Bar La Cristalera',
-      badge_es: 'Piano bar junto al Guadalete', badge_en: 'Piano bar by the Guadalete', badge_fr: 'Piano bar au bord du Guadalete', badge_de: 'Piano-Bar am Guadalete',
-      desc_es: 'Bar musical y piano bar en pleno centro, junto al río Guadalete. Música variada con DJ, copas y ambiente animado. Terraza con acceso para silla de ruedas. Abre desde las 15:30.',
+      badge_es: 'Piano bar junto al Guadalete', badge_en: 'Piano bar by the Guadalete', badge_fr: 'Piano bar au bord du Guadalete', badge_de: 'Piano-Bar am Guadalete', badge_it: 'Piano bar vicino al Guadalete',
+      desc_es: 'Bar musical y piano bar en pleno centro, junto al río Guadalete. Música variada con DJ, con copas y ambiente animado. Terraza con acceso para silla de ruedas. Abre desde las 15:30.',
       desc_en: 'Music bar and piano bar in the city centre, by the Guadalete river. Varied music with DJ, drinks and lively atmosphere. Terrace with wheelchair access. Opens from 3:30 PM.',
       desc_fr: 'Bar musical et piano bar en plein centre, au bord du Guadalete. Musique variée avec DJ, cocktails et ambiance animée. Terrasse accessible en fauteuil roulant. Ouverture dès 15h30.',
       desc_de: 'Musikbar und Piano-Bar im Stadtzentrum am Fluss Guadalete. Abwechslungsreiche Musik mit DJ, Getränke und lebhafte Atmosphäre. Terrasse rollstuhlzugänglich. Öffnung ab 15:30 Uhr.',
+      desc_it: 'Music bar e piano bar in pieno centro, vicino al fiume Guadalete. Musica varia con DJ, drink e atmosfera vivace. Terrazza con accesso per sedie a rotelle. Apre dalle 15:30.',
       address: 'Pl. de las Galeras Reales s/n, El Puerto de Santa María',
       hours_es: 'Lun–Jue: 15:30–22:00 · Vie–Sáb: 15:30–04:00 · Dom: 15:30–22:00',
       hours_en: 'Mon–Thu: 3:30 PM–10 PM · Fri–Sat: 3:30 PM–4:00 AM · Sun: 3:30 PM–10 PM',
+      hours_it: 'Lun–Gio: 15:30–22:00 · Ven–Sab: 15:30–04:00 · Dom: 15:30–22:00',
       phone: '+34 647 84 54 47',
       rating: '3.9★',
       link: 'https://m.facebook.com/lacristaleracopas',
@@ -1992,14 +1963,16 @@
     {
       id: 'castillo', cat: 'culture', emoji: '🏰',
       name: 'Castillo de San Marcos',
-      badge_es: 'Patrimonio histórico', badge_en: 'Historic heritage', badge_fr: 'Patrimoine historique', badge_de: 'Historisches Erbe',
+      badge_es: 'Patrimonio histórico', badge_en: 'Historic heritage', badge_fr: 'Patrimoine historique', badge_de: 'Historisches Erbe', badge_it: 'Patrimonio storico',
       desc_es: 'Fortaleza del siglo XII construida sobre las ruinas de una mezquita árabe. Vinculada a los viajes de Colón y al ducado de Medinaceli. Incluye degustaciones de vino de jerez. 14.428 visitantes al año.',
       desc_en: "12th-century fortress built on the ruins of an Arab mosque. Linked to Columbus's voyages and the Duchy of Medinaceli. Includes sherry wine tastings. 14,428 visitors per year.",
       desc_fr: "Forteresse du XIIe siècle construite sur les ruines d'une mosquée arabe. Liée aux voyages de Christophe Colomb. Dégustations de xérès incluses.",
       desc_de: "Festung aus dem 12. Jahrhundert, auf den Ruinen einer arabischen Moschee erbaut. Mit Kolumbus' Reisen verbunden. Sherry-Weinverkostungen inklusive.",
+      desc_it: 'Fortezza del XII secolo costruita sulle rovine di una moschea araba. Legata ai viaggi di Colombo e al ducato di Medinaceli. Include degustazioni di vino sherry. 14.428 visitatori all\'anno.',
       address: 'Plaza del Castillo s/n, El Puerto de Santa María',
       hours_es: 'Mar–Dom: 10:00–14:00 y 17:00–19:30 · Lunes cerrado',
       hours_en: 'Tue–Sun: 10am–2pm & 5pm–7:30pm · Closed Monday',
+      hours_it: 'Mar–Dom: 10:00–14:00 e 17:00–19:30 · Lunedì chiuso',
       phone: '+34 956 851 751',
       rating: '4.4★ (14.428 visitas/año)',
       link: 'https://maps.google.com/?q=Castillo+San+Marcos+El+Puerto+de+Santa+Maria',
@@ -2008,14 +1981,16 @@
     {
       id: 'plazatoros', cat: 'culture', emoji: '🐂',
       name: 'Real Plaza de Toros',
-      badge_es: 'Monumento de 1880', badge_en: 'Monument from 1880', badge_fr: 'Monument de 1880', badge_de: 'Denkmal von 1880',
+      badge_es: 'Monumento de 1880', badge_en: 'Monument from 1880', badge_fr: 'Monument de 1880', badge_de: 'Denkmal von 1880', badge_it: 'Monumento del 1880',
       desc_es: 'Plaza de toros construida en 1880, con aforo para 15.000 espectadores. Icónico monumento arquitectónico de El Puerto de Santa María. Visitas guíadas disponibles. Temporalmente cerrada.',
       desc_en: 'Bullring built in 1880 with a capacity of 15,000 spectators. Iconic architectural monument of El Puerto de Santa María. Guided tours available. Currently temporarily closed.',
       desc_fr: 'Arène construite en 1880, d’une capacité de 15 000 spectateurs. Monument architectural iconique d’El Puerto de Santa María. Visites guidées disponibles. Temporairement fermée.',
       desc_de: 'Stierkampfarena aus dem Jahr 1880 mit 15.000 Plätzen. Ikonisches Architekturmonument von El Puerto de Santa María. Führungen verfügbar. Vorübergehend geschlossen.',
+      desc_it: 'Plaza de toros costruita nel 1880, con capienza per 15.000 spettatori. Iconico monumento architettonico di El Puerto de Santa María. Visite guidate disponibili. Temporaneamente chiusa.',
       address: 'Pl. de Elías Ahuja s/n, El Puerto de Santa María',
       hours_es: 'Temporalmente cerrada · Consultar web para eventos',
       hours_en: 'Temporarily closed · Check website for events',
+      hours_it: 'Temporaneamente chiusa · Consulta il sito web per eventi',
       phone: null,
       rating: '4.3★',
       link: 'https://www.elpuertodesantamaria.es/plaza-de-toros/',
@@ -2024,14 +1999,16 @@
     {
       id: 'alberti', cat: 'culture', emoji: '🎨',
       name: 'Museo Fundación Rafael Alberti',
-      badge_es: 'Premio Cervantes 1983', badge_en: '1983 Cervantes Prize', badge_fr: 'Prix Cervantes 1983', badge_de: 'Cervantes-Preis 1983',
+      badge_es: 'Premio Cervantes 1983', badge_en: '1983 Cervantes Prize', badge_fr: 'Prix Cervantes 1983', badge_de: 'Cervantes-Preis 1983', badge_it: 'Premio Cervantes 1983',
       desc_es: 'Museo dedicado a Rafael Alberti, poeta y dramaturgo de El Puerto, Premio Cervantes 1983. Exposiciones permanentes y temporales sobre su vida y obra. Audio guías en varios idiomas. Entrada: 4,50€. Lunes cerrado.',
       desc_en: 'Museum dedicated to Rafael Alberti, poet and playwright from El Puerto, winner of the 1983 Cervantes Prize. Permanent and temporary exhibitions on his life and work. Audio guides in several languages. Entry: €4.50. Closed Mondays.',
       desc_fr: 'Musée dédié à Rafael Alberti, poète et dramaturge d’El Puerto, lauréat du Prix Cervantes 1983. Expositions permanentes et temporaires. Audioguides en plusieurs langues. Entrée : 4,50€. Fermé le lundi.',
       desc_de: 'Museum für Rafael Alberti, Dichter und Dramatiker aus El Puerto, Cervantes-Preisträger 1983. Dauer- und Wechselausstellungen. Audioguides in mehreren Sprachen. Eintritt: 4,50€. Montags geschlossen.',
+      desc_it: 'Museo dedicato a Rafael Alberti, poeta e drammaturgo di El Puerto, Premio Cervantes 1983. Mostre permanenti e temporanee sulla sua vita e opera. Audioguide in diverse lingue. Ingresso: 4,50€. Lunedì chiuso.',
       address: 'C. Santo Domingo 25, El Puerto de Santa María',
       hours_es: 'Mar–Vie: 10:00–14:00 · Sáb–Dom: 11:00–14:00 · Lunes cerrado',
       hours_en: 'Tue–Fri: 10am–2pm · Sat–Sun: 11am–2pm · Closed Monday',
+      hours_it: 'Mar–Ven: 10:00–14:00 · Sab–Dom: 11:00–14:00 · Lunedì chiuso',
       phone: '+34 626 48 29 69',
       rating: '4.6★ (489 reseñas)',
       link: 'http://www.rafaelalberti.com/',
@@ -2040,14 +2017,16 @@
     {
       id: 'valdivieso', cat: 'culture', emoji: '🏛️',
       name: 'Palacio de Valdivieso',
-      badge_es: 'Barroco s. XVIII', badge_en: '18th-c. Baroque', badge_fr: 'Baroque XVIIIe s.', badge_de: 'Barock 18. Jh.',
+      badge_es: 'Barroco s. XVIII', badge_en: '18th-c. Baroque', badge_fr: 'Baroque XVIIIe s.', badge_de: 'Barock 18. Jh.', badge_it: 'Barocco s. XVIII',
       desc_es: 'Palacio barroco del siglo XVIII situado en el centro histórico de El Puerto de Santa María. Uno de los ejemplos más destacados de la arquitectura palaciega de la ciudad. Fachada monumental en la Calle de la Palma.',
       desc_en: '18th-century Baroque palace in the historic centre of El Puerto de Santa María. One of the finest examples of palatial architecture in the city. Monumental facade on Calle de la Palma.',
       desc_fr: 'Palais baroque du XVIIIe siècle dans le centre historique d’El Puerto de Santa María. L’un des plus beaux exemples d’architecture palatiale de la ville.',
       desc_de: 'Barock-Palast aus dem 18. Jahrhundert im historischen Zentrum von El Puerto de Santa María. Eines der eindrucksvollsten Beispiele für Palastarchitektur der Stadt.',
+      desc_it: 'Palazzo barocco del XVIII secolo situato nel centro storico di El Puerto de Santa María. Uno dei più begli esempi di architettura palaziale della città. Facciata monumentale in Calle de la Palma.',
       address: 'C. de la Palma 4, El Puerto de Santa María',
       hours_es: 'Exterior visible desde la calle · Consultar acceso interior',
       hours_en: 'Exterior visible from street · Check interior access',
+      hours_it: 'Esterno visibile dalla strada · Consulta per l\'accesso interno',
       phone: null,
       rating: '4.5★',
       link: 'https://maps.google.com/?q=Palacio+de+Valdivieso+El+Puerto+de+Santa+Maria',
@@ -2072,14 +2051,16 @@
     {
       id: 'iglesia', cat: 'culture', emoji: '⛪',
       name: 'Iglesia Mayor Prioral',
-      badge_es: 'Gótico-renacentista s. XV', badge_en: 'Gothic-Renaissance 15th c.', badge_fr: 'Gothique-Renaissance XVe s.', badge_de: 'Gotik-Renaissance 15. Jh.',
+      badge_es: 'Gótico-renacentista s. XV', badge_en: 'Gothic-Renaissance 15th c.', badge_fr: 'Gothique-Renaissance XVe s.', badge_de: 'Gotik-Renaissance 15. Jh.', badge_it: 'Gotico-rinascimentale s. XV',
       desc_es: 'Principal templo católico de El Puerto de Santa María. Iglesia gótico-renacentista del siglo XV en la Plaza de España. 2.087 reseñas en Google. Misas diarias y visitas libres.',
       desc_en: 'Main Catholic church of El Puerto de Santa María. 15th-century Gothic-Renaissance architecture on Plaza de España. 2,087 Google reviews. Daily Mass and free visits.',
       desc_fr: 'Principal temple catholique d’El Puerto de Santa María. Architecture gothique-renaissance du XVe siècle sur la Plaza de España. 2 087 avis Google. Messes quotidiennes et visites libres.',
       desc_de: 'Hauptkirche von El Puerto de Santa María. Gotisch-Renaissance-Architektur aus dem 15. Jahrhundert auf der Plaza de España. 2.087 Google-Bewertungen. Tägliche Messen und freier Besuch.',
+      desc_it: 'Principale tempio cattolico di El Puerto de Santa María. Architettura gotico-rinascimentale del XV secolo in Plaza de España. Messe quotidiane e visite libere.',
       address: 'Pl. de España s/n, El Puerto de Santa María',
       hours_es: 'Lun–Sáb: 8:30–13:00 y 18:00–21:00 · Dom: 8:30–14:00 y 18:30–21:00',
       hours_en: 'Mon–Sat: 8:30am–1pm & 6–9pm · Sun: 8:30am–2pm & 6:30–9pm',
+      hours_it: 'Lun–Sab: 8:30–13:00 e 18:00–21:00 · Dom: 8:30–14:00 e 18:30–21:00',
       phone: '+34 956 85 17 16',
       rating: '4.5★ (2.087 reseñas)',
       link: 'https://iglesiamayorprioralelpuerto.com',
@@ -2088,14 +2069,16 @@
     {
       id: 'osborne', cat: 'gastro', emoji: '🍷',
       name: 'Bodegas Osborne',
-      badge_es: 'Bodega histórica', badge_en: 'Historic winery', badge_fr: 'Bodega historique', badge_de: 'Historisches Weingut',
+      badge_es: 'Bodega histórica', badge_en: 'Historic winery', badge_fr: 'Bodega historique', badge_de: 'Historisches Weingut', badge_it: 'Cantina storica',
       desc_es: 'Fundada en 1772, es la bodega más visitada de El Puerto con 33.603 visitas/año. Alberga la mayor colección de vinos VORS del marco de Jerez y el icónico Toro de Osborne. Visitas guiadas en español, inglés y alemán.',
       desc_en: 'Founded in 1772, the most visited winery in El Puerto with 33,603 visits/year. Home to the largest VORS sherry wine collection and the iconic Osborne Bull. Guided tours in Spanish, English and German.',
       desc_fr: "Fondée en 1772, c'est la bodega la plus visitée d'El Puerto. Abrite la plus grande collection de vins VORS de la région de Jerez et le célèbre Taureau Osborne.",
       desc_de: 'Gegründet 1772, das meistbesuchte Weingut in El Puerto. Beherbergt die größte VORS-Sherry-Weinsammlung und den ikonischen Osborne-Stier.',
+      desc_it: 'Fondata nel 1772, è la cantina più visitata di El Puerto. Ospita la più grande collezione di vini VORS di Jerez e l\'iconico Toro di Osborne.',
       address: 'Calle Los Moros 7, El Puerto de Santa María',
       hours_es: 'Lun–Dom: 10:00–15:00 · Verano también 19:00–22:00',
       hours_en: 'Mon–Sun: 10am–3pm · Summer also 7pm–10pm',
+      hours_it: 'Lun–Dom: 10:00–15:00 · In estate anche 19:00–22:00',
       phone: '+34 956 869 100',
       rating: '4.5★',
       link: 'https://www.osborne.es',
@@ -2104,14 +2087,16 @@
     {
       id: 'aponiente', cat: 'gastro', emoji: '⭐',
       name: 'Aponiente',
-      badge_es: '3 Estrellas Michelin', badge_en: '3 Michelin Stars', badge_fr: '3 Étoiles Michelin', badge_de: '3 Michelin-Sterne',
+      badge_es: '3 Estrellas Michelin', badge_en: '3 Michelin Stars', badge_fr: '3 Étoiles Michelin', badge_de: '3 Michelin-Sterne', badge_it: '3 Stelle Michelin',
       desc_es: 'Restaurante de alta cocina del mar del chef Ángel León, "el Chef del Mar". 3 Estrellas Michelin, ubicado en un antiguo molino de mareas del siglo XIX. Menús degustación con maridaje de vinos.',
       desc_en: 'Fine dining seafood restaurant by chef Ángel León, "the Chef of the Sea". 3 Michelin Stars, located in a 19th-century tidal mill. Tasting menus with wine pairing.',
       desc_fr: "Restaurant gastronomique de la mer du chef Ángel León, 'le Chef de la Mer'. 3 Étoiles Michelin, dans un ancien moulin à marées du XIXe siècle.",
       desc_de: 'Fine-Dining-Meeresrestaurant von Küchenchef Ángel León, "dem Koch des Meeres". 3 Michelin-Sterne, in einer historischen Tidenmühle aus dem 19. Jahrhundert.',
+      desc_it: 'Ristorante di alta cucina di mare dello chef Ángel León, "lo Chef del Mare". 3 Stelle Michelin, in un antico mulino a marea del XIX secolo.',
       address: 'C. Francisco Cossi Ochoa s/n, El Puerto de Santa María',
       hours_es: 'Mié–Dom: servicio de noche · Lun y Mar: cerrado',
       hours_en: 'Wed–Sun: dinner service · Mon & Tue: closed',
+      hours_it: 'Mer–Dom: servizio serale · Lun e Mar: chiuso',
       phone: '+34 606 225 859',
       rating: '4.7★',
       link: 'https://aponiente.com',
@@ -2120,14 +2105,16 @@
     {
       id: 'ribera', cat: 'gastro', emoji: '🦞',
       name: 'Ribera del Marisco',
-      badge_es: 'Paseo gastronómico', badge_en: 'Gastro promenade', badge_fr: 'Promenade gastronomique', badge_de: 'Gastronomiemeile',
+      badge_es: 'Paseo gastronómico', badge_en: 'Gastro promenade', badge_fr: 'Promenade gastronomique', badge_de: 'Gastronomiemeile', badge_it: 'Passeggiata gastronomica',
       desc_es: 'El paseo del marisco de El Puerto. Concentración de bares y restaurantes especializados en mariscos y pescados frescos junto al río Guadalete. Muy animado por las noches, especialmente en verano.',
       desc_en: "El Puerto's seafood promenade. Concentration of bars and restaurants specialising in fresh seafood along the Guadalete River. Very lively at night, especially in summer.",
       desc_fr: "La promenade des fruits de mer d'El Puerto. Concentration de bars et restaurants spécialisés dans les fruits de mer frais le long du Guadalete.",
       desc_de: 'El Puertos Meeresfrüchtepromenade. Konzentration von Bars und Restaurants, die frische Meeresfrüchte am Guadalete-Fluss servieren.',
+      desc_it: 'La passeggiata del pesce di El Puerto. Concentrazione di bar e ristoranti specializzati in pesce fresco lungo il fiume Guadalete. Molto vivace di sera.',
       address: 'Ribera del Marisco, El Puerto de Santa María',
       hours_es: 'Mediodía y noche · Muy animado de 21:00 en adelante',
       hours_en: 'Lunch & dinner · Buzzing from 9 PM onwards',
+      hours_it: 'Pranzo e cena · Molto vivace dalle 21:00 in poi',
       phone: null,
       rating: '★★★★★',
       link: 'https://maps.google.com/?q=Ribera+del+Marisco+El+Puerto+de+Santa+Maria',
@@ -2136,15 +2123,17 @@
     {
       id: 'venencia', cat: 'gastro', emoji: '🐟',
       name: 'Restaurante La Venencia',
-      badge_es: 'Cocina andaluza', badge_en: 'Andalusian cuisine', badge_fr: 'Cuisine andalouse', badge_de: 'Andalusische Küche',
+      badge_es: 'Cocina andaluza', badge_en: 'Andalusian cuisine', badge_fr: 'Cuisine andalouse', badge_de: 'Andalusische Küche', badge_it: 'Cucina andalusa',
       desc_es: 'Restaurante frente al mar en la Avenida de la Bajamar. Cocina tradicional andaluza y mariscos frescos con vistas a la marína. Accesible en silla de ruedas. Muy cerca del Real Club Náutico.',
       desc_en: "Seafront restaurant on Avenida de la Bajamar. Traditional Andalusian cuisine and fresh seafood with marina views. Wheelchair accessible. Very close to the Real Club Náutico.",
       desc_fr: 'Restaurant en bord de mer sur l\'Avenida de la Bajamar. Cuisine andalouse traditionnelle et fruits de mer frais avec vue sur la marina.',
       desc_de: 'Restaurant am Meer an der Avenida de la Bajamar. Traditionelle andalusische Küche und frische Meeresfrüchte mit Blick auf den Hafen.',
+      desc_it: 'Ristorante fronte mare in Avenida de la Bajamar. Cucina tradizionale andalusa e pesce fresco con vista sulla marina. Accessibile in sedia a rotelle.',
       address: 'Av. de la Bajamar 78-80, El Puerto de Santa María',
       hours_es: 'Lun: 9:00–16:30 y 20:30–23:30 · Resto de días similar',
       hours_en: 'Mon: 9am–4:30pm & 8:30–11:30pm · Similar other days',
-      phone: '+34 956 05 66 78',
+      hours_it: 'Lun: 9:00–16:30 e 20:30–23:30 · Altri giorni orari simili',
+       phone: '+34 956 05 66 78',
       rating: '4.0★',
       link: 'https://maps.google.com/?q=Restaurante+La+Venencia+Bajamar+El+Puerto+de+Santa+Maria',
       maps: 'https://maps.google.com/?q=Restaurante+La+Venencia+Bajamar+El+Puerto+de+Santa+Maria',
@@ -2152,15 +2141,17 @@
     {
       id: 'barpepito', cat: 'gastro', emoji: '🥘',
       name: 'Bar Pepito',
-      badge_es: 'Tapas económicas', badge_en: 'Affordable tapas', badge_fr: 'Tapas abordables', badge_de: 'Günstige Tapas',
+      badge_es: 'Tapas económicas', badge_en: 'Affordable tapas', badge_fr: 'Tapas abordables', badge_de: 'Günstige Tapas', badge_it: 'Tapas economiche',
       desc_es: 'Bar de tapas muy popular en El Puerto. Especialidad en coquinas y solomillo al queso de oveja. Excelente relación calidad-precio. 1.258 reseñas en Google · 10–20€ por persona.',
       desc_en: "Very popular tapas bar in El Puerto. Specialty: coquinas clams and beef fillet with sheep's cheese. Excellent value for money. 1,258 Google reviews · €10–20 per person.",
       desc_fr: "Bar à tapas très populaire à El Puerto. Spécialités : coquinas et filet de boeuf au fromage de brebis. Excellent rapport qualité-prix. 1 258 avis Google.",
       desc_de: 'Sehr beliebte Tapas-Bar in El Puerto. Spezialitäten: Coquinas-Muscheln und Rinderfilet mit Schafskäse. Hervorragendes Preis-Leistungs-Verhältnis. 1.258 Google-Bewertungen.',
+      desc_it: 'Tapas bar molto popolare a El Puerto. Specialità: telline e filetto di manzo al formaggio di pecora. Ottimo rapporto qualità-prezzo.',
       address: 'C. Crucero Baleares 7, El Puerto de Santa María',
       hours_es: 'Mar–Vie: 9:00–16:00 y 20:00–23:30 · Sáb–Dom: 12:00–16:00 y 20:00–23:30 · Miércoles cerrado',
       hours_en: 'Tue–Fri: 9am–4pm & 8–11:30pm · Sat–Sun: 12–4pm & 8–11:30pm · Closed Wednesday',
-      phone: '+34 956 85 42 54',
+      hours_it: 'Mar–Ven: 9:00–16:00 e 20:00–23:30 · Sab–Dom: 12:00–16:00 e 20:00–23:30 · Mercoledì chiuso',
+       phone: '+34 956 85 42 54',
       rating: '4.3★ (1.258 reseñas)',
       link: 'https://maps.google.com/?q=Bar+Pepito+Crucero+Baleares+El+Puerto+de+Santa+Maria',
       maps: 'https://maps.google.com/?q=Bar+Pepito+Crucero+Baleares+El+Puerto+de+Santa+Maria',
@@ -2168,14 +2159,16 @@
     {
       id: 'torotapas', cat: 'gastro', emoji: '🐂',
       name: 'Toro Tapas (Osborne)',
-      badge_es: 'Tapas en Bodega', badge_en: 'Tapas at the Winery', badge_fr: 'Tapas dans la Bodega', badge_de: 'Tapas in der Bodega',
+      badge_es: 'Tapas en Bodega', badge_en: 'Tapas at the Winery', badge_fr: 'Tapas dans la Bodega', badge_de: 'Tapas in der Bodega', badge_it: 'Tapas in Cantina',
       desc_es: 'Restaurante de tapas ubicado dentro de Bodegas Osborne. Cocina española de calidad en el corazón de la bodega más icónica de El Puerto. 2.713 reseñas · 4,4★.',
       desc_en: "Tapas restaurant inside the iconic Bodegas Osborne complex. Quality Spanish cuisine at the heart of El Puerto's most famous winery. 2,713 reviews · 4.4★.",
       desc_fr: "Restaurant de tapas situé à l'intérieur des Bodegas Osborne. Cuisine espagnole de qualité au cœur du domaine viticole le plus icônique d'El Puerto.",
       desc_de: 'Tapas-Restaurant innerhalb der ikonischen Bodegas Osborne. Qualitätsvolles spanisches Essen im Herzen des berühmtesten Weinguts von El Puerto.',
+      desc_it: 'Ristorante di tapas situato all\'interno di Bodegas Osborne. Cucina spagnola di qualità nel cuore della cantina più iconica di El Puerto.',
       address: 'C. Los Moros 7, El Puerto de Santa María',
       hours_es: 'Lun: 8:30–00:00 · Cocina: 13:00–22:30',
       hours_en: 'Mon: 8:30am–midnight · Kitchen: 1pm–10:30pm',
+      hours_it: 'Lun: 8:30–00:00 · Cucina: 13:00–22:30',
       phone: '+34 603 59 93 00',
       rating: '4.4★ (2.713 reseñas)',
       link: 'https://www.osborne.es/es/restaurante-osborne-toro-tapas-el-puerto-de-santa-maria',
@@ -2184,14 +2177,16 @@
     {
       id: 'ditaly', cat: 'gastro', emoji: '🍕',
       name: 'DITALY',
-      badge_es: 'Italiano · 4,8★', badge_en: 'Italian · 4.8★', badge_fr: 'Italien · 4,8★', badge_de: 'Italienisch · 4,8★',
+      badge_es: 'Italiano · 4,8★', badge_en: 'Italian · 4.8★', badge_fr: 'Italien · 4,8★', badge_de: 'Italienisch · 4,8★', badge_it: 'Italiano · 4,8★',
       desc_es: 'Restaurante italiano con una de las mejores valoraciones de El Puerto (4,8★ en Google con 974 reseñas). Especialidad en pizzas artesanas, pasta fresca y tiramiś de pistacho. Perfecto para compartir.',
       desc_en: "Italian restaurant with one of the best ratings in El Puerto (4.8★ on Google, 974 reviews). Specialises in artisan pizzas, fresh pasta and pistachio tiramisù. Perfect for sharing.",
       desc_fr: "Restaurant italien avec l'une des meilleures notes d'El Puerto (4,8★ sur Google, 974 avis). Spécialités : pizzas artisanales, pâtes fraîches et tiramisuù à la pistache.",
       desc_de: 'Italienisches Restaurant mit einer der besten Bewertungen in El Puerto (4,8★ bei Google, 974 Bewertungen). Spezialitäten: handgemachte Pizzas, frische Pasta und Pistazien-Tiramisù.',
+      desc_it: 'Ristorante italiano con una delle migliori valutazioni di El Puerto. Specialità in pizze artigianali, pasta fresca e tiramisù al pistacchio.',
       address: 'C. Luna 1, El Puerto de Santa María',
       hours_es: 'Lun: abre a las 13:00 · Pico: 13:00–15:00 y 19:00–22:00',
       hours_en: 'Mon: opens at 1pm · Busy: 1–3pm lunch & 7–10pm dinner',
+      hours_it: 'Lun: apre alle 13:00 · Picco: 13:00–15:00 e 19:00–22:00',
       phone: '+34 856 50 52 24',
       rating: '4.8★ (974 reseñas)',
       link: 'https://www.ditaly.es/locales/local-puerto-de-santa-maria/',
@@ -2200,14 +2195,16 @@
     {
       id: 'tabernachef', cat: 'gastro', emoji: '🎣',
       name: 'La Taberna del Chef del Mar',
-      badge_es: 'Universo Ángel León', badge_en: 'Ángel León Universe', badge_fr: 'Univers Ángel León', badge_de: 'Ángel León Universum',
+      badge_es: 'Universo Ángel León', badge_en: 'Ángel León Universe', badge_fr: 'Univers Ángel León', badge_de: 'Ángel León Universum', badge_it: 'Universo Ángel León',
       desc_es: 'Taberna vinculada al universo culinario del chef Ángel León (Aponiente, 3 estrellas Michelin). Tapas y platos de mariscos elevados en un ambiente informal y animado. 4,4★ en Google.',
       desc_en: "Tavern linked to the culinary universe of chef Ángel León (Aponiente, 3 Michelin stars). Elevated tapas and seafood dishes in a lively, informal atmosphere. 4.4★ on Google.",
       desc_fr: "Taverne liée à l'univers culinaire du chef Ángel León (Aponiente, 3 étoiles Michelin). Tapas et plats de fruits de mer élaborés dans une atmosphère informelle et animée.",
       desc_de: "Taverne, die mit der kulinarischen Welt von Köchefchef Ángel León (Aponiente, 3 Michelin-Sterne) verbunden ist. Gehobene Tapas und Meeresfrüchte in lockerer Atmosphäre.",
+      desc_it: 'Taverna legata all\'universo culinario dello chef Ángel León (Aponiente, 3 stelle Michelin). Tapas e piatti di mare in un ambiente informale.',
       address: 'C. Puerto Escondido 6, El Puerto de Santa María',
       hours_es: 'Mar–Dom: abre 13:00 · Lunes cerrado',
       hours_en: 'Tue–Sun: opens 1pm · Closed Monday',
+      hours_it: 'Mar–Dom: apre alle 13:00 · Lunedì chiuso',
       phone: '+34 956 11 20 93',
       rating: '4.4★',
       link: 'http://latabernadelchefdelmar.com/',
@@ -2216,14 +2213,16 @@
     {
       id: 'romerijo', cat: 'gastro', emoji: '🦐',
       name: 'Romerijo',
-      badge_es: 'Marisquería icónica', badge_en: 'Iconic seafood', badge_fr: 'Fruits de mer iconiques', badge_de: 'Ikone der Meeresfrüchte',
+      badge_es: 'Marisquería icónica', badge_en: 'Iconic seafood', badge_fr: 'Fruits de mer iconiques', badge_de: 'Ikone der Meeresfrüchte', badge_it: 'Pescheria iconica',
       desc_es: 'Marisquería icónica de El Puerto con más de 13.100 reseñas en Google. Especialidad en tortillitas de camarones, gambas y erizos. Temporalmente cerrado desde enero 2026 por un incendio en la sede de la Ribera del Marisco.',
       desc_en: "Iconic seafood institution in El Puerto with 13,100+ Google reviews. Famous for shrimp tortillas, prawns and sea urchins. Temporarily closed since January 2026 due to a fire at the Ribera del Marisco location.",
       desc_fr: "Institution iconique des fruits de mer à El Puerto avec plus de 13 100 avis Google. Célèbre pour les tortillitas de camarones, les crevettes et les oursins. Fermé temporairement depuis janvier 2026 (incendie).",
       desc_de: 'Ikonisches Meeresfrüchte-Restaurant in El Puerto mit über 13.100 Google-Bewertungen. Bekannt für Shrimp-Tortillas, Garnelen und Seeigel. Seit Januar 2026 vorübergehend geschlossen (Brand).',
+      desc_it: 'Pescheria iconica di El Puerto con oltre 13.100 recensioni su Google. Specialità in tortillitas de camarones e ricci di mare. Temporaneamente chiusa da gennaio 2026.',
       address: 'C. Ribera del Marisco 1, El Puerto de Santa María',
       hours_es: 'Temporalmente cerrado · Reabrirá tras obras de renovación',
       hours_en: 'Temporarily closed · Will reopen after renovation works',
+      hours_it: 'Temporaneamente chiusa · Riaprirà dopo i lavori di ristrutturazione',
       phone: '+34 956 54 12 54',
       rating: '4.0★ (13.100 reseñas)',
       link: 'https://romerijo.com',
@@ -2232,14 +2231,16 @@
     {
       id: 'catamaran', cat: 'transport', emoji: '⛵',
       name: 'Catamarán → Cádiz',
-      badge_es: 'Transporte marítimo', badge_en: 'Sea transport', badge_fr: 'Transport maritime', badge_de: 'Seetransport',
+      badge_es: 'Transporte marítimo', badge_en: 'Sea transport', badge_fr: 'Transport maritime', badge_de: 'Seetransport', badge_it: 'Trasporto marittimo',
       desc_es: 'La forma más bonita de visitar Cádiz. El catamarán sale desde la Estación Marítima de El Puerto con más de 15 travesías al día. Solo 25–30 minutos de trayecto con vistas a la bahía.',
       desc_en: "The most beautiful way to visit Cádiz. The catamaran departs from El Puerto's Maritime Station with 15+ crossings daily. Just 25–30 minutes crossing with bay views.",
-      desc_fr: "La plus belle façon de visiter Cádiz. Le catamaran part de la gare maritime d'El Puerto avec plus de 15 traversées par jour. Seulement 25–30 minutes de trajet.",
+      desc_fr: "La plus belle façon de visitar Cádiz. Le catamaran part de la gare maritime d'El Puerto avec plus de 15 traversées par jour. Seulement 25–30 minutes de trajet.",
       desc_de: 'Der schönste Weg nach Cádiz. Das Katamaran fährt vom Seebahnhof El Puerto mit 15+ täglichen Überfahrten. Nur 25–30 Minuten Fahrtzeit mit Blick auf die Bucht.',
+      desc_it: 'Il modo più bello per visitare Cadice. Il catamarano parte dalla Stazione Marittima con oltre 15 partenze al giorno.',
       address: 'Estación Marítima, El Puerto de Santa María',
       hours_es: '15+ travesías/día · Primera salida ~07:00 · Última ~22:00',
       hours_en: '15+ crossings/day · First departure ~7am · Last ~10pm',
+      hours_it: '15+ corse/giorno · Prima partenza ~07:00 · Ultima ~22:00',
       phone: null,
       rating: null,
       link: 'https://maps.google.com/?q=Estacion+Maritima+El+Puerto+de+Santa+Maria',
@@ -2248,14 +2249,16 @@
     {
       id: 'tren', cat: 'transport', emoji: '🚆',
       name: 'Estación de Tren',
-      badge_es: 'Renfe Cercanías C1', badge_en: 'Renfe Cercanías C1', badge_fr: 'Renfe Cercanías C1', badge_de: 'Renfe Cercanías C1',
+      badge_es: 'Renfe Cercanías C1', badge_en: 'Renfe Cercanías C1', badge_fr: 'Renfe Cercanías C1', badge_de: 'Renfe Cercanías C1', badge_it: 'Renfe Cercanías C1',
       desc_es: 'Estación de tren gestionada por Adif. Cercanías C1 con conexiones a Cádiz (~30 min), Jerez de la Frontera (~15 min) y Sevilla (~1h). También sirven Alvia (alta velocidad) y trenes de Media Distancia. Totalmente accesible.',
       desc_en: 'Train station managed by Adif. Cercanías C1 with connections to Cádiz (~30 min), Jerez de la Frontera (~15 min) and Seville (~1h). Also served by Alvia (high-speed) and Media Distancia regional trains. Fully accessible.',
       desc_fr: 'Gare ferroviaire gérée par Adif. Cercanías C1 avec liaisons vers Cádiz (~30 min), Jerez de la Frontera (~15 min) et Séville (~1h). Également desservie par Alvia (grande vitesse) et trains régionaux. Entièrement accessible.',
       desc_de: 'Bahnhof, verwaltet von Adif. Cercanías C1 mit Verbindungen nach Cádiz (~30 Min.), Jerez de la Frontera (~15 Min.) und Sevilla (~1 Std.). Auch Alvia (Hochgeschwindigkeit) und Regionalzüge. Vollständig barrierefrei.',
+      desc_it: 'Stazione ferroviaria gestita da Adif. Cercanías C1 per Cadice (~30 min), Jerez (~15 min) e Siviglia (~1h).',
       address: 'Pl. de la Estación s/n, El Puerto de Santa María',
       hours_es: 'Horario según trenes Renfe · Consultar renfe.com',
       hours_en: 'Schedule per Renfe timetable · Check renfe.com',
+      hours_it: 'Orario secondo i treni Renfe · Consulta renfe.com',
       phone: '+34 902 43 23 43',
       rating: '3.0★',
       link: 'https://www.renfe.com/es/es/cercanias/cercanias-cadiz',
@@ -2264,14 +2267,16 @@
     {
       id: 'torunos', cat: 'nature', emoji: '🌿',
       name: 'Parque Natural Los Toruños',
-      badge_es: 'Reserva natural de marismas', badge_en: 'Tidal marsh nature reserve', badge_fr: 'Réserve naturelle de marécage', badge_de: 'Naturschutzgebiet Wattenmeer',
+      badge_es: 'Reserva natural de marismas', badge_en: 'Tidal marsh nature reserve', badge_fr: 'Réserve naturelle de marécage', badge_de: 'Naturschutzgebiet Wattenmeer', badge_it: 'Riserva naturale paludi',
       desc_es: 'Reserva natural de marismas con paseos de madera, alquiler de kayaks y bicicletas, observación de aves y zonas de picnic. Acceso libre 24 horas. Tel: +34 856 58 05 24.',
       desc_en: 'Tidal marsh nature reserve with boardwalks, kayak & bike rental, birdwatching and picnic areas. Free access, open 24 hours. Tel: +34 856 58 05 24.',
       desc_fr: "Réserve naturelle de marécage avec passerelles en bois, location de kayaks et vélos, observation des oiseaux. Accès libre 24h/24.",
       desc_de: 'Naturschutzgebiet mit Holzstegen, Kajak- und Fahrradverleih, Vogelbeobachtung und Picknickplätzen. Freier Zugang rund um die Uhr.',
+      desc_it: 'Riserva naturale con passerelle in legno, noleggio kayak e biciclette, birdwatching e aree picnic. Accesso libero 24 ore su 24.',
       address: 'Av. del Mar 7, El Puerto de Santa María',
       hours_es: 'Abierto 24 horas · Acceso libre',
       hours_en: 'Open 24 hours · Free access',
+      hours_it: 'Aperto 24 ore · Accesso libero',
       phone: '+34 856 58 05 24',
       rating: '4.7★',
       link: 'https://www.juntadeandalucia.es/medioambiente/portal/areas-tematicas/espacios-naturales-protegidos',
@@ -2280,14 +2285,16 @@
     {
       id: 'rcn', cat: 'nautica', emoji: '⚓',
       name: 'Real Club Náutico',
-      badge_es: 'Náutica · Gastronomía · Deporte', badge_en: 'Nautical · Gastronomy · Sport', badge_fr: 'Nautique · Gastronomie · Sport', badge_de: 'Nautik · Gastronomie · Sport',
+      badge_es: 'Náutica · Gastronomía · Deporte', badge_en: 'Nautical · Gastronomy · Sport', badge_fr: 'Nautique · Gastronomie · Sport', badge_de: 'Nautik · Gastronomie · Sport', badge_it: 'Nautica · Gastronomia · Sport',
       desc_es: 'Club náutico histórico a orillas del Guadalete. Restaurante-bar La Venecia (tapas y arroces), club de copas Chang Bay, pantalán con alquiler de motos de agua y embarcaciones con o sin patrón. Pistas de pádel y tenis.',
       desc_en: 'Historic yacht club on the Guadalete. La Venecia restaurant-bar (tapas & rice), Chang Bay club, pontoon with jet ski & boat rental (skippered or bareboat). Padel and tennis courts.',
       desc_fr: "Club nautique historique au bord du Guadalete. Restaurant La Venecia (tapas et riz), club Chang Bay, ponton avec location de jet skis et bateaux. Courts de padel et tennis.",
       desc_de: 'Historischer Yachtclub am Guadalete. Restaurant La Venecia (Tapas & Reis), Club Chang Bay, Steg mit Jetski- und Bootsverleih. Padel- und Tennisplätze.',
+      desc_it: 'Storico yacht club sulle rive del fiume Guadalete. Ristorante La Venecia, club Chang Bay, noleggio moto d\'acqua. Campi da paddle e tennis.',
       address: 'Avenida de la Bajamar 13, El Puerto de Santa María',
       hours_es: 'La Venecia: 09:00–00:00 · Chang Bay: 15:00–02:00',
       hours_en: 'La Venecia: 9am–midnight · Chang Bay: 3pm–2am',
+      hours_it: 'La Venecia: 09:00–00:00 · Chang Bay: 15:00–02:00',
       phone: null,
       rating: '★★★★',
       link: 'https://www.rcnpsm.es',
@@ -2297,34 +2304,34 @@
       id: 'mercadona', cat: 'supermercado', emoji: '🛒',
       name: 'Supermercados El Jamón',
       badge_es: 'Supermercado · 6 min a pie', badge_en: 'Supermarket · 6 min walk',
-      badge_fr: 'Supermarché · 6 min à pied', badge_de: 'Supermarkt · 6 Min. zu Fuß',
+      badge_fr: 'Supermarché · 6 min à pied', badge_de: 'Supermarkt · 6 Min. zu Fuß', badge_it: 'Supermercato · 6 min a piedi',
       desc_es: 'El supermercado más cercano al Airbnb, a solo 6 minutos caminando. Supermercados El Jamón es una querida cadena andaluza con amplia selección de frutas y verduras frescas, carnes, embutidos ibéricos, panadería y productos de proximidad a precios competitivos.',
       desc_en: 'The closest supermarket to the Airbnb, just a 6-minute walk away. El Jamón is a beloved Andalusian chain with a wide selection of fresh fruit and vegetables, meats, Iberian cold cuts, bakery and local products at competitive prices.',
       desc_fr: 'Le supermarché le plus proche de l\'Airbnb, à seulement 6 minutes à pied. Supermercados El Jamón est une chaîne andalouse appréciée proposant fruits et légumes frais, viandes, charcuterie ibérique, boulangerie et produits locaux à prix compétitifs.',
       desc_de: 'Der nächstgelegene Supermarkt zum Airbnb, nur 6 Gehminuten entfernt. Supermercados El Jamón ist eine beliebte andalusische Kette mit frischem Obst und Gemüse, Fleisch, iberischer Wurst, Bäckerei und regionalen Produkten zu günstigen Preisen.',
+      desc_it: 'Il supermercato più vicino all\'Airbnb, a soli 6 minuti a piedi. El Jamón è una catena andalusa con una vasta selezione di prodotti freschi e locali.',
       address: 'Av. de la Bajamar, El Puerto de Santa María',
       hours_es: 'Lun–Sáb: 09:00–21:30 · Dom: 09:00–15:00',
       hours_en: 'Mon–Sat: 9:00 AM–9:30 PM · Sun: 9:00 AM–3:00 PM',
       hours_fr: 'Lun–Sam: 09h00–21h30 · Dim: 09h00–15h00',
       hours_de: 'Mo–Sa: 09:00–21:30 Uhr · So: 09:00–15:00 Uhr',
+      hours_it: 'Lun–Sab: 09:00–21:30 · Dom: 09:00–15:00',
       phone: null, rating: '4.1★',
-      link: 'https://maps.app.goo.gl/kYb8NvJs5nnVXmXT9',
-      maps: 'https://maps.app.goo.gl/kYb8NvJs5nnVXmXT9',
     },
     {
       id: 'aldi', cat: 'supermercado', emoji: '🛒',
       name: 'Aldi',
       badge_es: 'Supermercado · Precios bajos', badge_en: 'Supermarket · Low prices',
-      badge_fr: 'Supermarché · Prix bas', badge_de: 'Supermarkt · Niedrigpreise',
+      badge_fr: 'Supermarché · Prix bas', badge_de: 'Supermarkt · Niedrigpreise', badge_it: 'Supermercato · Prezzi bassi',
       desc_es: 'Supermercado Aldi en El Puerto de Santa María. Precios bajos garantizados, excelente sección de productos frescos, artículos de temporada y marcas propias de calidad. 4,2★ con 1.379 reseñas.',
       desc_en: 'Aldi supermarket in El Puerto de Santa María. Guaranteed low prices, excellent fresh produce section, seasonal items and quality own-brand products. 4.2★ with 1,379 reviews.',
       desc_fr: 'Supermarché Aldi à El Puerto de Santa María. Prix bas garantis, excellente section de produits frais, articles de saison et marques propres de qualité.',
       desc_de: 'Aldi-Supermarkt in El Puerto de Santa María. Garantiert niedrige Preise, hervorragende Frischwarenabteilung, Saisonartikel und Eigenmarken in hoher Qualität.',
+      desc_it: 'Supermercato Aldi a El Puerto de Santa María. Prezzi bassi garantiti, ottima sezione di prodotti freschi e articoli stagionali.',
       address: 'C. Valdés s/n, El Puerto de Santa María',
       hours_es: 'Lun–Sáb: 09:00–21:30 · Domingo cerrado',
       hours_en: 'Mon–Sat: 9:00 AM–9:30 PM · Sunday closed',
-      hours_fr: 'Lun–Sam: 09h00–21h30 · Dimanche fermé',
-      hours_de: 'Mo–Sa: 09:00–21:30 Uhr · Sonntag geschlossen',
+      hours_it: 'Lun–Sab: 09:00–21:30 · Domenica chiusa',
       phone: null, rating: '4.2★ (1.379 reseñas)',
       link: 'https://maps.app.goo.gl/eLoWrx2oRU8eyNKa9',
       maps: 'https://maps.app.goo.gl/eLoWrx2oRU8eyNKa9',
@@ -2333,16 +2340,16 @@
       id: 'mercadona2', cat: 'supermercado', emoji: '🛒',
       name: 'Mercadona Dunas',
       badge_es: 'Supermercado · Zona Dunas', badge_en: 'Supermarket · Dunas area',
-      badge_fr: 'Supermarché · Zone Dunas', badge_de: 'Supermarkt · Dunas-Zone',
+      badge_fr: 'Supermarché · Zone Dunas', badge_de: 'Supermarkt · Dunas-Zone', badge_it: 'Supermercato · Zona Dunas',
       desc_es: 'Segundo Mercadona de El Puerto, en la zona de Ronda de las Dunas. Gran superficie con amplio parking gratuito, sección de frescos completa, panadería y productos locales andaluces. 4,1★ con 2.107 reseñas.',
       desc_en: 'Second Mercadona in El Puerto, in the Ronda de las Dunas area. Large store with free parking, full fresh produce section, bakery and local Andalusian products. 4.1★ with 2,107 reviews.',
-      desc_fr: 'Deuxième Mercadona d\'El Puerto, dans la zone Ronda de las Dunas. Grand magasin avec parking gratuit, section fraîche complète et produits locaux andalous.',
+      desc_fr: 'Deuxième Mercadona d\'El Puerto, dans la zone Ronda de las Dunas. Grand magasin avec parking gratuito, section fraîche complète et prodotti locali andalusi.',
       desc_de: 'Zweiter Mercadona in El Puerto, im Bereich Ronda de las Dunas. Großes Geschäft mit kostenlosem Parkplatz und vollständiger Frischwarenabteilung.',
+      desc_it: 'Secondo Mercadona di El Puerto, in zona Ronda de las Dunas. Grande supermercato con parcheggio gratuito.',
       address: 'Rda. de las Dunas 7, El Puerto de Santa María',
       hours_es: 'Lun–Sáb: 09:00–21:30 · Domingo cerrado',
       hours_en: 'Mon–Sat: 9:00 AM–9:30 PM · Sunday closed',
-      hours_fr: 'Lun–Sam: 09h00–21h30 · Dimanche fermé',
-      hours_de: 'Mo–Sa: 09:00–21:30 Uhr · Sonntag geschlossen',
+      hours_it: 'Lun–Sab: 09:00–21:30 · Domenica chiusa',
       phone: null, rating: '4.1★ (2.107 reseñas)',
       link: 'https://maps.app.goo.gl/iMzrKyCVCL2jZtUU6',
       maps: 'https://maps.app.goo.gl/iMzrKyCVCL2jZtUU6',
@@ -2351,16 +2358,16 @@
       id: 'dia', cat: 'supermercado', emoji: '🛒',
       name: 'Supermercados Dia',
       badge_es: 'Supermercado · Oferta diaria', badge_en: 'Supermarket · Daily deals',
-      badge_fr: 'Supermarché · Offres quotidiennes', badge_de: 'Supermarkt · Tagesangebote',
+      badge_fr: 'Supermarché · Offres quotidiennes', badge_de: 'Supermarkt · Tagesangebote', badge_it: 'Supermercato · Offerte del giorno',
       desc_es: 'Supermercados Dia, cadena española con excelente relación calidad-precio. Amplia variedad de productos de marca propia y ofertas diarias. Muy conveniente para las compras del día a día.',
       desc_en: 'Dia supermarket chain from Spain with great value for money. Wide range of own-brand products and daily deals. Very convenient for everyday shopping.',
-      desc_fr: 'Chaîne espagnole Dia avec un excellent rapport qualité-prix. Large gamme de produits de marque propre et offres quotidiennes. Très pratique pour les achats du quotidien.',
+      desc_fr: 'Chaîne espagnole Dia avec un excellent rapport qualità-prix. Large gamme de prodotti de marque propre et offerte quotidiane. Très pratique pour les achats du quotidien.',
       desc_de: 'Spanische Supermarktkette Dia mit hervorragendem Preis-Leistungs-Verhältnis. Breites Sortiment an Eigenmarken und täglichen Angeboten.',
+      desc_it: 'Catena spagnola Dia con ottimo rapporto qualità-prezzo. Ampia gamma di prodotti di marca propria e offerte giornaliere.',
       address: 'Av. Pintor Antonio Fernández Sevilla 18A, El Puerto de Santa María',
       hours_es: 'Lun–Sáb: 09:00–21:30 · Domingo cerrado',
       hours_en: 'Mon–Sat: 9:00 AM–9:30 PM · Sunday closed',
-      hours_fr: 'Lun–Sam: 09h00–21h30 · Dimanche fermé',
-      hours_de: 'Mo–Sa: 09:00–21:30 Uhr · Sonntag geschlossen',
+      hours_it: 'Lun–Sab: 09:00–21:30 · Domenica chiusa',
       phone: null, rating: '3.9★ (282 reseñas)',
       link: 'https://maps.app.goo.gl/ZtKo7JEHFALN6Zho9',
       maps: 'https://maps.app.goo.gl/ZtKo7JEHFALN6Zho9',
@@ -2368,14 +2375,16 @@
     {
       id: 'puertosherry', cat: 'nautica', emoji: '⚓',
       name: 'Puerto Sherry Marina',
-      badge_es: 'Marina deportiva', badge_en: 'Sports marina', badge_fr: 'Marina sportive', badge_de: 'Sporthafen',
-      desc_es: 'Marina moderna con más de 700 amarres, clubes náuticos, escuela de vela y restaurantes con vistas a la bahía de Cádiz. Atardeceres espectaculares sobre el Atlántico.',
+      badge_es: 'Marina deportiva', badge_en: 'Sports marina', badge_fr: 'Marina sportive', badge_de: 'Sporthafen', badge_it: 'Marina sportiva',
+      desc_es: 'Marina moderna con più di 700 ormeggi, club nautici, scuole di vela e ristoranti con vista sulla baia di Cadice. Tramonti spettacolari.',
       desc_en: 'Modern marina with over 700 berths, yacht clubs, sailing school and restaurants overlooking the Bay of Cádiz. Spectacular sunsets over the Atlantic.',
       desc_fr: "Marina moderne avec plus de 700 places, clubs nautiques, école de voile et restaurants avec vue sur la baie de Cádiz.",
       desc_de: 'Moderne Marina mit über 700 Liegeplätzen, Yachtclubs, Segelschule und Restaurants mit Blick auf die Bucht von Cádiz.',
+      desc_it: 'Marina moderna con oltre 700 posti barca, yacht club, scuola di vela e ristoranti. Tramonti spettacolari.',
       address: 'Puerto Sherry, El Puerto de Santa María',
       hours_es: 'Abierto todos los días',
       hours_en: 'Open every day',
+      hours_it: 'Aperto ogni giorno',
       phone: '+34 956 870 103',
       rating: '★★★★★',
       link: 'https://maps.google.com/?q=Puerto+Sherry+Marina',
@@ -2424,6 +2433,7 @@
       en: {address:'Address', hours:'Hours', phone:'Phone', directions:'Get directions', website:'Website'},
       fr: {address:'Adresse', hours:'Horaires', phone:'Téléphone', directions:'Itinéraire', website:'Site web'},
       de: {address:'Adresse', hours:'Öffnungszeiten', phone:'Telefon', directions:'Route', website:'Webseite'},
+      it: {address:'Indirizzo', hours:'Orari', phone:'Telefono', directions:'Ottieni indicazioni', website:'Sito web'},
     };
     const L = labelsMap[lang] || labelsMap.es;
 
@@ -2474,6 +2484,7 @@
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
     document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
     document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+    document.getElementById('btn-it').classList.toggle('active', lang === 'it');
     root.lang = lang;
     window._olasLang = lang;
     // Re-render POI explorer on lang change
@@ -2488,61 +2499,7 @@
     if (saved && saved !== 'es') setLang(saved);
   })();
 
-  // ── Atmosphere section play / stop / seek ──
-  (function() {
-    var btn  = document.getElementById('atmPlayBtn');
-    var seek = document.getElementById('atmSeekBar');
-    var vid  = document.querySelector('#atmosfera video');
-    if (!btn || !vid) return;
-
-    var SVG_PLAY  = '<svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v14l11-7-11-7z"/></svg>';
-    var SVG_PAUSE = '<svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1.5"/><rect x="14" y="4" width="4" height="16" rx="1.5"/></svg>';
-
-    function syncBtn() {
-      var playing = !vid.paused && !vid.muted;
-      btn.innerHTML = playing ? SVG_PAUSE : SVG_PLAY;
-      btn.setAttribute('aria-label', playing ? 'Pause' : 'Play with sound');
-      btn.setAttribute('title',      playing ? 'Pause' : 'Play with sound');
-    }
-
-    function syncSeek() {
-      if (!seek || !vid.duration) return;
-      var pct = (vid.currentTime / vid.duration) * 100;
-      seek.value = pct;
-      seek.style.setProperty('--seek-pct', pct + '%');
-    }
-
-    var firstPlay = true;
-
-    btn.addEventListener('click', function() {
-      if (vid.paused || vid.muted) {
-        if (firstPlay) {
-          firstPlay = false;
-          vid.currentTime = 0;
-        }
-        vid.muted = false;
-        vid.play().catch(function() { vid.muted = true; vid.play(); });
-      } else {
-        vid.pause();
-        vid.muted = true;
-      }
-      syncBtn();
-    });
-
-    if (seek) {
-      seek.addEventListener('input', function() {
-        if (vid.duration) {
-          vid.currentTime = (seek.value / 100) * vid.duration;
-          seek.style.setProperty('--seek-pct', seek.value + '%');
-        }
-      });
-    }
-
-    vid.addEventListener('play',       syncBtn);
-    vid.addEventListener('pause',      syncBtn);
-    vid.addEventListener('timeupdate', syncSeek);
-    syncBtn();
-  })();
+  // Atmosphere video logic removed as we now use YouTube embed
 
   // ── Hero electric flicker effect ──
   (function() {
